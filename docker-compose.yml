@@ -1,1 +1,45 @@
 # Working, not setup yet
+
+version: "3.8"
+
+services:
+  Publisher:
+    container_name: Publisher
+    image: inductiveautomation/ignition:8.1.19
+    ports:
+      - "81:8088"
+    volumes:
+      - publisher_ignition_data:/usr/local/bin/ignition/data
+    environment:
+      GATEWAY_ADMIN_PASSWORD: password
+      IGNITION_UID: 1000
+      IGNITION_GID: 1000
+      TZ: 'America/Los_Angeles'
+
+  Subscriber:
+    container_name: Subscriber
+    image: inductiveautomation/ignition:8.1.19
+    ports:
+      - "82:8088"
+    volumes:
+      - subscriber_ignition_data:/usr/local/bin/ignition/data
+    environment:
+      GATEWAY_ADMIN_PASSWORD: password
+      IGNITION_UID: 1000
+      IGNITION_GID: 1000
+      TZ: 'America/Los_Angeles'
+
+volumes:
+  publisher_ignition_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/Users/Sepia/Library/CloudStorage/OneDrive-CaliforniaStateUniversity,Sacramento/Semesters/Fall 2022/CPE 190A (Senior Project)/workspace/ignition_data/Publisher"
+      o: bind
+
+  subscriber_ignition_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/Users/Sepia/Library/CloudStorage/OneDrive-CaliforniaStateUniversity,Sacramento/Semesters/Fall 2022/CPE 190A (Senior Project)/workspace/ignition_data/Subscriber"
+      o: bind
