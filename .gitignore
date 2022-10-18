@@ -1,5 +1,32 @@
-
+#Ignore vscode files
+*.vscode
+*.vscode-workspace
 *.log
+*.yml
+
+*.digest.json
+
+ignition.conf
+logback.xml
+
+projects/conversion-report.txt
+projects/.resources
+
+modules/com.inductiveautomation.perspective/fonts
+modules/com.inductiveautomation.perspective/icons
+
+modules/com.inductiveautomation.perspective/themes/.backup
+modules/com.inductiveautomation.perspective/themes/dark.css
+modules/com.inductiveautomation.perspective/themes/dark
+modules/com.inductiveautomation.perspective/themes/light.css
+modules/com.inductiveautomation.perspective/themes/light
+modules/com.inductiveautomation.perspective/themes/dark-warm.css
+modules/com.inductiveautomation.perspective/themes/dark-warm
+modules/com.inductiveautomation.perspective/themes/dark-cool.css
+modules/com.inductiveautomation.perspective/themes/dark-cool
+modules/com.inductiveautomation.perspective/themes/light-cool.css
+modules/com.inductiveautomation.perspective/themes/light-cool
+modules/com.inductiveautomation.perspective/themes/README.md
 
 temp/
-
+Modules/

@@ -29,6 +29,14 @@ services:
       IGNITION_GID: 1000
       TZ: 'America/Los_Angeles'
 
+  MQTTBroker:
+    container_name: MQTTBroker
+    image: 4nxio/mosquitto
+    tty: true
+    ports:
+      - "83:8088"
+
+
 volumes:
   publisher_ignition_data:
     driver: local

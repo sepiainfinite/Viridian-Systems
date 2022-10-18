@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "/": {
+      "docks": {
+        "cornerPriority": "top-bottom",
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 150,
+            "viewParams": {},
+            "viewPath": "Sidebar"
+          }
+        ]
+      },
+      "title": "Dashboard",
+      "viewPath": "Dashboard"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

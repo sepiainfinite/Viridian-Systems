@@ -1,0 +1,56 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "SimpleGauge"
+        },
+        "position": {
+          "basis": "175px"
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[MQTT Engine]Edge Nodes/My MQTT Group/Edge Node 7c1064/SimulatedTags/Ramp/Ramp0"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "maxValue": 25,
+          "style": {
+            "classes": []
+          }
+        },
+        "type": "ia.chart.simple-gauge"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "text": "Inventory Growth"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}
