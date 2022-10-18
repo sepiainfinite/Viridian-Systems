@@ -2,12 +2,12 @@
 *.vscode
 *.vscode-workspace
 *.log
-*.yml
 
 *.digest.json
 
 ignition.conf
 logback.xml
+docker-compose.yml
 
 projects/conversion-report.txt
 projects/.resources
