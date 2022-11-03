@@ -1,0 +1,45 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 599
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "PowerChart"
+        },
+        "position": {
+          "basis": "800px",
+          "grow": 1
+        },
+        "props": {
+          "config": {
+            "tagBrowserStartPath": "BrowseValue [value\u003d[null, Bad_Unsupported, Wed Aug 24 22:53:16 UTC 2022 (1661381596517)], info\u003dnull, configVersion\u003d0]",
+            "visibility": {
+              "showTagBrowser": true
+            }
+          },
+          "interaction": {
+            "chartZoomLevel": 1,
+            "rangeZoomLevel": 1
+          }
+        },
+        "type": "ia.chart.powerchart"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "margin": "12px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

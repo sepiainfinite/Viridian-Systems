@@ -21,12 +21,21 @@
     fill: currentColor;
 }
 
+.ia_dropdown__removeValue--focused,
+.ia_dropdown__removeValue:hover {
+    background-color: var(--red-30);
+}
+
+.ia_dropdown__removeValue:hover > svg {
+    fill: var(--red-60);
+}
+
 .ia_dropdown__search {
     font-size: 0.875rem;
 }
 
-.ia_dropdown--active {
-    border-color: var(--callToAction--active);
+.ia_dropdown--active, .ia_dropdown--focused {
+    outline: 1px solid var(--callToAction--hover);
 }
 
 .ia_dropdown--disabled {
@@ -55,21 +64,17 @@
     color: var(--label);
 }
 
-/** --selected before --keyboard selected so --keyboard selected can override it */
-.ia_dropdown__option--selected {
-    background-color: var(--callToAction);
-    color: var(--neutral-10)
-}
-
-.ia_dropdown__option:not(.ia_dropdown__option--disabled):not(.ia_dropdown__option--selected):hover,
-.ia_dropdown__option:not(.ia_dropdown__option--disabled):focus,
-.ia_dropdown__option--keyboardSelected
-{
-    background-color: var(--callToActionHighlight);
+.ia_dropdown__option--focused:not(.ia_dropdown__option--selected),
+.ia_dropdown__option--focused:not(.ia_dropdown__option--disabled) {
+    background-color: var(--callToAction--activeAlt);
     color: var(--label);
 }
 
-.ia_dropdown__option--disabled {
+.ia_dropdown__option.ia_dropdown__option--selected {
+    background-color: var(--callToAction--hover);
+}
+
+.ia_dropdown__option.ia_dropdown__option--disabled {
     color: var(--label--disabled);
     cursor: not-allowed;
 }

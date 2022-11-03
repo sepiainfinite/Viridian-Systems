@@ -1,0 +1,267 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 137,
+      "width": 282
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "small",
+                    "textAlign": "center"
+                  },
+                  "text": "OSA Temp"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Status"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC1/Cntl/Outside_Air_Temp}, {[default]BMS/Blue/HVAC/AC1/Cntl/Outside_Air_Temp.FormatString}) + \u0027°F\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "medium",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "OSA"
+            },
+            "position": {
+              "basis": "44%",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "alignContent": "flex-start",
+              "direction": "column",
+              "justify": "center"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "small",
+                    "textAlign": "center"
+                  },
+                  "text": "OSA Static Pressure"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Status"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC1/Cntl/OSA_Static_Pressure}, {[default]BMS/Blue/HVAC/AC1/Cntl/OSA_Static_Pressure.FormatString}) + \u0027wc\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "medium",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "OSA Static Pressure"
+            },
+            "position": {
+              "basis": "56%",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "alignContent": "flex-start",
+              "direction": "column",
+              "justify": "center"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "First Row"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "small",
+                    "textAlign": "center"
+                  },
+                  "text": "Avg Bldg Temp"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Status"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/90BR/VAV/_Global/Temp_Avg_Building}, {[default]BMS/90BR/VAV/_Global/Temp_Avg_Building.FormatString}) + \u0027°F\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "medium",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Avg Building Temp"
+            },
+            "position": {
+              "basis": "44%",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "alignContent": "flex-start",
+              "direction": "column",
+              "justify": "center"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "small",
+                    "textAlign": "center"
+                  },
+                  "text": "Bldg Static Pressure"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Status"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC1/Cntl/Building_Static_Pressure}, {[default]BMS/Blue/HVAC/AC1/Cntl/Building_Static_Pressure.FormatString}) + \u0027wc\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "medium",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Building Static Pressure"
+            },
+            "position": {
+              "basis": "56%",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "alignContent": "flex-start",
+              "direction": "column",
+              "justify": "center"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Second Row"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-around",
+      "style": {
+        "backgroundColor": "--neutral-10"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

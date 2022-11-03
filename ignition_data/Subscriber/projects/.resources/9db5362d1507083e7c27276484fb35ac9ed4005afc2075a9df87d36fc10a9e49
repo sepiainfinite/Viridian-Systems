@@ -1,0 +1,865 @@
+{
+  "custom": {},
+  "params": {
+    "compNumb": 1
+  },
+  "propConfig": {
+    "params.compNumb": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 596,
+      "width": 354
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "OSA Heat Max"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "OSA Heat Max",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "OSA Heat Max"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Return Air Temp"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "numberFormat({[default]BMS/90BR/AHU/AHU2/Return_Air_Temp}, {[default]BMS/90BR/AHU/AHU2/Return_Air_Temp.FormatString}) + \u0027°F\u0027"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-80",
+                "borderColor": "--neutral-50",
+                "borderStyle": "solid",
+                "color": "--neutral-10",
+                "fontWeight": "bold",
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Return Air Temp"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Heat Flow"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Heat Flow Title"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "Low"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_low.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_low.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_low"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Heat Flow Low"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "Low SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_low.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_low.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_low"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Heat Flow Low SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "High"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_high.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_high.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_flow_high"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Heat Flow High"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "High SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_high.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_high.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp_Heat_calc/Supply_Air_Temp_Heat_SP_high"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "enabled": false,
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Heat Flow High SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Heating Temp SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Heat_Max_SP.tooltip"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Heating/HMI_Heating_Temp_SP.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Heating/HMI_Heating_Temp_SP.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/Heating/HMI_Heating_Temp_SP"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Heating Temp SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Actual Temp"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "numberFormat({[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp}, {[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp.FormatString}) + \u0027°F\u0027"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-80",
+                "borderColor": "--neutral-50",
+                "borderStyle": "solid",
+                "color": "--neutral-10",
+                "fontWeight": "bold",
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Actual Temp"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "250px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Supply Air Temp (5 min)"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Supply Air Temp Title"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Supply Air Temp"
+        },
+        "position": {
+          "basis": "110px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "1",
+                  "mostRecentUnits": "HOUR"
+                },
+                "enableValueCache": true,
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": [
+                  {
+                    "path": "[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp"
+                  }
+                ],
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range": {
+            "binding": {
+              "config": {
+                "path": "this.props.points"
+              },
+              "transforms": [
+                {
+                  "code": "\t# Manually find max and min, then set \u0027low\u0027 equal to 80% of the min,\n\t# and set \u0027high\u0027 equal to 120% of the max.\n\t\n\tif value.getRowCount() \u003e 0:\n\t\tmax \u003d value.getValueAt(0,1)\n\t\tmin \u003d max\n\t\t\n\t\tfor x in range(1,value.getRowCount()):\n\t\t\tval \u003d value.getValueAt(x,1)\n\t\t\tif val \u003e max:\n\t\t\t\tmax \u003d val\n\t\t\telif val \u003c min:\n\t\t\t\tmin \u003d val\n\t\t\t\t\n\t\treturn {\u0027high\u0027: max*1.2, \u0027low\u0027: min*0.8}\n\telse:\n\t\treturn {\u0027high\u0027: \u0027\u0027, \u0027low\u0027: \u0027\u0027}",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "--neutral-100",
+          "desired": {
+            "fill": {
+              "color": "var(--neutral-90)",
+              "opacity": 0.3
+            },
+            "stroke": {
+              "dashArray": 0,
+              "width": 0
+            }
+          },
+          "marker": {
+            "first": {
+              "size": 0
+            },
+            "high": {
+              "size": ""
+            },
+            "last": {
+              "fill": {
+                "color": "#FF0000"
+              }
+            },
+            "low": {
+              "size": 0
+            }
+          },
+          "style": {
+            "borderColor": "--neutral-80",
+            "borderStyle": "solid",
+            "borderWidth": "1px"
+          }
+        },
+        "type": "ia.display.sparkline"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "paddingRight": "20px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

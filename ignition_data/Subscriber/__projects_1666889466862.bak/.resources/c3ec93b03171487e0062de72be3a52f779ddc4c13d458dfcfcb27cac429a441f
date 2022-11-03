@@ -1,0 +1,45 @@
+INSERT INTO dashboards 
+(
+	dashboard_order, 
+	enabled, 
+	gps_enabled, 
+	gps_lat, 
+	gps_lon, 
+	gps_radius, 
+	grid,
+	cell_size,
+	grid_rows,
+	grid_cols,
+	row_gutter_size,
+	col_gutter_size,
+	icon, name, 
+	parent_id,
+	show_default, 
+	show_public, 
+	url, 
+	username, 
+	last_modified
+) 
+VALUES 
+(
+	:dashboard_order, 
+	:enabled, 
+	:gps_enabled,
+	:gps_lat, 
+	:gps_lon, 
+	:gps_radius, 
+	:grid,
+	:cell_size,
+	:grid_rows,
+	:grid_cols,
+	:grid_row_gutter_size,
+	:grid_col_gutter_size,
+	:icon, 
+	:name, 
+	:parent_id, 
+	:show_default, 
+	:show_public, 
+	:url, 
+	:username,
+	CURRENT_TIMESTAMP
+)

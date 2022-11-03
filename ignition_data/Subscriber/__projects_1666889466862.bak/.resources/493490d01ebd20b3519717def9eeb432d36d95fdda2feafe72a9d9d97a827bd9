@@ -1,0 +1,127 @@
+{
+  "custom": {
+    "coolingColor": "rgb(186,225,255)",
+    "heatingColor": "rgb(255,179,186)"
+  },
+  "params": {
+    "font": "12px",
+    "isCooling": false,
+    "percentOpen": 100
+  },
+  "propConfig": {
+    "custom.coolingColor": {
+      "persistent": true
+    },
+    "custom.heatingColor": {
+      "persistent": true
+    },
+    "params.font": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isCooling": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.percentOpen": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 60,
+      "width": 129
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Line"
+        },
+        "position": {
+          "basis": "50%"
+        },
+        "propConfig": {
+          "props.style.transform": {
+            "binding": {
+              "config": {
+                "expression": "\u0027rotate(\u0027 + toStr(ceil(90 * ((100-{view.params.percentOpen})/100.0))) + \u0027deg)\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": "var(--neutral-60)",
+              "height": "8%",
+              "style": {},
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": "46%"
+            }
+          ],
+          "preserveAspectRatio": "none",
+          "viewBox": "0 0 100 100"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Val"
+        },
+        "position": {
+          "basis": "50%",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.style.color": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-30\u0027,\u0027--neutral-60\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "path": "view.params.font"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "concat(numberFormat({view.params.percentOpen},\"#,##0\"),\" %\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "overflow": "visible",
+            "paddingLeft": "2%",
+            "white-space": "nowrap"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "visible"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

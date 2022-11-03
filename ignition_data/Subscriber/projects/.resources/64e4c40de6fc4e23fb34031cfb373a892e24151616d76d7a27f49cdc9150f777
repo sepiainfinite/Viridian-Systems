@@ -1,0 +1,1319 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 452,
+      "width": 1008
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Divider Heater"
+        },
+        "position": {
+          "height": 0.0088,
+          "width": 0.1558,
+          "x": 0.6133,
+          "y": 0.4447
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-50)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Exterior Object"
+        },
+        "position": {
+          "height": 0.2345,
+          "width": 0.1111,
+          "x": -0.0188,
+          "y": 0.4624
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "d": "M 4.5895916,2.5201785 51.878948,38.917697 49.299362,41.951761 4.5372087,7.1969248 Z",
+                  "name": "rect1076",
+                  "style": {},
+                  "type": "path"
+                },
+                {
+                  "fill": {
+                    "paint": "var(--neutral-100)"
+                  },
+                  "height": 51.682598,
+                  "name": "rect810",
+                  "style": {},
+                  "type": "rect",
+                  "width": "3.358778",
+                  "x": "48.520172",
+                  "y": "38.917698"
+                },
+                {
+                  "fill": {
+                    "paint": "var(--neutral-100)"
+                  },
+                  "height": "3.3602312",
+                  "name": "rect972",
+                  "style": {},
+                  "type": "rect",
+                  "width": "44.089153",
+                  "x": "5.3021855",
+                  "y": "87.240067"
+                }
+              ],
+              "name": "layer1",
+              "type": "group"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "style": {
+            "transform": "scaleX(-1)"
+          },
+          "viewBox": "0 0 57 94"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Divider Supply Air Right"
+        },
+        "position": {
+          "height": 0.1438,
+          "width": 0.002,
+          "x": 0.955,
+          "y": 0.8407
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Down"
+        },
+        "position": {
+          "height": 0.1195,
+          "width": 0.0546,
+          "x": 0.8991,
+          "y": 0.8597
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M19,15l-1.41-1.41L13,18.17V2H11v16.17l-4.59-4.59L5,15l7,7L19,15z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Supply Air Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.8215,
+          "y": 0.9105
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label"
+          },
+          "text": "Supply Air"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Supply Air Temp"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.8225,
+          "y": 0.8678
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat({[default]BMS/Blue/HVAC/AC1/Cntl/Supply_Air_Temp}, {[default]BMS/Blue/HVAC/AC1/Cntl/Supply_Air_Temp.FormatString}) + \u0027°F\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Divider Supply Air Left"
+        },
+        "position": {
+          "height": 0.1438,
+          "width": 0.002,
+          "x": 0.8142,
+          "y": 0.8407
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Up"
+        },
+        "position": {
+          "height": 0.1195,
+          "rotate": {
+            "anchor": "61% 50%"
+          },
+          "width": 0.0546,
+          "x": 0.2136,
+          "y": 0.8597
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M5,9l1.41,1.41L11,5.83V22H13V5.83l4.59,4.59L19,9l-7-7L5,9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Divider Return Air Right"
+        },
+        "position": {
+          "height": 0.1438,
+          "width": 0.002,
+          "x": 0.2714,
+          "y": 0.8407
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Return Air Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.138,
+          "y": 0.9105
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label"
+          },
+          "text": "Return Air"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Return Air Temp"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.139,
+          "y": 0.8678
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat({[default]BMS/Blue/HVAC/AC2/Cntl/Return_Air_Temp}, {[default]BMS/Blue/HVAC/AC2/Cntl/Return_Air_Temp.FormatString}) + \u0027°F\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Divider Return Air Left"
+        },
+        "position": {
+          "height": 0.1438,
+          "width": 0.002,
+          "x": 0.1337,
+          "y": 0.8407
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Divider Left"
+        },
+        "position": {
+          "height": 0.8164,
+          "width": 0.002,
+          "x": 0.1337,
+          "y": 0.0243
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "preserveAspectRatio": "none",
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Air Filter Exchanger Left"
+        },
+        "position": {
+          "height": 0.8097,
+          "width": 0.0853,
+          "x": 0.2721,
+          "y": 0.031
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "#FFFFFF00",
+          "preserveAspectRatio": "none",
+          "style": {
+            "borderLeftColor": "--neutral-70",
+            "borderLeftStyle": "dashed",
+            "borderLeftWidth": "1.5px",
+            "borderRightColor": "--neutral-70",
+            "borderRightStyle": "dashed",
+            "borderRightWidth": "1.5px",
+            "borderTopStyle": "none"
+          },
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Air Filter Exchanger"
+        },
+        "position": {
+          "height": 0.0354,
+          "width": 0.1468,
+          "x": 0.2803,
+          "y": 0.0487
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "--neutral-10",
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label"
+          },
+          "text": "Air Filter Exchanger"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Rise Or Fall"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.3577,
+          "y": 0.1919
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]BMS/90BR/AHU/AHU2/Return_to_Supply_Differential"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Rise Or Fall Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.3577,
+          "y": 0.2301
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label"
+          },
+          "text": "Rise or Fall"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Air Filter Exchanger Mid"
+        },
+        "position": {
+          "height": 0.8097,
+          "width": 0.0942,
+          "x": 0.3524,
+          "y": 0.031
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "#FFFFFF00",
+          "preserveAspectRatio": "none",
+          "style": {
+            "borderRightColor": "--neutral-70",
+            "borderRightStyle": "dashed",
+            "borderRightWidth": "1.5px",
+            "borderTopStyle": "none"
+          },
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Up Right RA"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.2085,
+          "y": 0.6072
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M9,5v2h6.59L4,18.59L5.41,20L17,8.41V15h2V5H9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Up RA"
+        },
+        "position": {
+          "height": 0.0664,
+          "rotate": {
+            "anchor": "61% 50%"
+          },
+          "width": 0.0327,
+          "x": 0.188,
+          "y": 0.7159
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M5,9l1.41,1.41L11,5.83V22H13V5.83l4.59,4.59L19,9l-7-7L5,9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the supply fan controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027supply-fan-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Supply Fan Controls\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Supply Fan (AHU 2)\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Supply Fan"
+        },
+        "position": {
+          "height": 0.1991,
+          "width": 0.0883,
+          "x": 0.474,
+          "y": 0.3585
+        },
+        "propConfig": {
+          "props.fill": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply Fan/Status"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027var(--neutral-80)\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027#00FF00\u0027 if self.session.props.theme in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027] else \u0027#00eb00\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027#FF0000\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027#FFFF00\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "d": "M2.060 2.060 L 0.000 4.119 -0.000 200.000 L -0.000 395.881 2.060 397.940 L 4.119 400.000 200.000 400.000 L 395.881 400.000 397.940 397.940 L 400.000 395.881 400.000 200.000 L 400.000 4.119 397.940 2.060 L 395.881 0.000 200.000 0.000 L 4.119 0.000 2.060 2.060 M35.999 20.344 C 46.520 25.711,43.284 41.225,31.485 41.983 C 25.920 42.340,22.695 40.608,20.344 35.999 C 15.089 25.699,25.699 15.089,35.999 20.344 M216.797 40.642 C 349.313 55.450,407.337 215.536,314.871 311.225 C 231.272 397.738,85.829 364.184,47.793 249.609 C 11.617 140.635,102.790 27.903,216.797 40.642 M144.752 63.666 C 136.881 65.853,123.572 73.609,108.012 85.076 C 103.035 88.744,101.217 91.868,102.097 95.234 C 102.316 96.071,117.002 116.558,134.733 140.760 C 164.972 182.034,166.925 184.896,166.222 186.913 C 165.314 189.517,165.809 189.508,157.755 187.071 C 86.714 165.584,48.947 176.409,53.152 217.055 C 54.229 227.460,61.247 252.638,64.420 257.481 C 67.006 261.428,67.021 261.424,123.176 242.944 C 185.614 222.395,182.907 222.771,173.669 235.942 C 129.872 298.386,130.623 339.135,175.687 345.403 C 178.858 345.844,188.465 346.268,197.037 346.345 L 212.622 346.484 214.514 344.292 L 216.406 342.100 216.406 287.476 L 216.406 232.853 218.711 231.661 C 219.979 231.005,221.167 230.469,221.351 230.469 C 221.535 230.469,223.725 233.193,226.218 236.523 C 271.149 296.552,310.673 308.074,330.341 266.878 C 335.696 255.661,342.495 234.660,341.686 231.837 C 340.530 227.808,338.494 227.005,290.625 211.691 C 265.059 203.513,243.022 196.462,241.656 196.024 C 239.522 195.340,239.059 194.708,238.384 191.559 C 237.457 187.242,237.274 187.461,243.750 185.145 C 313.254 160.289,335.621 128.208,304.746 97.656 C 295.907 88.911,277.422 75.041,273.826 74.458 C 269.440 73.746,268.855 74.450,236.855 118.911 L 206.294 161.374 202.952 161.061 C 198.594 160.652,198.464 160.364,198.449 151.112 C 198.356 89.779,176.846 54.749,144.752 63.666 M206.900 180.893 C 226.988 186.858,222.889 216.532,201.953 216.704 C 180.127 216.884,176.759 185.600,198.047 180.418 C 201.632 179.545,202.523 179.593,206.900 180.893 M375.554 359.347 C 380.921 362.619,382.712 370.841,379.111 375.665 C 371.587 385.742,357.222 380.899,358.015 368.554 C 358.586 359.655,367.975 354.726,375.554 359.347 ",
+                  "name": "path0",
+                  "stroke": {
+                    "paint": "none"
+                  },
+                  "type": "path"
+                }
+              ],
+              "name": "svgg",
+              "type": "group"
+            }
+          ],
+          "style": {
+            "cursor": "pointer"
+          },
+          "viewBox": "0, 0, 470,420"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the supply fan controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027supply-fan-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Supply Fan Controls\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Supply Fan (AHU 2)\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Supply Fan Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.4696,
+          "y": 0.3009
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label",
+            "cursor": "pointer"
+          },
+          "text": "Supply Fan"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Speed Cmd Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.4676,
+          "y": 0.591
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label"
+          },
+          "text": "Speed CMD"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Speed Cmd"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.0843,
+          "x": 0.4675,
+          "y": 0.5527
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply Fan/Speed_Cmd"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"{:.1f}%\".format(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Arrow Right AFE"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.2954,
+          "y": 0.48
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Right ROF"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.3848,
+          "y": 0.48
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Air Filter Exchanger Right"
+        },
+        "position": {
+          "height": 0.8097,
+          "width": 0.1617,
+          "x": 0.4526,
+          "y": 0.031
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "#FFFFFF00",
+          "preserveAspectRatio": "none",
+          "style": {
+            "borderRightColor": "--neutral-70",
+            "borderRightStyle": "dashed",
+            "borderRightWidth": "1.5px",
+            "borderTopStyle": "none",
+            "pointer-events": "none"
+          },
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Heaters"
+        },
+        "position": {
+          "height": 0.8097,
+          "width": 0.1766,
+          "x": 0.5925,
+          "y": 0.031
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "#FFFFFF00",
+          "preserveAspectRatio": "none",
+          "style": {
+            "borderRightColor": "--neutral-70",
+            "borderRightStyle": "dashed",
+            "borderRightWidth": "1.5px",
+            "borderTopStyle": "none"
+          },
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Up Right SF"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.5588,
+          "y": 0.354
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M9,5v2h6.59L4,18.59L5.41,20L17,8.41V15h2V5H9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Down Right SF"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.5598,
+          "y": 0.4872
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M19,9h-2v6.59L5.41,4L4,5.41L15.59,17H9v2h10V9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Outline"
+        },
+        "position": {
+          "height": 0.8186,
+          "width": 0.9266,
+          "x": 0.0605,
+          "y": 0.0221
+        },
+        "props": {
+          "elements": [
+            {
+              "height": "100%",
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "fill": "#FFFFFF00",
+          "preserveAspectRatio": "none",
+          "style": {
+            "borderColor": "var(--neutral-100)",
+            "borderStyle": "solid",
+            "borderWidth": "2px",
+            "pointer-events": "none"
+          },
+          "viewBox": "0, 0, 24, 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the upper heater controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027upper-heater-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Heating Controls Upper\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Upper Heater\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Upper Heater"
+        },
+        "position": {
+          "height": 0.1991,
+          "width": 0.0883,
+          "x": 0.6504,
+          "y": 0.1493
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "d": "M76.838 5.376 C 77.526 12.786,79.839 19.796,83.572 25.793 C 95.193 44.458,95.193 50.073,83.572 68.738 C 79.839 74.735,77.526 81.745,76.838 89.155 L 76.338 94.531 88.381 94.531 L 100.424 94.531 101.332 89.753 C 101.969 86.402,103.527 82.843,106.551 77.839 C 120.066 55.468,120.066 39.063,106.551 16.692 C 103.527 11.688,101.969 8.130,101.332 4.778 L 100.424 0.000 88.381 -0.000 L 76.338 -0.000 76.838 5.376 M123.713 5.376 C 124.401 12.786,126.714 19.796,130.447 25.793 C 138.050 38.005,138.655 39.588,138.655 47.266 C 138.655 54.944,138.050 56.526,130.447 68.738 C 126.714 74.735,124.401 81.745,123.713 89.155 L 123.213 94.531 135.256 94.531 L 147.299 94.531 148.207 89.753 C 148.844 86.402,150.402 82.843,153.426 77.839 C 166.941 55.468,166.941 39.063,153.426 16.692 C 150.402 11.688,148.844 8.130,148.207 4.778 L 147.299 0.000 135.256 -0.000 L 123.213 -0.000 123.713 5.376 M170.588 5.376 C 171.276 12.786,173.589 19.796,177.322 25.793 C 184.925 38.005,185.530 39.588,185.530 47.266 C 185.530 54.944,184.925 56.526,177.322 68.738 C 173.589 74.735,171.276 81.745,170.588 89.155 L 170.088 94.531 182.131 94.531 L 194.174 94.531 195.082 89.753 C 195.719 86.402,197.277 82.843,200.301 77.839 C 213.816 55.468,213.816 39.063,200.301 16.692 C 197.277 11.688,195.719 8.130,195.082 4.778 L 194.174 0.000 182.131 -0.000 L 170.088 -0.000 170.588 5.376 M217.463 5.376 C 218.151 12.786,220.464 19.796,224.197 25.793 C 235.818 44.458,235.818 50.073,224.197 68.738 C 220.464 74.735,218.151 81.745,217.463 89.155 L 216.963 94.531 229.006 94.531 L 241.049 94.531 241.957 89.753 C 242.594 86.402,244.152 82.843,247.176 77.839 C 260.691 55.468,260.691 39.063,247.176 16.692 C 244.152 11.688,242.594 8.130,241.957 4.778 L 241.049 0.000 229.006 -0.000 L 216.963 -0.000 217.463 5.376 M264.338 5.376 C 265.026 12.786,267.339 19.796,271.072 25.793 C 282.693 44.458,282.693 50.073,271.072 68.738 C 267.339 74.735,265.026 81.745,264.338 89.155 L 263.838 94.531 275.881 94.531 L 287.924 94.531 288.832 89.753 C 289.469 86.402,291.027 82.843,294.051 77.839 C 307.566 55.468,307.566 39.063,294.051 16.692 C 291.027 11.688,289.469 8.130,288.832 4.778 L 287.924 0.000 275.881 -0.000 L 263.838 -0.000 264.338 5.376 M48.828 119.186 C 34.260 124.349,27.344 134.941,27.344 152.092 L 27.344 160.938 13.672 160.938 L 0.000 160.938 0.000 172.656 L 0.000 184.375 13.672 184.375 L 27.344 184.375 27.344 279.548 C 27.344 365.917,27.463 375.078,28.633 378.572 C 38.232 407.241,78.875 407.241,88.545 378.572 C 90.530 372.686,90.539 145.325,88.555 139.397 C 83.144 123.238,64.361 113.682,48.828 119.186 M140.234 119.186 C 130.416 122.666,123.235 129.851,120.039 139.397 C 118.062 145.300,118.062 372.668,120.039 378.572 C 129.638 407.241,170.281 407.241,179.951 378.572 C 181.937 372.686,181.946 145.325,179.961 139.397 C 174.551 123.238,155.767 113.682,140.234 119.186 M226.172 119.186 C 216.353 122.666,209.173 129.851,205.977 139.397 C 204.000 145.300,204.000 372.668,205.977 378.572 C 215.576 407.241,256.218 407.241,265.889 378.572 C 267.874 372.686,267.883 145.325,265.898 139.397 C 260.488 123.238,241.704 113.682,226.172 119.186 M312.109 119.186 C 302.291 122.666,295.110 129.851,291.914 139.397 C 289.937 145.300,289.937 372.668,291.914 378.572 C 301.513 407.241,342.156 407.241,351.826 378.572 C 353.009 375.066,353.125 366.213,353.125 279.548 L 353.125 184.375 376.563 184.375 L 400.000 184.375 400.000 158.594 L 400.000 132.813 388.281 132.813 L 376.563 132.813 376.563 146.875 L 376.563 160.938 364.844 160.938 L 353.125 160.938 353.125 152.092 C 353.125 127.843,333.075 111.757,312.109 119.186 ",
+                  "fill": {
+                    "rule": "evenodd"
+                  },
+                  "name": "path0",
+                  "stroke": {
+                    "paint": "none"
+                  },
+                  "type": "path"
+                }
+              ],
+              "name": "svgg",
+              "type": "group"
+            }
+          ],
+          "fill": "var(--neutral-80)",
+          "style": {
+            "cursor": "pointer"
+          },
+          "viewBox": "0, 0, 460,400"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the upper heater controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027upper-heater-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Heating Controls Upper\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Upper Heater\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Upper Heater Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.1012,
+          "x": 0.6397,
+          "y": 0.0963
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label",
+            "cursor": "pointer"
+          },
+          "text": "Upper Heater"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the lower heater controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027lower-heater-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Heating Controls Lower\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Lower Heater\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Lower Heater"
+        },
+        "position": {
+          "height": 0.1991,
+          "width": 0.0883,
+          "x": 0.6504,
+          "y": 0.5629
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "d": "M76.838 5.376 C 77.526 12.786,79.839 19.796,83.572 25.793 C 95.193 44.458,95.193 50.073,83.572 68.738 C 79.839 74.735,77.526 81.745,76.838 89.155 L 76.338 94.531 88.381 94.531 L 100.424 94.531 101.332 89.753 C 101.969 86.402,103.527 82.843,106.551 77.839 C 120.066 55.468,120.066 39.063,106.551 16.692 C 103.527 11.688,101.969 8.130,101.332 4.778 L 100.424 0.000 88.381 -0.000 L 76.338 -0.000 76.838 5.376 M123.713 5.376 C 124.401 12.786,126.714 19.796,130.447 25.793 C 138.050 38.005,138.655 39.588,138.655 47.266 C 138.655 54.944,138.050 56.526,130.447 68.738 C 126.714 74.735,124.401 81.745,123.713 89.155 L 123.213 94.531 135.256 94.531 L 147.299 94.531 148.207 89.753 C 148.844 86.402,150.402 82.843,153.426 77.839 C 166.941 55.468,166.941 39.063,153.426 16.692 C 150.402 11.688,148.844 8.130,148.207 4.778 L 147.299 0.000 135.256 -0.000 L 123.213 -0.000 123.713 5.376 M170.588 5.376 C 171.276 12.786,173.589 19.796,177.322 25.793 C 184.925 38.005,185.530 39.588,185.530 47.266 C 185.530 54.944,184.925 56.526,177.322 68.738 C 173.589 74.735,171.276 81.745,170.588 89.155 L 170.088 94.531 182.131 94.531 L 194.174 94.531 195.082 89.753 C 195.719 86.402,197.277 82.843,200.301 77.839 C 213.816 55.468,213.816 39.063,200.301 16.692 C 197.277 11.688,195.719 8.130,195.082 4.778 L 194.174 0.000 182.131 -0.000 L 170.088 -0.000 170.588 5.376 M217.463 5.376 C 218.151 12.786,220.464 19.796,224.197 25.793 C 235.818 44.458,235.818 50.073,224.197 68.738 C 220.464 74.735,218.151 81.745,217.463 89.155 L 216.963 94.531 229.006 94.531 L 241.049 94.531 241.957 89.753 C 242.594 86.402,244.152 82.843,247.176 77.839 C 260.691 55.468,260.691 39.063,247.176 16.692 C 244.152 11.688,242.594 8.130,241.957 4.778 L 241.049 0.000 229.006 -0.000 L 216.963 -0.000 217.463 5.376 M264.338 5.376 C 265.026 12.786,267.339 19.796,271.072 25.793 C 282.693 44.458,282.693 50.073,271.072 68.738 C 267.339 74.735,265.026 81.745,264.338 89.155 L 263.838 94.531 275.881 94.531 L 287.924 94.531 288.832 89.753 C 289.469 86.402,291.027 82.843,294.051 77.839 C 307.566 55.468,307.566 39.063,294.051 16.692 C 291.027 11.688,289.469 8.130,288.832 4.778 L 287.924 0.000 275.881 -0.000 L 263.838 -0.000 264.338 5.376 M48.828 119.186 C 34.260 124.349,27.344 134.941,27.344 152.092 L 27.344 160.938 13.672 160.938 L 0.000 160.938 0.000 172.656 L 0.000 184.375 13.672 184.375 L 27.344 184.375 27.344 279.548 C 27.344 365.917,27.463 375.078,28.633 378.572 C 38.232 407.241,78.875 407.241,88.545 378.572 C 90.530 372.686,90.539 145.325,88.555 139.397 C 83.144 123.238,64.361 113.682,48.828 119.186 M140.234 119.186 C 130.416 122.666,123.235 129.851,120.039 139.397 C 118.062 145.300,118.062 372.668,120.039 378.572 C 129.638 407.241,170.281 407.241,179.951 378.572 C 181.937 372.686,181.946 145.325,179.961 139.397 C 174.551 123.238,155.767 113.682,140.234 119.186 M226.172 119.186 C 216.353 122.666,209.173 129.851,205.977 139.397 C 204.000 145.300,204.000 372.668,205.977 378.572 C 215.576 407.241,256.218 407.241,265.889 378.572 C 267.874 372.686,267.883 145.325,265.898 139.397 C 260.488 123.238,241.704 113.682,226.172 119.186 M312.109 119.186 C 302.291 122.666,295.110 129.851,291.914 139.397 C 289.937 145.300,289.937 372.668,291.914 378.572 C 301.513 407.241,342.156 407.241,351.826 378.572 C 353.009 375.066,353.125 366.213,353.125 279.548 L 353.125 184.375 376.563 184.375 L 400.000 184.375 400.000 158.594 L 400.000 132.813 388.281 132.813 L 376.563 132.813 376.563 146.875 L 376.563 160.938 364.844 160.938 L 353.125 160.938 353.125 152.092 C 353.125 127.843,333.075 111.757,312.109 119.186 ",
+                  "fill": {
+                    "rule": "evenodd"
+                  },
+                  "name": "path0",
+                  "stroke": {
+                    "paint": "none"
+                  },
+                  "type": "path"
+                }
+              ],
+              "name": "svgg",
+              "type": "group"
+            }
+          ],
+          "fill": "var(--neutral-80)",
+          "style": {
+            "cursor": "pointer"
+          },
+          "viewBox": "0, 0, 460,400"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the lower heater controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027lower-heater-controls\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Heating Controls Lower\u0027,position \u003d {\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Lower Heater\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Lower Heater Label"
+        },
+        "position": {
+          "height": 0.0708,
+          "width": 0.1012,
+          "x": 0.6397,
+          "y": 0.51
+        },
+        "props": {
+          "style": {
+            "classes": "building-automation-demo/page/controls/framework/ahu-font-Label",
+            "cursor": "pointer"
+          },
+          "text": "Lower Heater"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Arrow Right MHC"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.7944,
+          "y": 0.2294
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Right LH"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.7944,
+          "y": 0.6065
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Down Right MHC"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.8548,
+          "y": 0.3014
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M19,9h-2v6.59L5.41,4L4,5.41L15.59,17H9v2h10V9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Down Right LH"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.8449,
+          "y": 0.6974
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M19,9h-2v6.59L5.41,4L4,5.41L15.59,17H9v2h10V9z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Arrow Down MHC"
+        },
+        "position": {
+          "height": 0.0664,
+          "width": 0.0327,
+          "x": 0.8862,
+          "y": 0.4535
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": "none"
+              },
+              "height": "24",
+              "name": "rect",
+              "type": "rect",
+              "width": "24"
+            },
+            {
+              "d": "M19,15l-1.41-1.41L13,18.17V2H11v16.17l-4.59-4.59L5,15l7,7L19,15z",
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "fill": "var(--neutral-100)",
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onMouseDown": {
+              "config": {
+                "script": "\t# Open the main heating controls popup.\n\t\n\tsystem.perspective.openPopup(\u0027heating-controls-main\u0027,\u0027Building Automation Demo/Page/Controls/Framework/AHU 2/Control Popups/Heating Controls Main\u0027,params\u003d{\u0027left\u0027:event.clientX,\u0027top\u0027:event.clientY},resizable\u003dFalse,title\u003d\u0027Heating Controls\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Main Heating Controls"
+        },
+        "position": {
+          "height": 0.0553,
+          "width": 0.1488,
+          "x": 0.7788,
+          "y": 0.0862
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "--neutral-10",
+            "borderColor": "--neutral-100",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "color": "--neutral-100",
+            "cursor": "pointer",
+            "fontSize": "11px"
+          },
+          "text": "Main Heating Controls",
+          "textStyle": {
+            "white-space": "nowrap"
+          }
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "aspectRatio": "1008:452",
+      "mode": "percent"
+    },
+    "type": "ia.container.coord"
+  }
+}

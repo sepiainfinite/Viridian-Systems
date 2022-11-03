@@ -1,0 +1,622 @@
+{
+  "custom": {
+    "alarmCount": 0,
+    "refresh": {
+      "$": [
+        "ts",
+        192,
+        1653425891371
+      ],
+      "$ts": 1653425891370
+    },
+    "widgetDimensions": {
+      "height": 0,
+      "width": 0
+    }
+  },
+  "params": {
+    "activeAcked": true,
+    "activeUnacked": true,
+    "beingEdited": false,
+    "clearedAcked": false,
+    "clearedUnacked": false,
+    "columnCount": 1,
+    "columnSpan": 1,
+    "critical": true,
+    "diagnostic": true,
+    "high": true,
+    "low": true,
+    "medium": true,
+    "mobile": "",
+    "refresh": 60000,
+    "rowCount": 1,
+    "rowSpan": 1,
+    "sourceFilter": "",
+    "threshold": "",
+    "widgetID": -1,
+    "widgetTitle": ""
+  },
+  "propConfig": {
+    "custom.alarmCount": {
+      "binding": {
+        "config": {
+          "struct": {
+            "activeAcked": "{view.params.activeAcked}",
+            "activeUnacked": "{view.params.activeUnacked}",
+            "clearedAcked": "{view.params.clearedAcked}",
+            "clearedUnacked": "{view.params.clearedUnacked}",
+            "critical": "{view.params.critical}",
+            "diagnostic": "{view.params.diagnostic}",
+            "high": "{view.params.high}",
+            "low": "{view.params.low}",
+            "medium": "{view.params.medium}",
+            "sourceFilter": "{view.params.sourceFilter}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t# Utilize the params to create the states and priorities lists (will be\n\t# passed to queryStatus).\n\t\n\tstates \u003d []\n\tpriorities \u003d []\n\t\n\tsource \u003d value[\u0027sourceFilter\u0027]\n\t\n\tif value[\u0027activeUnacked\u0027]:\n\t\tstates.append(\u0027ActiveUnacked\u0027)\n\tif value[\u0027activeAcked\u0027]:\n\t\tstates.append(\u0027ActiveAcked\u0027)\n\tif value[\u0027clearedUnacked\u0027]:\n\t\tstates.append(\u0027ClearUnacked\u0027)\n\tif value[\u0027clearedAcked\u0027]:\n\t\tstates.append(\u0027ClearAcked\u0027)\n\n\tif value[\u0027diagnostic\u0027]:\n\t\tpriorities.append(\u0027Diagnostic\u0027)\n\tif value[\u0027low\u0027]:\n\t\tpriorities.append(\u0027Low\u0027)\n\tif value[\u0027medium\u0027]:\n\t\tpriorities.append(\u0027Medium\u0027)\n\tif value[\u0027high\u0027]:\n\t\tpriorities.append(\u0027High\u0027)\n\tif value[\u0027critical\u0027]:\n\t\tpriorities.append(\u0027Critical\u0027)\n\t\n\t# If no states or priorities, return 0.\n\tif len(states) \u003d\u003d 0 or len(priorities) \u003d\u003d 0:\n\t\treturn 0\n\telse:\n\t\tsourceFilter \u003d source.split(\u0027,\u0027)\n\t\tsourceFilter.append(\u0027*BMS*\u0027)\n\t\t\n\t\t# Return the length of the alarm status list.\n\t\treturn len(system.alarm.queryStatus(priority\u003dpriorities,state\u003dstates,source\u003dsourceFilter))",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.refresh": {
+      "binding": {
+        "config": {
+          "expression": "now({view.params.refresh})"
+        },
+        "transforms": [
+          {
+            "code": "\t# Utilize now() expression function to continously refresh the binding\n\t# on the alarmCount custom property (ensure that alarm count is recent).\n\t\n\tself.refreshBinding(\u0027custom.alarmCount\u0027)\n\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.systemMode": {
+      "persistent": true
+    },
+    "custom.tagPath": {
+      "persistent": true
+    },
+    "custom.tagValue": {
+      "persistent": true
+    },
+    "custom.testing": {
+      "persistent": true
+    },
+    "custom.widgetDimensions": {
+      "binding": {
+        "config": {
+          "struct": {
+            "columnCount": "{view.params.columnCount}",
+            "columnSpan": "{view.params.columnSpan}",
+            "rowCount": "{view.params.rowCount}",
+            "rowSpan": "{view.params.rowSpan}",
+            "viewportHeight": "{page.props.dimensions.viewport.height}",
+            "viewportWidth": "{page.props.dimensions.viewport.width}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t# Utilize the dimensions of the viewport, the number of dashboard rows/cols, and the number\n\t# of rows/cols that the widget spans in order to figure out the width and height of the\n\t# widget in pixels (to help with font size and icon size).\n\t\n\tviewportWidth \u003d value[\u0027viewportWidth\u0027]\n\tviewportHeight \u003d value[\u0027viewportHeight\u0027]\n\trowSpan \u003d value[\u0027rowSpan\u0027]\n\tcolumnSpan \u003d value[\u0027columnSpan\u0027]\n\trowCount \u003d value[\u0027rowCount\u0027]\n\tcolumnCount \u003d value[\u0027columnCount\u0027]\n\t\n\tif viewportWidth \u003d\u003d None or viewportHeight \u003d\u003d None:\n\t\treturn {\u0027width\u0027:0,\u0027height\u0027:0}\n\telse:\n\t\tpixelPerCol \u003d viewportWidth / float(columnCount)\n\t\tpixelPerRow \u003d viewportHeight / float(rowCount)\n\t\t\n\t\twidgetPixelWidth \u003d pixelPerCol * columnSpan\n\t\twidgetPixelHeight \u003d (pixelPerRow * rowSpan)\n\t\t\n\t\treturn {\u0027width\u0027:widgetPixelWidth,\u0027height\u0027:widgetPixelHeight}",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "params.ac": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.activeAcked": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.activeUnacked": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.alarmInfo": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.beingEdited": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.clearedAcked": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.clearedUnacked": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.colors": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.columnCount": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.columnSpan": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.compressor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.critical": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.diagnostic": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.floorNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.fontSize": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.group": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.high": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.highThreshold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.iconSize": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.iconVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.low": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.lowThreshold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mappings": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.medium": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.minutes": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.numberFormat": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.refresh": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowCount": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowSpan": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showChange": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showLegend": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showX": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showY": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sourceFilter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tag": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagInfo": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.threshold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.unit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.units": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.widgetID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.widgetTitle": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 203,
+      "width": 262
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-60\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "defaultTitle": "{parent.custom.default}",
+                      "widgetTitle": "{view.params.widgetTitle}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If user has not specified a title for widget, then return the default title\n\t\n\twidgetTitle \u003d value[\u0027widgetTitle\u0027]\n\tdefaultTitle \u003d value[\u0027defaultTitle\u0027]\n\t\n\tif len(widgetTitle) \u003e 0:\n\t\treturn widgetTitle\n\telse:\n\t\treturn defaultTitle",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontSize": "15px",
+                "fontWeight": "bold",
+                "marginLeft": "8px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "custom": {
+          "default": "Alarm Count"
+        },
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "25px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginTop": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Value"
+        },
+        "position": {
+          "basis": "0.0px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "mobile": "{view.params.mobile}",
+                  "numChars": "len(toStr({this.props.text}))",
+                  "widgetDimensions": "{view.custom.widgetDimensions}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If mobile, return 75px. Otherwise, utilize the min between 0.33*widgetWidth\n\t# and 110px if the widgetHeight is greater than the widgetWidth or the min\n\t# between 0.33*widgetHeight and 110px if the widgetHeight is less than or\n\t# equal to the widgetWidth.\n\t\n\twidgetWidth \u003d value[\u0027widgetDimensions\u0027][\u0027width\u0027]\n\twidgetHeight \u003d value[\u0027widgetDimensions\u0027][\u0027height\u0027]\n\tnumChars \u003d float(value[\u0027numChars\u0027])\n\t\n\tmult \u003d 0.33\n\t\n\tif numChars \u003d\u003d 0:\n\t\treturn \u00270px\u0027\n\telif value[\u0027mobile\u0027] !\u003d True:\n\t\tif widgetWidth \u003c widgetHeight:\n\t\t\treturn str(min((mult*widgetWidth),110)) + \u0027px\u0027\n\t\telse:\n\t\t\treturn str(min((mult*widgetHeight),110)) + \u0027px\u0027\n\telse:\n\t\treturn \u002775px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.alarmCount"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Alarm"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "mobile": "{view.params.mobile}",
+                      "widgetDimensions": "{view.custom.widgetDimensions}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If mobile, return 75px. Otherwise, utilize the min between 0.3*widgetWidth\n\t# and 90px if the widgetHeight is greater than the widgetWidth or the min\n\t# between 0.3*widgetHeight and 90px if the widgetHeight is less than or\n\t# equal to the widgetWidth.\n\t\n\twidgetWidth \u003d value[\u0027widgetDimensions\u0027][\u0027width\u0027]\n\twidgetHeight \u003d value[\u0027widgetDimensions\u0027][\u0027height\u0027]\n\t\n\tif value[\u0027mobile\u0027] !\u003d True:\n\t\tif widgetWidth \u003c widgetHeight:\n\t\t\treturn str(min(0.3*widgetWidth,90)) + \u0027px\u0027\n\t\telse:\n\t\t\treturn str(min(0.3*widgetHeight,90)) + \u0027px\u0027\n\telse:\n\t\treturn \u002775px\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "alarmCount": "{view.custom.alarmCount}",
+                      "theme": "{session.props.theme}",
+                      "threshold": "{view.params.threshold}",
+                      "type": "{view.params.type}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# Utilize the current theme, threshold value, and alarm count (if threshold is not equal\n\t# to -1) to determine the style class for the alarm icon. The animateWarning style class\n\t# causes the alarm icon to flash in red.\n\t\n\tthreshold \u003d value[\u0027threshold\u0027]\n\t\n\tif value[\u0027theme\u0027] in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027]:\n\t\twidgetIcon \u003d \u0027building-automation-demo/page/systems-overview/framework/dashboard/widgets/widget-icon\u0027\n\t\tanimateWarning \u003d \u0027building-automation-demo/page/animate-warning\u0027\n\telse:\n\t\twidgetIcon \u003d \u0027building-automation-demo/page/systems-overview/framework/dashboard/widgets/widget-icon-light\u0027\n\t\tanimateWarning \u003d \u0027building-automation-demo/page/systems-overview/framework/dashboard/widgets/animate-warning-light\u0027\n\t\n\tif threshold \u003d\u003d -1:\n\t\treturn widgetIcon\n\telse:\n\t\talarmCount \u003d value[\u0027alarmCount\u0027]\n\t\n\t\tif alarmCount \u003e threshold:\n\t\t\treturn animateWarning\n\t\telse:\n\t\t\treturn widgetIcon",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              },
+              "props.style.marginRight": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.widgetDimensions.width"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn str(0.01*value) + \u0027px\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.style.marginTop": {
+                "binding": {
+                  "config": {
+                    "path": "this.position.basis"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tbasis \u003d 0.0-float(value.replace(\u0027px\u0027,\u0027\u0027))\n\tcontBasis \u003d float(value.replace(\u0027px\u0027,\u0027\u0027))/2.0\n\t\n\treturn str(basis + contBasis) + \u0027px\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M6.71916 3.13846C4.55267 4.82768 3.12638 7.43077 3 10.3846H4.80541C4.94082 7.93846 6.1685 5.79693 8.01003 4.45846L6.71916 3.13846H6.71916ZM19.1946 10.3846H21C20.8646 7.43077 19.4383 4.82768 17.2808 3.13846L15.999 4.45846C17.8225 5.79692 19.0592 7.93846 19.1946 10.3846H19.1946ZM17.4162 10.8462C17.4162 8.01231 15.9358 5.64 13.3541 5.01231V4.38462C13.3541 3.61846 12.7492 3 12 3C11.2508 3 10.6459 3.61846 10.6459 4.38462V5.01231C8.05517 5.64 6.58376 8.00308 6.58376 10.8462C6.59242 11.8223 6.39784 12.7069 6.00001 13.5C5.70325 14.0916 5.20325 14.5916 4.50001 15V16.5H19.5V15C18.9115 14.8202 18.4115 14.3202 18 13.5C17.5885 12.6798 17.394 11.7952 17.4163 10.8462H17.4162ZM12 21C13.5 21 15 19.5 15 18H9C9 19.5 10.5 21 12 21Z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "style": {},
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          }
+        ],
+        "meta": {
+          "name": "Alarm Icon Cont"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "path": "./Alarm.position.basis"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn str(float(value.replace(\u0027px\u0027,\u0027\u0027))/2.0) + \u0027px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "overflow": "visible",
+            "zIndex": 1
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onMouseEnter": {
+          "config": {
+            "script": "\tself.getChild(\"Header\").getChild(\"Open\").props.style.opacity \u003d 1"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        },
+        "onMouseLeave": {
+          "config": {
+            "script": "\tself.getChild(\"Header\").getChild(\"Open\").props.style.opacity \u003d 0"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "style": {
+          "backgroundColor": "var(--neutral-10)",
+          "color": "var(--neutral-100)"
+        }
+      }
+    },
+    "propConfig": {
+      "meta.tooltip.enabled": {
+        "binding": {
+          "config": {
+            "path": "view.params.beingEdited"
+          },
+          "type": "property"
+        }
+      },
+      "meta.tooltip.text": {
+        "binding": {
+          "config": {
+            "expression": "\u0027Widget ID: \u0027 + toStr({view.params.widgetID})"
+          },
+          "type": "expr"
+        }
+      },
+      "props.style": {
+        "binding": {
+          "config": {
+            "path": "session.props.theme"
+          },
+          "transforms": [
+            {
+              "code": "\tif value in [\u0027hvac-warm\u0027,\u0027hvac\u0027]:\n\t\treturn {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundColor\": \"var(--neutral-10)\"}\n\telse:\n\t\treturn {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundColor\": \"var(--neutral-50)\"}\n\t\t#return {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundImage\": \"linear-gradient(var(--neutral-50),var(--neutral-40))\"}",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

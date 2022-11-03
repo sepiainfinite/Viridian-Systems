@@ -1,0 +1,1 @@
+SELECT last_modified FROM dashboards WHERE id = :id

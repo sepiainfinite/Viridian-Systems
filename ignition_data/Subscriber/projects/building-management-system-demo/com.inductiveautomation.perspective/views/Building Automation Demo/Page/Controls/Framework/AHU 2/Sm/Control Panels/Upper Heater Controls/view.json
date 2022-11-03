@@ -1,0 +1,588 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 596,
+      "width": 354
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "195px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Stage 1: Upper unit 50%"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Stage 1 Title"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "Status"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.text"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d \u0027On\u0027:\n\t\treturn \u0027#00FF00\u0027\n\telif value \u003d\u003d \u0027Off\u0027:\n\t\treturn \u0027#D5D5D5\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-100\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/AC2_Heat_Stage1_On"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Off\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027On\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderColor": "--neutral-50",
+                "borderStyle": "solid",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Stage 1 Status"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "SAT On SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_On_D.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_On_D.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_On_D"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Stage 1 SAT On SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "SAT Off SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_Off_D.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_Off_D.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage1_SP_Off_D"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Stage 1 SAT Off SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "215px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80"
+              },
+              "text": "Stage 3: Upper unit 100%"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Stage 3 Title"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "Status"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.text"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d \u0027On\u0027:\n\t\treturn \u0027#00FF00\u0027\n\telif value \u003d\u003d \u0027Off\u0027:\n\t\treturn \u0027#D5D5D5\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-100\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/Blue/HVAC/AC2/AC2_Heat_Stage3_On"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Off\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027On\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderColor": "--neutral-50",
+                "borderStyle": "solid",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Stage 3 Status"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "SAT On SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_On_D.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_On_D.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_On_D"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Stage 3 SAT On SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "170px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "paddingLeft": "25px"
+              },
+              "text": "SAT Off SP"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Numeric Entry"
+            },
+            "position": {
+              "basis": "65px"
+            },
+            "propConfig": {
+              "props.inputBounds.maximum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_Off_D.engHigh"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.inputBounds.minimum": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_Off_D.engLow"
+                  },
+                  "type": "tag"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]BMS/90BR/AHU/AHU2/Heater_Logic/AHU2_Heat_Stage3_SP_Off_D"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {}
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Stage 3 SAT Off SP"
+        },
+        "position": {
+          "basis": "50px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "paddingRight": "20px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

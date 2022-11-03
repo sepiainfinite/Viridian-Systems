@@ -1,0 +1,96 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 292,
+      "width": 375
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Roof Display"
+        },
+        "position": {
+          "basis": "231px"
+        },
+        "props": {
+          "params": {
+            "mobile": true
+          },
+          "path": "Building Automation Demo/Page/Controls/Framework/Roof Display"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Done"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "paddingLeft": "5px"
+              },
+              "text": "Done"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.closeDock(\u0027roofDisplay\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Done Cont",
+          "tooltip": {
+            "text": "SETTINGS"
+          }
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "backgroundColor": "--neutral-20",
+            "borderColor": "--neutral-50",
+            "borderRadius": "8px",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "marginLeft": "10px",
+            "marginRight": "10px",
+            "marginTop": "10px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-30"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

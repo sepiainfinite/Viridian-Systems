@@ -1,0 +1,1 @@
+SELECT * FROM notes ORDER BY id DESC LIMIT :limit

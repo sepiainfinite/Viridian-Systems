@@ -1,0 +1,1129 @@
+{
+  "custom": {},
+  "params": {
+    "currentParams": {
+      "activeAcked": true,
+      "activeUnacked": true,
+      "clearedAcked": false,
+      "clearedUnacked": false,
+      "critical": true,
+      "diagnostic": true,
+      "high": true,
+      "low": true,
+      "medium": true,
+      "refresh": 60000,
+      "sourceFilter": "",
+      "threshold": "",
+      "widgetTitle": ""
+    }
+  },
+  "propConfig": {
+    "params.currentParams": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 450
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label Wiget Title"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Widget Title"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "35px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.currentParams.widgetTitle"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Alarm Count",
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Widget Title"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "white-space": "nowrap"
+              },
+              "text": "Priority"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "props": {
+                      "style": {
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Select Alarm Priorities"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Expand"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "!{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  },
+                  {
+                    "meta": {
+                      "name": "Collapse"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.getSibling(\"Options\").position.display \u003d not self.getSibling(\"Options\").position.display"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "props": {
+                  "justify": "space-between",
+                  "style": {
+                    "classes": "building-automation-demo/page/systems-overview/framework/dashboard/widgets/button",
+                    "minHeight": "32px",
+                    "paddingLeft": "5px",
+                    "paddingRight": "5px",
+                    "transition": "background-color 0.25s linear"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Diagnostic"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.diagnostic"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Diagnostic"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Low"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.low"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Low"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Medium"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.medium"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Medium"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "High"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.high"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "High"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Critical"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.critical"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Critical"
+                    },
+                    "type": "ia.input.checkbox"
+                  }
+                ],
+                "meta": {
+                  "name": "Options"
+                },
+                "position": {
+                  "basis": "250px",
+                  "display": false,
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "space-around",
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "borderColor": "var(--neutral-70)",
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "minHeight": "250px",
+                    "overflow": "visible",
+                    "padding": "10px",
+                    "zIndex": 1
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Priority Filters"
+            },
+            "position": {
+              "basis": "185px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": "15px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Alarm Priority"
+        },
+        "position": {
+          "basis": "40px"
+        },
+        "props": {
+          "style": {
+            "marginTop": "50px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "white-space": "nowrap"
+              },
+              "text": "State"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "props": {
+                      "style": {
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Select Alarm States"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Expand"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "!{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  },
+                  {
+                    "meta": {
+                      "name": "Collapse"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.getSibling(\"Options\").position.display \u003d not self.getSibling(\"Options\").position.display"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "props": {
+                  "justify": "space-between",
+                  "style": {
+                    "classes": "building-automation-demo/page/systems-overview/framework/dashboard/widgets/button",
+                    "minHeight": "32px",
+                    "paddingLeft": "5px",
+                    "paddingRight": "5px",
+                    "transition": "background-color 0.25s linear"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Active Unacked"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.activeUnacked"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Active Unacknowledged"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Active Acked"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.activeAcked"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Active Acknowledged"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Cleared Unacked"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.clearedUnacked"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Cleared Unacknowledged"
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Cleared Acked"
+                    },
+                    "position": {
+                      "basis": "56px"
+                    },
+                    "propConfig": {
+                      "props.selected": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.params.currentParams.clearedAcked"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "color": {
+                          "enabled": "--neutral-70"
+                        }
+                      },
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "13px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Cleared Acknowledged"
+                    },
+                    "type": "ia.input.checkbox"
+                  }
+                ],
+                "meta": {
+                  "name": "Options"
+                },
+                "position": {
+                  "basis": "250px",
+                  "display": false,
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "space-around",
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "borderColor": "var(--neutral-70)",
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "minHeight": "250px",
+                    "overflow": "visible",
+                    "padding": "10px",
+                    "zIndex": 1
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "State Filters"
+            },
+            "position": {
+              "basis": "185px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": "15px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Alarm State"
+        },
+        "position": {
+          "basis": "40px"
+        },
+        "props": {
+          "style": {
+            "marginTop": "50px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Source Filter"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Source Filter"
+            },
+            "position": {
+              "basis": "35px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.currentParams.sourceFilter"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Source Filter Cont"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "50px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "white-space": "nowrap"
+                  },
+                  "text": "Warning Threshold"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Title"
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.params.currentParams.threshold \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "basis": "20px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.currentParams.threshold"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If the threshold param is not a number, then display this button (asks the\n\t# user about using a warning threshold).\n\t\n\timport numbers\n\t\t\n\tif isinstance(value,numbers.Number):\n\t\treturn False\n\telse:\n\t\treturn True",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderColor": "--neutral-80",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "color": "--neutral-90",
+                "cursor": "pointer",
+                "fontSize": "13px",
+                "marginRight": "60%",
+                "marginTop": "10px",
+                "textAlign": "center",
+                "white-space": "nowrap"
+              },
+              "text": "Use Warning Threshold"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Warning Threshold"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.currentParams.threshold"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "align": "left",
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "borderBottomStyle": "solid",
+                    "borderLeftStyle": "none",
+                    "borderRightStyle": "none",
+                    "borderTopStyle": "none",
+                    "fontSize": "15px",
+                    "outlineStyle": "none"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.view.params.currentParams.threshold \u003d \u0027\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Remove Warning Threshold",
+                  "tooltip": {
+                    "enabled": true,
+                    "style": {
+                      "backgroundColor": "var(--neutral-30)",
+                      "color": "var(--neutral-90)"
+                    },
+                    "text": "REMOVE WARNING THRESHOLD"
+                  }
+                },
+                "position": {
+                  "basis": "25px"
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "d": "M0 0h24v24H0V0z",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    },
+                    {
+                      "d": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "fill": "var(--neutral-100)",
+                  "style": {
+                    "cursor": "pointer",
+                    "marginLeft": "15px"
+                  },
+                  "viewBox": "0 0 24 24"
+                },
+                "type": "ia.shapes.svg"
+              }
+            ],
+            "meta": {
+              "name": "Warning Threshold Sub Cont"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.currentParams.threshold"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If the threshold param is a number, then display the current\n\t# value of the threshold param (by displaying this component).\n\t\n\timport numbers\n\t\t\n\tif isinstance(value,numbers.Number):\n\t\treturn True\n\telse:\n\t\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Warning Threshold Cont"
+        },
+        "position": {
+          "basis": "60px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "50px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Refresh Rate"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Refresh Rate"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.currentParams.refresh"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "align": "left",
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Refresh Rate Cont"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "50px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "padding": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

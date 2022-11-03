@@ -1,0 +1,251 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 955,
+      "width": 1031
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TitleDock"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "page.props.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "2rem",
+            "padding": "8px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Dashboard",
+          "tooltip": {
+            "enabled": true
+          }
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "availableWidgets": [
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "category": "",
+              "defaultSize": {
+                "columnSpan": 2,
+                "rowSpan": 2
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Alarm History"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "History",
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Alarm History"
+            },
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "category": "",
+              "defaultSize": {
+                "columnSpan": 2,
+                "rowSpan": 2
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Alarm Status"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "Status",
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Alarm Status"
+            },
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "category": "",
+              "defaultSize": {
+                "columnSpan": 2,
+                "rowSpan": 2
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Trending"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "Analytics",
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Trending/TrendingModule"
+            }
+          ],
+          "style": {
+            "overflow": "hidden"
+          },
+          "widgets": [
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Alarm History"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "Alarm History",
+              "position": {
+                "columnEnd": 5,
+                "columnStart": 1,
+                "rowEnd": 4,
+                "rowStart": 1
+              },
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Alarm Modules/Alarm History"
+            },
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Alarm Status"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "",
+              "position": {
+                "columnEnd": 9,
+                "columnStart": 5,
+                "rowEnd": 4,
+                "rowStart": 1
+              },
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Alarm Modules/Alarm Status"
+            },
+            {
+              "body": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "header": {
+                "enabled": true,
+                "style": {
+                  "classes": ""
+                },
+                "title": "Trending"
+              },
+              "isConfigurable": true,
+              "minSize": {
+                "columnSpan": 1,
+                "rowSpan": 1
+              },
+              "name": "Trending",
+              "position": {
+                "columnEnd": 9,
+                "columnStart": 1,
+                "rowEnd": 9,
+                "rowStart": 4
+              },
+              "style": {
+                "classes": ""
+              },
+              "viewParams": {},
+              "viewPath": "Trending/TrendingModule"
+            }
+          ]
+        },
+        "type": "ia.display.dashboard"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

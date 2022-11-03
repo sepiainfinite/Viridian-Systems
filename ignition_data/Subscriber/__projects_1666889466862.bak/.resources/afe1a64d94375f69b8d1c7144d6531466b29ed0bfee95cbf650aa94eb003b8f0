@@ -1,0 +1,60 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "NumericEntryField"
+        },
+        "position": {
+          "height": 32,
+          "width": 92,
+          "x": 111,
+          "y": 295
+        },
+        "propConfig": {
+          "props.inputBounds.maximum": {
+            "binding": {
+              "config": {
+                "path": "../ToggleSwitch.props.selected"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value:\n\t\treturn 10\n\telse:\n\t\treturn 100",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "inputBounds": {},
+          "value": 95
+        },
+        "type": "ia.input.numeric-entry-field"
+      },
+      {
+        "meta": {
+          "name": "ToggleSwitch"
+        },
+        "position": {
+          "height": 36,
+          "width": 96,
+          "x": 339,
+          "y": 309
+        },
+        "props": {
+          "selected": true
+        },
+        "type": "ia.input.toggle-switch"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

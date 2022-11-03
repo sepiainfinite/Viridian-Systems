@@ -1,0 +1,1202 @@
+{
+  "custom": {},
+  "params": {
+    "end": "",
+    "isMobile": false,
+    "mode": -1,
+    "refreshRate": 60000,
+    "start": ""
+  },
+  "propConfig": {
+    "params.end": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isMobile": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.refreshRate": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.start": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 855,
+      "width": 402
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closeDock(\u0027activityLogEvents\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dtrue,false,true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M0 0h24v24H0V0z",
+                  "fill": {
+                    "paint": "none"
+                  },
+                  "name": "path",
+                  "type": "path"
+                },
+                {
+                  "d": "M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "fill": "var(--neutral-100)",
+              "style": {
+                "cursor": "pointer",
+                "marginLeft": "5px"
+              },
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closeDock(\u0027activityLogEvents\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Go Back"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dtrue,true,false)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M0 0h24v24H0z",
+                  "fill": {
+                    "paint": "none"
+                  },
+                  "name": "path",
+                  "type": "path"
+                },
+                {
+                  "d": "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "fill": "var(--neutral-80)",
+              "style": {
+                "cursor": "pointer",
+                "marginLeft": "5px"
+              },
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          },
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dtrue,\u002716px\u0027,\u002725px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "paddingRight": "35px",
+                "textAlign": "center"
+              },
+              "text": "Activity Log Events"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Header Cont"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dtrue,\u002755px\u0027,\u002765px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.alignVertical": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Date Selection.custom.expanded},\u0027top\u0027,\u0027center\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "12px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Time Range"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Collapse"
+                    },
+                    "position": {
+                      "basis": "20px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "path": "...../Date Selection.custom.expanded"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "style": {
+                        "transition": "fill 0.25s linear"
+                      },
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  },
+                  {
+                    "meta": {
+                      "name": "Expand"
+                    },
+                    "position": {
+                      "basis": "20px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{...../Date Selection.custom.expanded}\u003dFalse"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "style": {
+                        "transition": "fill 0.25s linear"
+                      },
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.parent.parent.parent.getChild(\"Date Selection\").custom.expanded \u003d not self.parent.parent.parent.getChild(\"Date Selection\").custom.expanded"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Expand Collapse Cont",
+                  "tooltip": {
+                    "enabled": true
+                  }
+                },
+                "position": {
+                  "basis": "24px"
+                },
+                "propConfig": {
+                  "meta.tooltip.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Date Selection.custom.expanded}\u003dTrue,\u0027Collapse Time Range\u0027,\u0027Expand Time Range\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "justify": "center",
+                  "style": {
+                    "classes": "building-automation-demo/page/general-button",
+                    "transition": "border-color 0.25s linear"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Header"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.marginBottom": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.expanded},\u00270px\u0027,\u00277px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-between",
+              "style": {
+                "marginLeft": "7px",
+                "marginRight": "7px",
+                "marginTop": "7px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "Start Lbl"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "parent.custom.expanded"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-90",
+                "fontSize": "12px",
+                "marginLeft": "20px",
+                "marginRight": "20px",
+                "marginTop": "5px"
+              },
+              "text": "Start Date"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Start Date"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "parent.custom.expanded"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.start"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If no startDate was passed in via param, then set startDate to now() - 24 hours.\n\t\n\tif value \u003d\u003d \u0027\u0027:\n\t\treturn system.date.addHours(system.date.now(),-24)\n\telse:\n\t\treturn value",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "formattedValue": "May 23, 2022 11:38 AM",
+              "style": {
+                "marginLeft": "25px",
+                "marginRight": "25px",
+                "marginTop": "5px"
+              }
+            },
+            "type": "ia.input.date-time-input"
+          },
+          {
+            "meta": {
+              "name": "End Lbl"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "parent.custom.expanded"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-90",
+                "fontSize": "12px",
+                "marginLeft": "20px",
+                "marginRight": "20px",
+                "marginTop": "10px"
+              },
+              "text": "End Date"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "End Date"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "parent.custom.expanded"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.end"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If no endDate passed in as param, then set endDate to now().\n\t\n\tif value \u003d\u003d \u0027\u0027:\n\t\treturn system.date.now()\n\telse:\n\t\treturn value",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "formattedValue": "May 24, 2022 11:38 AM",
+              "style": {
+                "marginLeft": "25px",
+                "marginRight": "25px",
+                "marginTop": "5px"
+              }
+            },
+            "type": "ia.input.date-time-input"
+          }
+        ],
+        "custom": {
+          "expanded": true
+        },
+        "meta": {
+          "name": "Date Selection"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.marginBottom": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,if({this.custom.expanded}\u003dfalse,\u002720px\u0027,\u002730px\u0027),\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginLeft": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginRight": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.paddingBottom": {
+            "binding": {
+              "config": {
+                "expression": "if({this.custom.expanded},\u002712px\u0027,\u00270px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "backgroundColor": "--neutral-20",
+            "borderColor": "--neutral-50",
+            "borderRadius": "5px",
+            "borderStyle": "solid",
+            "borderWidth": "0.5px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.selected \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "All"
+            },
+            "propConfig": {
+              "custom.selected": {
+                "binding": {
+                  "config": {
+                    "expression": "{parent.custom.selected}\u003d0"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.borderBottomStyle": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027solid\u0027,\u0027none\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027--neutral-100\u0027,\u0027--neutral-70\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.cursor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027auto\u0027,\u0027pointer\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dfalse,\u002716px\u0027,\u002714px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderBottomColor": "--neutral-100",
+                "borderBottomWidth": "2px",
+                "fontWeight": "bold"
+              },
+              "text": "All"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.selected \u003d 1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Alarm Events"
+            },
+            "propConfig": {
+              "custom.selected": {
+                "binding": {
+                  "config": {
+                    "expression": "{parent.custom.selected}\u003d1"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.borderBottomStyle": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027solid\u0027,\u0027none\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027--neutral-100\u0027,\u0027--neutral-70\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.cursor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027auto\u0027,\u0027pointer\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dfalse,\u002716px\u0027,\u002714px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderBottomColor": "--neutral-100",
+                "borderBottomWidth": "2px",
+                "fontWeight": "bold",
+                "marginLeft": "15px"
+              },
+              "text": "Alarm Events"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.selected \u003d 2"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "SP Requests"
+            },
+            "propConfig": {
+              "custom.selected": {
+                "binding": {
+                  "config": {
+                    "expression": "{parent.custom.selected}\u003d2"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.borderBottomStyle": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027solid\u0027,\u0027none\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027--neutral-100\u0027,\u0027--neutral-70\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.cursor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027auto\u0027,\u0027pointer\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dfalse,\u002716px\u0027,\u002714px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderBottomColor": "--neutral-100",
+                "borderBottomWidth": "2px",
+                "fontWeight": "bold",
+                "marginLeft": "15px"
+              },
+              "text": "SP Requests"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.selected \u003d 3"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Notes"
+            },
+            "propConfig": {
+              "custom.selected": {
+                "binding": {
+                  "config": {
+                    "expression": "{parent.custom.selected}\u003d3"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.borderBottomStyle": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027solid\u0027,\u0027none\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027--neutral-100\u0027,\u0027--neutral-70\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.cursor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.selected}\u003dtrue,\u0027auto\u0027,\u0027pointer\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.isMobile}\u003dfalse,\u002716px\u0027,\u002714px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderBottomColor": "--neutral-100",
+                "borderBottomWidth": "2px",
+                "fontWeight": "bold",
+                "marginLeft": "15px"
+              },
+              "text": "Notes"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.parent.parent.parent.getChild(\"events\").refreshBinding(\u0027props.instances\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Refresh",
+                  "tooltip": {
+                    "enabled": true,
+                    "text": "REFRESH EVENTS"
+                  }
+                },
+                "position": {
+                  "basis": "22px"
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "d": "M0 0h24v24H0z",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    },
+                    {
+                      "d": "M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z",
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "fill": "var(--neutral-80)",
+                  "style": {
+                    "cursor": "pointer"
+                  },
+                  "viewBox": "0 0 24 24"
+                },
+                "type": "ia.shapes.svg"
+              }
+            ],
+            "meta": {
+              "name": "Refresh Cont"
+            },
+            "position": {
+              "basis": "20px",
+              "grow": 1
+            },
+            "props": {
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Tabs Cont"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.selected": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mode}\u003d-1,0,{view.params.mode})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginLeft": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginRight": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Events"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "this.props.instances"
+              },
+              "transforms": [
+                {
+                  "code": "\tif len(value) \u003d\u003d 0:\n\t\treturn False\n\telse:\n\t\treturn True",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.instances": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "endDate": "{../Date Selection/End Date.props.value}",
+                  "eventType": "{../Tabs Cont.custom.selected}",
+                  "refresh": "now({view.params.refresh})",
+                  "startDate": "{../Date Selection/Start Date.props.value}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# Call getEvents, passing in the eventType (selection from tabs), and the startDate\n\t# and endDate as params.\n\tevents \u003d self.getEvents(value[\u0027eventType\u0027],value[\u0027startDate\u0027],value[\u0027endDate\u0027])\n\t\n\t# Iterate through events and create the instances for this flex repeater (using\n\t# the info in the events objects).\n\tinstances \u003d []\n\tfor event in events:\n\t\tisTop \u003d event[\u0027isTop\u0027]\n\t\teventTitle \u003d event[\u0027event\u0027]\n\t\tdatetime \u003d event[\u0027datetime\u0027]\n\t\tnote \u003d event[\u0027note\u0027]\n\t\tuser \u003d event[\u0027user\u0027]\n\t\ttype \u003d event[\u0027type\u0027]\n\t\tnoteID \u003d event[\u0027noteID\u0027]\n\t\t\n\t\tbasis \u003d \u0027auto\u0027\n\t\n\t\tinstance \u003d {\"instanceStyle\":{\"classes\":\"\"},\"instancePosition\":{\"grow\":0,\"basis\":basis,\"shrink\":0},\"isTop\":isTop,\"event\":eventTitle,\"datetime\":datetime,\"note\":note,\"user\":user,\"type\":type,\"noteID\":noteID,\"showMore\":False}\t\n\t\tinstances.append(instance)\n\t\n\t# Set the \u0027Updated\u0027 text to inform the user about the last time that the \n\t# activity log was updated. \n\tself.getSibling(\"Last Refresh\").props.text \u003d \u0027Updated: \u0027 + system.date.format(system.date.now(),\u0027ddMMMyyyy hh:mm:ss a\u0027)\n\t\t\n\treturn instances",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.backgroundImage": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value in [\u0027hvac-warm\u0027,\u0027hvac\u0027]:\n\t\treturn \u0027linear-gradient(var(--neutral-20),var(--neutral-30))\u0027\n\telse:\n\t\treturn \u0027linear-gradient(var(--neutral-50),var(--neutral-40))\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.borderColor": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-70\u0027,\u0027--neutral-50\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginLeft": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginRight": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginTop": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002730px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "elementPosition": {
+            "shrink": 0
+          },
+          "path": "Building Automation Demo/Page/Systems Overview/Framework/Dashboard/Widgets/Activity Log/Row",
+          "style": {
+            "borderRadius": "5px",
+            "borderStyle": "solid",
+            "borderWidth": "0.5px",
+            "padding": "10px"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "scripts": {
+          "customMethods": [
+            {
+              "name": "getEvents",
+              "params": [
+                "eventType",
+                "startDate",
+                "endDate"
+              ],
+              "script": "\tdef getNotes(startDate ,endDate):\n\t\t\"\"\"\n\t\tLoads the notes from the db between the startDate and\n\t\t\tthe endDate and puts them in a format expected by \n\t\t\tthe flex repeater.\n\t\t\t\t\n\t\tArgs:\n\t\t\tstartDate: Start date to retrieve the notes.\n\t\t\tendDate: End date to retrieve the notes.\n\t\t\t\t\n\t\tReturns:\n\t\t\tA list of dictionary objects that represent notes.\n\t\t\"\"\"\n\t\t\t\n\t\t# Create instances list.\n\t\tinstances \u003d []\n\t\n\t\t# Get the activity log notes between startDate and endDate.\n\t\tnotes \u003d system.db.runNamedQuery(\u0027Activity Log/getNotesRange\u0027,parameters\u003d{\u0027startDate\u0027:startDate,\u0027endDate\u0027:endDate})\n\t\t\n\t\t# Add each note to the instances list.\n\t\tfor i in range(notes.getRowCount()):\n\t\t\ttitle \u003d notes.getValueAt(i,\u0027title\u0027)\n\t\t\tnote \u003d notes.getValueAt(i,\u0027note\u0027)\n\t\t\tuser \u003d notes.getValueAt(i,\u0027user\u0027)\n\t\t\tdate \u003d notes.getValueAt(i,\u0027date\u0027)\n\t\t\tid \u003d notes.getValueAt(i,\u0027id\u0027)\n\t\t\t\n\t\t\tinstances.append({\u0027datetime\u0027:date,\u0027event\u0027:title,\u0027isTop\u0027:False,\u0027note\u0027:note,\u0027type\u0027:1,\u0027user\u0027:user,\u0027noteID\u0027:id})\n\t\t\n\t\treturn instances\n\t\t\n\tdef getSPRequests(startDate, endDate):\n\t\t\"\"\"\n\t\tLoads the sp requests from the db between the startDate\n\t\t\tand the endDate and puts them in a format expected \n\t\t\tby the flex repeater.\n\t\t\t\t\n\t\tArgs:\n\t\t\tstartDate: Start date to retrieve the sp requests.\n\t\t\tendDate: End date to retrieve the sp requests.\n\t\t\t\t\n\t\tReturns:\n\t\t\tA list of dictionary objects that represent sp \n\t\t\trequests.\n\t\t\"\"\"\n\t\n\t\t# Create instances list.\n\t\tinstances \u003d []\n\t\t\n\t\t# Get the activity log sp requests between startDate and endDate.\n\t\tspRequests \u003d system.db.runNamedQuery(\u0027Activity Log/getSPRequestsRange\u0027,parameters\u003d{\u0027startDate\u0027:startDate,\u0027endDate\u0027:endDate})\n\t\t\n\t\t# Add each sp request to the instances list.\n\t\tfor i in range(spRequests.getRowCount()):\n\t\t\tzone \u003d spRequests.getValueAt(i,\u0027zone\u0027)\n\t\t\topenedBy \u003d spRequests.getValueAt(i,\u0027opened_by\u0027)\n\t\t\topenedTime \u003d spRequests.getValueAt(i,\u0027opened_time\u0027)\n\t\t\tclosedBy \u003d spRequests.getValueAt(i,\u0027closed_by\u0027)\n\t\t\tclosedTime \u003d spRequests.getValueAt(i,\u0027closed_time\u0027)\n\t\t\tsetpoint \u003d spRequests.getValueAt(i,\u0027setpoint\u0027)\t\t\n\t\t\tnote \u003d \"Zone: \" + zone + \", SP: \" + str(setpoint)\n\t\t\t\n\t\t\tinstances.append({\u0027datetime\u0027:openedTime,\u0027event\u0027:\"SP Request Rec\u0027d\",\u0027isTop\u0027:False,\u0027note\u0027:note,\u0027type\u0027:2,\u0027user\u0027:openedBy,\u0027noteID\u0027:-1})\n\t\t\t\n\t\t\t# If closedBy is not equal to none, then that means that the SP request\n\t\t\t# was closed, and so we need to add another entry that signifies that\n\t\t\t# the request was closed.\n\t\t\tif closedBy !\u003d None:\n\t\t\t\tinstances.append({\u0027datetime\u0027:closedTime,\u0027event\u0027:\u0027SP Request Closed\u0027,\u0027isTop\u0027:False,\u0027note\u0027:note,\u0027type\u0027:2,\u0027user\u0027:closedBy,\u0027noteID\u0027:-1})\n\t\t\t\n\t\treturn instances\n\t\t\t\t\n\tdef getAlarmEvents(startDate,endDate):\n\t\t\"\"\"\n\t\tLoads the alarm events from the db between the startDate\n\t\t\tand the endDate and puts them in a format expected \n\t\t\tby the flex repeater.\n\t\t\t\t\n\t\tArgs:\n\t\t\tstartDate: Start date to retrieve the alarm events.\n\t\t\tendDate: End date to retrieve the alarm events.\n\t\t\t\t\n\t\tReturns:\n\t\t\tA list of dictionary objects that represent alarm\n\t\t\tevents.\n\t\t\"\"\"\n\t\n\t\t# Create instances list.\n\t\tinstances \u003d []\n\t\t\n\t\t# Get the alarm events between startDate and endDate.\n\t\talarmEvents \u003d system.alarm.queryJournal(startDate\u003dstartDate,endDate\u003dendDate,journalName\u003d\u0027BMS\u0027)\n\t\t\n\t\t# Define map to display more user-friendly text that\n\t\t# denotes the type of alarm event.\n\t\teventMap \u003d {\u0027Ack\u0027: \u0027Alarm Acked\u0027, \u0027Clear\u0027: \u0027Alarm Cleared\u0027, \u0027Active\u0027: \u0027Alarm Active\u0027}\n\t\t\n\t\t# Get event type, event time, and other alarm event\n\t\t# properties to create the instance, and append the\n\t\t# instance to the instances list.\n\t\tfor alarmEvent in alarmEvents:\n\t\t\tevent \u003d eventMap[str(alarmEvent.getLastEventState())]\n\t\t\t\n\t\t\tif alarmEvent.ackData:\n\t\t\t\tfor item in alarmEvent.ackData:\n\t\t\t\t\tif str(item.getProperty()) \u003d\u003d \u0027eventTime\u0027:\n\t\t\t\t\t\tdatetime \u003d item.getValue()\n\t\t\t\t\tif str(item.getProperty()) \u003d\u003d \u0027ackUser\u0027:\n\t\t\t\t\t\tuser \u003d item.getValue()\n\t\t\t\t\t\t\n\t\t\tif alarmEvent.clearedData:\n\t\t\t\tfor item in alarmEvent.clearedData:\n\t\t\t\t\tif str(item.getProperty()) \u003d\u003d \u0027eventTime\u0027:\n\t\t\t\t\t\tdatetime \u003d item.getValue()\n\t\t\t\t\t\tif not (alarmEvent.ackData):\n\t\t\t\t\t\t\tuser \u003d \u0027System\u0027\n\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t\t\t\n\t\t\tif alarmEvent.activeData:\n\t\t\t\tfor item in alarmEvent.activeData:\n\t\t\t\t\tif str(item.getProperty()) \u003d\u003d \u0027eventTime\u0027:\n\t\t\t\t\t\tdatetime \u003d item.getValue()\n\t\t\t\t\t\tuser \u003d \u0027System\u0027\n\t\t\t\t\t\tbreak\n\t\t\t\n\t\t\tnote \u003d alarmEvent.getDisplayPathOrSource().replace(\u0027\"\u0027,\u0027\u0027)\n\t\t\t\t\t\t\n\t\t\tinstances.append({\u0027datetime\u0027:datetime,\u0027event\u0027:event,\u0027isTop\u0027:False,\u0027note\u0027:note,\u0027type\u0027:0,\u0027user\u0027:user,\u0027noteID\u0027:-1})\n\t\t\t\n\t\treturn instances\n\t\n\t# If eventType is 0, get notes, sp requests, and alarm events.\n\t# If eventType is 1, get alarm events; if 2, get sp requests;\n\t# else only get notes.\n\tif eventType \u003d\u003d 0:\n\t\tinstances \u003d getNotes(startDate,endDate)\n\t\tinstances.extend(getSPRequests(startDate,endDate))\n\t\tinstances.extend(getAlarmEvents(startDate,endDate))\n\telif eventType \u003d\u003d 1:\n\t\tinstances \u003d getAlarmEvents(startDate,endDate)\n\telif eventType \u003d\u003d 2:\n\t\tinstances \u003d getSPRequests(startDate,endDate)\n\telse:\n\t\tinstances \u003d getNotes(startDate,endDate)\n\t\t\n\t# Now, we can sort the instances by datetime, change the date format\n\t# of the instances, and then return the instances.\n\tsortedInstances \u003d sorted(instances, key\u003dlambda item: item[\u0027datetime\u0027], reverse\u003dTrue)\n\t\n\tif len(sortedInstances) \u003e 0:\n\t\tsortedInstances[0][\u0027isTop\u0027] \u003d True\n\t\n\tfor instance in sortedInstances:\n\t\tinstance[\u0027datetime\u0027] \u003d system.date.format(instance[\u0027datetime\u0027],\u0027ddMMMyyyy hh:mm:ss a\u0027)\n\t\n\treturn sortedInstances"
+            }
+          ],
+          "extensionFunctions": null,
+          "messageHandlers": []
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "meta": {
+          "name": "No Events Label"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "../Events.props.instances"
+              },
+              "transforms": [
+                {
+                  "code": "\tif len(value) \u003d\u003d 0:\n\t\treturn True\n\telse:\n\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "textAlign": "center"
+          },
+          "text": "No events found."
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Last Refresh"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.marginRight": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-70",
+            "fontSize": "11px",
+            "marginTop": "10px",
+            "textAlign": "right"
+          },
+          "text": "Updated: 24May2022 11:38:55 AM"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t# If user is authenticated, then open addEditNote dock if user is on\n\t# mobile or addEditNote popup if user is not on mobile. If user is\n\t# not authenticated, then the user should see the tooltip describing\n\t# that notes cannot be added by non-authenticated users.\n\t\n\tif self.session.props.auth.authenticated:\n\t\tif self.view.params.isMobile:\n\t\t\tsystem.perspective.openDock(\u0027addEditNote\u0027,params\u003d{\u0027id\u0027:-1})\n\t\telse:\n\t\t\tsystem.perspective.openPopup(\u0027add-edit-note\u0027,\u0027Building Automation Demo/Page/Systems Overview/Framework/Dashboard/Widgets/Activity Log/Add Edit Note\u0027, params \u003d {\u0027id\u0027:-1},modal\u003dTrue,showCloseIcon\u003dFalse,draggable\u003dFalse)\n\telse:\n\t\tif self.view.params.isMobile:\n\t\t\tself.requestTooltip()"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Add Note",
+          "tooltip": {
+            "style": {
+              "backgroundColor": "var(--neutral-30)",
+              "color": "var(--neutral-100)"
+            },
+            "text": "Only logged-in users can add a note."
+          }
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "meta.tooltip.enabled": {
+            "binding": {
+              "config": {
+                "expression": "!{session.props.auth.authenticated}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.cursor": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.auth.authenticated},\u0027pointer\u0027,\u0027not-allowed\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginLeft": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.marginRight": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.isMobile}\u003dfalse,\u002725px\u0027,\u002715px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "background-color": "--neutral-90",
+            "marginBottom": "15px",
+            "marginTop": "20px"
+          },
+          "text": "Add Note"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

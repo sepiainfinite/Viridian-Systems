@@ -1,0 +1,146 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 180,
+      "width": 395
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "fontSize": "16px",
+            "fontWeight": "bold",
+            "marginLeft": "10px",
+            "marginTop": "10px"
+          },
+          "text": "Temp SP Delta"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "custom": {
+          "message": "\u003chtml\u003e\u003cstyle type\u003d\"text/css\"\u003e     span.detail { color:var(--neutral-70)}     span.name { color:var(--neutral-100);font-weight:bold}     \u003c/style\u003e \u003c/head\u003e \u003cbody\u003e     \u003cspan class\u003d\"detail\"\u003eΔ SP: \u003cspan class\u003d\"name\"\u003eZone Temp - (Zone Desired SP + OSA Shift)\u003c/span\u003e \u003c/span\u003e \u003cbr\u003e \u003cbr\u003e     \u003cspan class\u003d\"detail\"\u003eOSA Shift: \u003cspan class\u003d\"name\"\u003ecurrVal\u003c/span\u003e \u003c/span\u003e"
+        },
+        "meta": {
+          "name": "Descr"
+        },
+        "propConfig": {
+          "custom.osaShift": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]BMS/90BR/VAV/_Global/Temp_SP_OSA_Shift"
+              },
+              "type": "tag"
+            }
+          },
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "this.custom.osaShift"
+              },
+              "transforms": [
+                {
+                  "code": "\tmessage \u003d self.custom.message\n\treturn message.replace(\u0027currVal\u0027,str(round(value,2)))",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "markdown": {
+            "escapeHtml": false
+          },
+          "style": {
+            "fontSize": "12px",
+            "marginBottom": "15px",
+            "marginLeft": "25px",
+            "marginTop": "15px"
+          }
+        },
+        "type": "ia.display.markdown"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Done"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "paddingLeft": "5px"
+              },
+              "text": "Done"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.closeDock(\u0027desiredSPInfo\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Done Cont",
+          "tooltip": {
+            "text": "SETTINGS"
+          }
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "backgroundColor": "--neutral-20",
+            "borderColor": "--neutral-50",
+            "borderRadius": "8px",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "marginLeft": "10px",
+            "marginRight": "10px",
+            "marginTop": "10px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-30"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

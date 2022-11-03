@@ -1,0 +1,15 @@
+{
+  "updateMode": "Notify",
+  "updateMessage": "This project has been changed. Please save your work, this session will automatically update in {timeLeft} seconds.",
+  "updateTimeout": 1,
+  "locale": "Browser",
+  "idp": null,
+  "timezone": "Gateway Timezone",
+  "desktopPageTimeoutSeconds": 60,
+  "mobilePageTimeoutSeconds": 600,
+  "hideFromLaunchListings": false,
+  "thumbnailPath": "",
+  "sessionClosedMessage": "This Perspective session has been closed.",
+  "pageClosedMessage": "This Perspective page has been closed.",
+  "loggedOutMessage": "You are now logged out of your Perspective session. If you are on a shared device, it is recommended to log out of all other sessions before walking away."
+}

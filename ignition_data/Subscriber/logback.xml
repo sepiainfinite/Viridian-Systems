@@ -21,12 +21,16 @@
       maxEventsPerMaintenance: The number of event that can happen before a maintenance cycle occurs.
       minTimeBetweenMaintenance: The minimum time (max frequency) between maintenance events. Takes precedent over max events.
       vacuumFrequency: The number of maintenance cycles before a "vacuum" is performed, to recover disk space.
+      diskspaceCleanupEventCount: The number of oldest events that will be removed when max database size is exceeded.
+      maxDatabaseSize: Database size in bytes, above which will trigger a maintenance cycle to remove diskspaceCleanupEventCount of oldest events.
 
       On disk, most log events are between 600-800 bytes.
     <entryLimit>50000</entryLimit>
     <maxEventsPerMaintenance>5000</maxEventsPerMaintenance>
     <minTimeBetweenMaintenance>60000</minTimeBetweenMaintenance>
     <vacuumFrequency>3</vacuumFrequency>
+    <diskspaceCleanupEventCount>500</diskspaceCleanupEventCount>
+    <maxDatabaseSize>104857600</maxDatabaseSize>
     -->
   </appender>
   <appender name="SysoutAsync" class="ch.qos.logback.classic.AsyncAppender" queueSize="1000" discardingThreshold="0">

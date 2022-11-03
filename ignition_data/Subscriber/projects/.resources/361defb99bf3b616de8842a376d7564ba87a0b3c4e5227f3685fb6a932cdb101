@@ -1,0 +1,3281 @@
+{
+  "custom": {},
+  "params": {
+    "trendConfig": {
+      "ahu1Pens": [],
+      "ahu2Pens": [],
+      "allPens": [],
+      "mode": 0,
+      "supplyFanPens": [],
+      "tempDeltaPens": []
+    }
+  },
+  "propConfig": {
+    "params.trendConfig": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 297
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(85,85,255,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(255,85,255,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Exhaust Fan Speed"
+                    },
+                    {
+                      "color": "rgb(0,204,204,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Economizer Open"
+                    },
+                    {
+                      "color": "rgb(0,192,0,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(0,192,192,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Supply Air Temp"
+                    },
+                    {
+                      "color": "rgb(0,204,0,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Condenser Water Temp"
+                    },
+                    {
+                      "color": "rgb(153,0,153,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Return Air Temp"
+                    },
+                    {
+                      "color": "rgb(0,102,102,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Supply Static Pressure"
+                    },
+                    {
+                      "color": "rgb(192,192,192,255)",
+                      "enabled": false,
+                      "group": "AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Fan Temp SP"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 1 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 2"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(172,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(64,64,64,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Supply Air Temp"
+                    },
+                    {
+                      "color": "rgb(0,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Condenser Water Temp"
+                    },
+                    {
+                      "color": "rgb(255,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Supply Static Pressure"
+                    },
+                    {
+                      "color": "rgb(217,119,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Return Air Temp"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 2 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "BLDG"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(255,85,255,255)",
+                      "enabled": false,
+                      "group": "Bldg",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Building Static Pressure"
+                    },
+                    {
+                      "color": "rgb(153,153,0,255)",
+                      "enabled": false,
+                      "group": "Bldg",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Avg Temp 1st Floor"
+                    },
+                    {
+                      "color": "rgb(255,64,64,255)",
+                      "enabled": false,
+                      "group": "Bldg",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Avg Temp 2nd Floor"
+                    },
+                    {
+                      "color": "rgb(64,64,255,255)",
+                      "enabled": false,
+                      "group": "Bldg",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Avg Temp Building"
+                    },
+                    {
+                      "color": "rgb(51,204,0,255)",
+                      "enabled": false,
+                      "group": "Bldg",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Outside Air Temp"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Bldg Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Bldg - VAV"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(255,102,102,255)",
+                      "enabled": false,
+                      "group": "Bldg - VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Request Cold Pct"
+                    },
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "Bldg - VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Request Heat Pct"
+                    },
+                    {
+                      "color": "rgb(200,230,32,255)",
+                      "enabled": false,
+                      "group": "Bldg - VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Request Peak Cool Pct"
+                    },
+                    {
+                      "color": "rgb(0,0,255,255)",
+                      "enabled": false,
+                      "group": "Bldg - VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Cold Duct Total"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "Bldg - VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Hot Duct Total"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Bldg - VAV Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status - AHU 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(172,95,0,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Fan Speed"
+                    },
+                    {
+                      "color": "rgb(0,0,128,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Condenser Pump Status"
+                    },
+                    {
+                      "color": "rgb(0,128,0,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Economizer Status"
+                    },
+                    {
+                      "color": "rgb(128,128,0,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Exhaust Fan Status"
+                    },
+                    {
+                      "color": "rgb(128,0,128,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Supply Fan Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status - AHU 1 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status - AHU 2"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,51,204,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Fan Status"
+                    },
+                    {
+                      "color": "rgb(0,204,51,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Condenser Pump Status"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat Stage Cmd"
+                    },
+                    {
+                      "color": "rgb(217,0,0,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat Status"
+                    },
+                    {
+                      "color": "rgb(0,153,153,255)",
+                      "enabled": false,
+                      "group": "Status - AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Supply Fan Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status - AHU 2 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status - Comps AHU 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(85,85,255,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Compressor Count"
+                    },
+                    {
+                      "color": "rgb(85,255,85,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 8"
+                    },
+                    {
+                      "color": "rgb(255,85,255,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 7"
+                    },
+                    {
+                      "color": "rgb(85,255,255,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 6"
+                    },
+                    {
+                      "color": "rgb(255,175,175,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 5"
+                    },
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 4"
+                    },
+                    {
+                      "color": "rgb(192,0,0,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 3"
+                    },
+                    {
+                      "color": "rgb(0,0,192,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 2"
+                    },
+                    {
+                      "color": "rgb(0,192,0,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 1",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Comp 1"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status - Comps AHU 1"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status - Comps AHU 2"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,172,172,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Compressor Count"
+                    },
+                    {
+                      "color": "rgb(192,192,0,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Comp 4"
+                    },
+                    {
+                      "color": "rgb(192,0,192,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Comp 3"
+                    },
+                    {
+                      "color": "rgb(0,192,192,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Comp 2"
+                    },
+                    {
+                      "color": "rgb(64,64,64,255)",
+                      "enabled": false,
+                      "group": "Status - Comps AHU 2",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Comp 1"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.allPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.allPens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status - Comps AHU 2"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "All Pens"
+        },
+        "position": {
+          "basis": "250px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.trendConfig.mode}\u003d0"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(85,85,85,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(64,64,64,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Air Temp"
+                    },
+                    {
+                      "color": "rgb(255,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Static Pressure"
+                    },
+                    {
+                      "color": "rgb(217,119,0,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Return Air Temp"
+                    },
+                    {
+                      "color": "rgb(93,93,93,36)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Air Temp SP"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu1Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu1Pens to know which pens are enabled.\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 1 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "BLDG"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,64,210,255)",
+                      "enabled": false,
+                      "group": "Bldg Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Outside Air Temp"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu1Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu1Pens to know which pens are enabled.\n\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Bldg Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Condenser"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,128,128,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Water Temp"
+                    },
+                    {
+                      "color": "rgb(0,51,204,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Fan VFD Speed"
+                    },
+                    {
+                      "color": "rgb(0,204,51,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Pump Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu1Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu1Pens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Condenser Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Economizer"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "Economizer Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Economizer Pct"
+                    },
+                    {
+                      "color": "rgb(0,128,128,255)",
+                      "enabled": false,
+                      "group": "Economizer Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Mixed Air Temp"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu1Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu1Pens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Economizer Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,172,172,255)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Compressor Count"
+                    },
+                    {
+                      "color": "rgb(255,204,204,128)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat Status"
+                    },
+                    {
+                      "color": "rgb(204,255,255,128)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Peak Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu1Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu1Pens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "AHU 1 Pens"
+        },
+        "position": {
+          "basis": "250px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.trendConfig.mode}\u003d1"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 2"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(85,85,85,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(64,64,64,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Air Temp"
+                    },
+                    {
+                      "color": "rgb(255,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Static Pressure"
+                    },
+                    {
+                      "color": "rgb(217,119,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Return Air Temp"
+                    },
+                    {
+                      "color": "rgb(213,213,213,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Supply Air Temp SP"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu2Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu2Pens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 2 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "BLDG"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(51,204,0,255)",
+                      "enabled": false,
+                      "group": "Bldg Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Outside Air Temp"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu2Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu2Pens to know which pens are enabled.\t\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Bldg Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Bldg - VAV"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "Bldg VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Demand Heat Pressure Pct"
+                    },
+                    {
+                      "color": "rgb(203,147,6,255)",
+                      "enabled": false,
+                      "group": "Bldg VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Hot Duct Total"
+                    },
+                    {
+                      "color": "rgb(169,132,132,255)",
+                      "enabled": false,
+                      "group": "Bldg VAV Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Request Heat Pct"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu2Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu2Pens to know which pens are enabled.\t\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Bldg VAV Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Condenser"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(0,128,128,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Water Temp"
+                    },
+                    {
+                      "color": "rgb(0,51,204,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Fan Status"
+                    },
+                    {
+                      "color": "rgb(0,204,51,255)",
+                      "enabled": false,
+                      "group": "Condenser Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Condenser Pump Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu2Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu2Pens to know which pens are enabled.\t\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Condenser Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Status"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat Stage Cmd"
+                    },
+                    {
+                      "color": "rgb(0,172,172,255)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Compressor Count"
+                    },
+                    {
+                      "color": "rgb(255,204,204,128)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat Status"
+                    },
+                    {
+                      "color": "rgb(204,255,255,128)",
+                      "enabled": false,
+                      "group": "Status Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Peak Status"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.ahu2Pens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.ahu2Pens to know which pens are enabled.\t\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Status Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "AHU 2 Pens"
+        },
+        "position": {
+          "basis": "250px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.trendConfig.mode}\u003d2"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(138,255,138,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(195,166,131,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU1 Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 1 Total"
+                    },
+                    {
+                      "color": "rgb(136,136,136,48)",
+                      "enabled": false,
+                      "group": "AHU 1 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 1 SP"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.supplyFanPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.supplyFanPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 1 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 1 Demand"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Demand Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Demand Cold Pressure Pct"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 1 Demand Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 1 Delta"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.supplyFanPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.supplyFanPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 1 Demand Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 2"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(138,255,138,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Supply Fan Speed"
+                    },
+                    {
+                      "color": "rgb(195,166,131,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "AHU2 Duct Pressure"
+                    },
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 2 Total"
+                    },
+                    {
+                      "color": "rgb(136,136,136,48)",
+                      "enabled": false,
+                      "group": "AHU 2 Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 2 SP"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.supplyFanPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.supplyFanPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 2 Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "AHU 2 Demand"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Demand Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Demand Heat Pressure Pct"
+                    },
+                    {
+                      "color": "rgb(128,0,0,255)",
+                      "enabled": false,
+                      "group": "AHU 2 Demand Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Flow Duct 2 Delta"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.supplyFanPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.supplyFanPens to know which pens are enabled.\t\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AHU 2 Demand Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Supply Fans Pens"
+        },
+        "position": {
+          "basis": "250px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.trendConfig.mode}\u003d3"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Duct 1 Interior"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,128)",
+                      "enabled": false,
+                      "group": "Duct1 - Interior Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Interior Zones Overheating"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.tempDeltaPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.tempDeltaPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Duct1 - Interior Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Duct 2 Exterior"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(60,60,159,128)",
+                      "enabled": false,
+                      "group": "Duct2 - Exterior Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Exterior Zones Freezing"
+                    },
+                    {
+                      "color": "rgb(121,27,27,128)",
+                      "enabled": false,
+                      "group": "Duct2 - Exterior Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Exterior Zones Overheating"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.tempDeltaPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.tempDeltaPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Duct2 - Exterior Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Mode"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(85,255,255,128)",
+                      "enabled": false,
+                      "group": "Mode Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Peak Cool"
+                    },
+                    {
+                      "color": "rgb(255,175,175,128)",
+                      "enabled": false,
+                      "group": "Mode Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Heat"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.tempDeltaPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.tempDeltaPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Mode Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "16px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "OSA"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "instances": [
+                    {
+                      "color": "rgb(128,128,128,255)",
+                      "enabled": false,
+                      "group": "Outside Pens",
+                      "instancePosition": {},
+                      "instanceStyle": {
+                        "classes": ""
+                      },
+                      "name": "Outside Air"
+                    }
+                  ]
+                },
+                "meta": {
+                  "name": "Pen List"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "instances": "{this.custom.instances}",
+                          "pens": "{view.params.trendConfig.tempDeltaPens}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the instances for this pen list, utilizing the entries in the \n\t# trendConfig.tempDeltaPens to know which pens are enabled.\t\n\t\n\tinstances \u003d value[\u0027instances\u0027]\n\tinstancesToReturn \u003d []\n\tenabledPens \u003d value[\u0027pens\u0027]\n\t\n\tfor instance in instances:\n\t\tinstanceToReturn \u003d {}\n\t\t\n\t\tinstanceToReturn[\u0027instanceStyle\u0027] \u003d instance[\u0027instanceStyle\u0027]\n\t\tinstanceToReturn[\u0027instancePosition\u0027] \u003d instance[\u0027instancePosition\u0027]\n\t\tinstanceToReturn[\u0027color\u0027] \u003d instance[\u0027color\u0027]\n\t\tinstanceToReturn[\u0027group\u0027] \u003d instance[\u0027group\u0027]\n\t\tinstanceToReturn[\u0027name\u0027] \u003d instance[\u0027name\u0027]\n\t\t\n\t\tif instance[\u0027name\u0027] in enabledPens:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d True\n\t\telse:\n\t\t\tinstanceToReturn[\u0027enabled\u0027] \u003d False\n\t\t\t\n\t\tinstancesToReturn.append(instanceToReturn)\n\t\t\t\n\treturn instancesToReturn",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "shrink": 0
+                  },
+                  "path": "Building Automation Demo/Page/Trends/Framework/Sm/Pen",
+                  "style": {
+                    "marginTop": "5px",
+                    "overflow": "hidden"
+                  },
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Outside Pens"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginTop": "10px",
+                "paddingBottom": "8px",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Temp Delta Pens"
+        },
+        "position": {
+          "basis": "250px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.trendConfig.mode}\u003d4"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "paddingLeft": "10px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

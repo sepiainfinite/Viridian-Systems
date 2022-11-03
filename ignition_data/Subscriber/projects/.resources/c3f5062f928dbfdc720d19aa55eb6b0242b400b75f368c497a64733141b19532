@@ -1,0 +1,1 @@
+DELETE FROM dashboards WHERE id = :id

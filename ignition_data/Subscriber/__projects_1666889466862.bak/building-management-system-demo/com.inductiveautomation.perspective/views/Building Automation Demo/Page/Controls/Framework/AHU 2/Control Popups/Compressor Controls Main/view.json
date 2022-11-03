@@ -1,0 +1,793 @@
+{
+  "custom": {},
+  "params": {
+    "ahu": 1
+  },
+  "propConfig": {
+    "params.ahu": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 291,
+      "width": 633
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "textAlign": "center"
+              },
+              "text": "Supply Air Setpoint Calculation"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Act Demand"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/90BR/VAV/_Global/Request_PeakCool_pct"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027{:.1f}\u0027.format(value)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-80",
+                    "borderColor": "--neutral-50",
+                    "borderStyle": "solid",
+                    "color": "--neutral-10",
+                    "fontWeight": "bold",
+                    "marginLeft": "5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Temp Label"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "marginLeft": "5px",
+                    "textAlign": "center"
+                  },
+                  "text": "Temp"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Act Demand"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Min Demand"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry Min Demand Cool"
+                },
+                "position": {
+                  "basis": "75px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC2_Cntl_PeakCool_Demand_pct_Min.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC1_Cntl_Cooling_Demand_pct_Min.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC2_Cntl_PeakCool_Demand_pct_Min"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry Supply Air Max"
+                },
+                "position": {
+                  "basis": "75px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Max_Temp_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Max_Temp_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Max_Temp_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "meta": {
+                  "name": "High SP Label"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "marginLeft": "5px",
+                    "textAlign": "center"
+                  },
+                  "text": "High SP"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Min Demand"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Max Demand"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry Demand Cool Max"
+                },
+                "position": {
+                  "basis": "75px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC2_Cntl_PeakCool_Demand_pct_Max.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC2_Cntl_PeakCool_Demand_pct_Max.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/_Demand/AC2_Cntl_PeakCool_Demand_pct_Max"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry Supply Air Min"
+                },
+                "position": {
+                  "basis": "75px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Min_Temp_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Min_Temp_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Supply_Air_Min_Temp_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "meta": {
+                  "name": "Low SP Label"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "marginLeft": "5px",
+                    "textAlign": "center"
+                  },
+                  "text": "Low SP"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Max Demand"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "175px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "right"
+                  },
+                  "text": "Supply Air Temp SP"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp_SP}, {[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp_SP.FormatString}) + \u0027°F\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-80",
+                    "borderColor": "--neutral-50",
+                    "borderStyle": "solid",
+                    "color": "--neutral-10",
+                    "fontWeight": "bold",
+                    "marginLeft": "5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Supply Air Temp SP"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "175px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "right"
+                  },
+                  "text": "Supply Air Delta"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry"
+                },
+                "position": {
+                  "basis": "75px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Delta_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Delta_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Delta_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Supply Air Delta"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "175px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "right"
+                  },
+                  "text": "Supply Air Temp Act"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "70px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp}, {[default]BMS/Blue/HVAC/AC2/Cntl/Supply_Air_Temp.FormatString}) + \u0027°F\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-80",
+                    "borderColor": "--neutral-50",
+                    "borderStyle": "solid",
+                    "color": "--neutral-10",
+                    "fontWeight": "bold",
+                    "marginLeft": "5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Supply Air Temp Act"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Supply Air Setpoint Calculation"
+        },
+        "position": {
+          "basis": "60%"
+        },
+        "props": {
+          "direction": "column",
+          "justify": "space-between",
+          "style": {
+            "marginBottom": "15px",
+            "marginLeft": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "110px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "OSA Cool Min"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry"
+                },
+                "position": {
+                  "basis": "85px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Cool_Min_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Cool_Min_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Cool_Min_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "OSA Cool Min"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "110px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "OSA Delta"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Numeric Entry"
+                },
+                "position": {
+                  "basis": "85px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Delta_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Delta_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cntl/HMI_OSA_Delta_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {},
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "OSA Delta"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "marginTop": "11px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "OSA And Supply Air"
+        },
+        "position": {
+          "basis": "45%"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginBottom": "15px",
+            "marginRight": "10px",
+            "marginTop": "41px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "justify": "space-around"
+    },
+    "type": "ia.container.flex"
+  }
+}

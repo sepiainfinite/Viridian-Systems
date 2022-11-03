@@ -1,0 +1,684 @@
+{
+  "custom": {
+    "Flow_Duct1_Max": 160,
+    "flowDuct1Max": 160,
+    "flowDuct1Min": 45,
+    "flowDuct2Max": 310,
+    "flowMax": 470
+  },
+  "params": {
+    "vav": "[default]BMS/90BR/VAV/VAV 2-21 HC"
+  },
+  "propConfig": {
+    "custom.flowDuct1Max": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "vav": "{view.params.vav}"
+          },
+          "tagPath": "{vav}/Flow_Duct1_Max"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.flowDuct1Min": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "vav": "{view.params.vav}"
+          },
+          "tagPath": "{vav}/Flow_Duct1_Min"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.flowDuct2Max": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "vav": "{view.params.vav}"
+          },
+          "tagPath": "{vav}/Flow_Duct2_Max"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.flowMax": {
+      "binding": {
+        "config": {
+          "expression": "{view.custom.flowDuct1Max}+{view.custom.flowDuct2Max}"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.vav": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 282,
+      "width": 650
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Bottom"
+        },
+        "position": {
+          "height": 0.2199,
+          "width": 0.1354,
+          "x": 0.1501,
+          "y": 0.5732
+        },
+        "propConfig": {
+          "props.elements[0].fill.paint.stops[0].style.stopColor": {
+            "binding": {
+              "config": {
+                "expression": "gradient({[default]BMS/90BR/AHU/AHU1/Supply_Air_Temp},55,100,color(196,227,236),color(245,196,194))"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \u0027rgb(\u0027 + str(value.getRed()) + \u0027,\u0027 + str(value.getGreen()) + \u0027,\u0027 + str(value.getBlue()) + \u0027)\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": {
+                  "stops": [
+                    {
+                      "offset": "0%",
+                      "style": {}
+                    },
+                    {
+                      "offset": "100%",
+                      "style": {
+                        "stopColor": "#D7D7D7"
+                      }
+                    }
+                  ],
+                  "type": "linear",
+                  "x1": "0%",
+                  "x2": "100%",
+                  "y1": "0%",
+                  "y2": "0%"
+                }
+              },
+              "height": "100%",
+              "style": {
+                "classes": ""
+              },
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "preserveAspectRatio": "none",
+          "viewBox": "0 0 100 100"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Center"
+        },
+        "position": {
+          "height": 0.6079,
+          "width": 0.3939,
+          "x": 0.2284,
+          "y": 0.1875
+        },
+        "props": {
+          "elements": [
+            {
+              "d": "M 275.0 213.0 L 313.11023 214.0 L 384.13385 239.0 L 384.13385 254.0 L 384.13385 275.0 L 385.0 292.0 L 309.64566 316.0 L 275.0 316.0 Z",
+              "fill": {
+                "paint": "#D7D7D7"
+              },
+              "name": "path",
+              "type": "path"
+            }
+          ],
+          "viewBox": "275 213 110 103"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Top"
+        },
+        "position": {
+          "height": 0.2199,
+          "width": 0.1354,
+          "x": 0.1501,
+          "y": 0.1905
+        },
+        "propConfig": {
+          "props.elements[0].fill.paint.stops[0].style.stopColor": {
+            "binding": {
+              "config": {
+                "expression": "gradient({[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp},55,100,color(196,227,236),color(245,196,194))"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \u0027rgb(\u0027 + str(value.getRed()) + \u0027,\u0027 + str(value.getGreen()) + \u0027,\u0027 + str(value.getBlue()) + \u0027)\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": {
+                  "stops": [
+                    {
+                      "offset": "0%",
+                      "style": {}
+                    },
+                    {
+                      "offset": "100%",
+                      "style": {
+                        "stopColor": "#D7D7D7"
+                      }
+                    }
+                  ],
+                  "type": "linear",
+                  "x1": "0%",
+                  "x2": "100%",
+                  "y1": "0%",
+                  "y2": "0%"
+                }
+              },
+              "height": "100%",
+              "style": {
+                "classes": ""
+              },
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "preserveAspectRatio": "none",
+          "viewBox": "0 0 100 100"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Right"
+        },
+        "position": {
+          "height": 0.3113,
+          "width": 0.2053,
+          "x": 0.4945,
+          "y": 0.3414
+        },
+        "propConfig": {
+          "custom.temp": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Temp_Discharge"
+              },
+              "type": "tag"
+            }
+          },
+          "props.elements[0].fill.paint.stops[1].style.stopColor": {
+            "binding": {
+              "config": {
+                "expression": "gradient({this.custom.temp},55,100,color(196,227,236),color(245,196,194))"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \u0027rgb(\u0027 + str(value.getRed()) + \u0027,\u0027 + str(value.getGreen()) + \u0027,\u0027 + str(value.getBlue()) + \u0027)\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "paint": {
+                  "stops": [
+                    {
+                      "offset": "0%",
+                      "style": {
+                        "stopColor": "#D7D7D7"
+                      }
+                    },
+                    {
+                      "offset": "100%",
+                      "style": {}
+                    }
+                  ],
+                  "type": "linear",
+                  "x1": "0%",
+                  "x2": "100%",
+                  "y1": "0%",
+                  "y2": "0%"
+                }
+              },
+              "height": "100%",
+              "style": {
+                "classes": ""
+              },
+              "type": "rect",
+              "width": "100%",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "preserveAspectRatio": "none",
+          "viewBox": "0 0 100 100"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Degrees F SAT Heat"
+        },
+        "position": {
+          "height": 0.101,
+          "width": 0.1185,
+          "x": 0.0188,
+          "y": 0.2354
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat({[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp}, {[default]BMS/90BR/AHU/AHU2/Supply_Air_Temp.FormatString}) + \u0027°F\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "fontSize": "12px",
+            "textAlign": "right"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Degrees F SAT Cool"
+        },
+        "position": {
+          "height": 0.1028,
+          "width": 0.1185,
+          "x": 0.0188,
+          "y": 0.6543
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat({[default]BMS/90BR/AHU/AHU1/Supply_Air_Temp}, {[default]BMS/90BR/AHU/AHU1/Supply_Air_Temp.FormatString}) + \u0027°F\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "fontSize": "12px",
+            "textAlign": "right"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Bar Hot"
+        },
+        "position": {
+          "height": 0.1498,
+          "width": 0.2954,
+          "x": 0.1626
+        },
+        "propConfig": {
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct2"
+              },
+              "type": "tag"
+            }
+          },
+          "props.params.valueMax": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct2_Max"
+              },
+              "type": "tag"
+            }
+          },
+          "props.params.valueSP": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct2_SP"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "color1": "rgb(203,147,6)",
+            "color2": "rgb(0,0,0)",
+            "color3": "rgb(0,0,0)",
+            "colorNum": 1,
+            "labelTopBottom": true,
+            "labelVisible": true,
+            "unit": "cfm",
+            "valueMin": 0
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/VAV Details Comps/BarCallout",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Bar Callout Cold"
+        },
+        "position": {
+          "height": 0.1498,
+          "rotate": {
+            "anchor": "50% 39%"
+          },
+          "width": 0.2954,
+          "x": 0.1626,
+          "y": 0.8303
+        },
+        "propConfig": {
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct1"
+              },
+              "type": "tag"
+            }
+          },
+          "props.params.valueMax": {
+            "binding": {
+              "config": {
+                "path": "view.custom.flowDuct1Max"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.valueMin": {
+            "binding": {
+              "config": {
+                "path": "view.custom.flowDuct1Min"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.valueSP": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct1_SP"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "color1": "rgb(203,147,6)",
+            "color2": "rgb(0,0,0)",
+            "color3": "rgb(0,0,0)",
+            "colorNum": 1,
+            "labelTopBottom": false,
+            "labelVisible": true,
+            "unit": "cfm"
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/VAV Details Comps/BarCallout",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "custom": {
+          "TagName": "Temp_Discharge"
+        },
+        "meta": {
+          "name": "Degrees F SAT Heat Right"
+        },
+        "position": {
+          "height": 0.0922,
+          "width": 0.0668,
+          "x": 0.7439,
+          "y": 0.5092
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat(tag({view.params.vav}+\u0027/\u0027+{this.custom.TagName}), tag({view.params.vav}+\u0027/\u0027+{this.custom.TagName} + \u0027.FormatString\u0027)) + \u0027°F\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "fontSize": "12px",
+            "fontWeight": "bold",
+            "textAlign": "right"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Bar Callout Supply"
+        },
+        "position": {
+          "height": 0.1498,
+          "width": 0.2738,
+          "x": 0.7155,
+          "y": 0.3564
+        },
+        "propConfig": {
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Discharge"
+              },
+              "type": "tag"
+            }
+          },
+          "props.params.valueMax": {
+            "binding": {
+              "config": {
+                "path": "view.custom.flowMax"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.valueMin": {
+            "binding": {
+              "config": {
+                "path": "view.custom.flowDuct1Min"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "color1": "rgb(203,147,6)",
+            "color2": "rgb(0,0,0)",
+            "color3": "rgb(0,0,0)",
+            "colorNum": 1,
+            "labelTopBottom": true,
+            "labelVisible": true,
+            "unit": "cfm",
+            "valueSP": null
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/VAV Details Comps/BarCallout",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Damper Bottom"
+        },
+        "position": {
+          "height": 0.1816,
+          "width": 0.1411,
+          "x": 0.2447,
+          "y": 0.6134
+        },
+        "propConfig": {
+          "props.params.percentOpen": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct1_Damper_pct"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "isCooling": false
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/VAV Details Comps/DamperB",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Damper Top"
+        },
+        "position": {
+          "height": 0.1816,
+          "width": 0.1411,
+          "x": 0.2447,
+          "y": 0.1889
+        },
+        "propConfig": {
+          "props.params.percentOpen": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "vav": "{view.params.vav}"
+                },
+                "tagPath": "{vav}/Flow_Duct2_Damper_pct"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "isCooling": false
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/VAV Details Comps/DamperB",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "aspectRatio": "650:282",
+      "mode": "percent"
+    },
+    "type": "ia.container.coord"
+  }
+}

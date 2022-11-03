@@ -9,24 +9,26 @@ ignition.conf
 logback.xml
 docker-compose.yml
 
-projects/conversion-report.txt
-projects/.resources
+*projects/conversion-report.txt
+*projects/.resources
 
-modules/com.inductiveautomation.perspective/fonts
-modules/com.inductiveautomation.perspective/icons
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/fonts
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/icons
 
-modules/com.inductiveautomation.perspective/themes/.backup
-modules/com.inductiveautomation.perspective/themes/dark.css
-modules/com.inductiveautomation.perspective/themes/dark
-modules/com.inductiveautomation.perspective/themes/light.css
-modules/com.inductiveautomation.perspective/themes/light
-modules/com.inductiveautomation.perspective/themes/dark-warm.css
-modules/com.inductiveautomation.perspective/themes/dark-warm
-modules/com.inductiveautomation.perspective/themes/dark-cool.css
-modules/com.inductiveautomation.perspective/themes/dark-cool
-modules/com.inductiveautomation.perspective/themes/light-cool.css
-modules/com.inductiveautomation.perspective/themes/light-cool
-modules/com.inductiveautomation.perspective/themes/README.md
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/.backup
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/README.md
 
-temp/
-Modules/
+*ignition_data/Publisher/
+!ignition_data/Publisher/projects
+*temp/
+*Modules/

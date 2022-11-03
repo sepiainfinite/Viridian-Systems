@@ -1,0 +1,349 @@
+{
+  "custom": {},
+  "params": {
+    "color": "#FFFFFF"
+  },
+  "propConfig": {
+    "custom.material": {
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.color.key": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.color.key[0]": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.materials[0]": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.materials[1]": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 377,
+      "width": 584
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "fontSize": "20px"
+              },
+              "text": "Change Color"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027change-color\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "25px"
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M0 0h24v24H0V0z",
+                  "fill": {
+                    "paint": "none"
+                  },
+                  "name": "path",
+                  "type": "path"
+                },
+                {
+                  "d": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "fill": "var(--neutral-100)",
+              "style": {
+                "cursor": "pointer",
+                "marginRight": "3px"
+              },
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "marginTop": "8px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Select Color"
+        },
+        "propConfig": {
+          "props.params.color": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "parent.custom.color"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Building Automation Demo/Page/Systems Overview/Framework/Dashboard/Widgets/Single Trend/Framework/Color Picker/Color Picker",
+          "style": {
+            "marginRight": "10px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "marginRight": "10px"
+              },
+              "text": "Current Color"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Color Preview"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "propConfig": {
+                  "props.fill": {
+                    "binding": {
+                      "config": {
+                        "expression": "toColor({../Color.props.text})"
+                      },
+                      "overlayOptOut": true,
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027rgb(\u0027 + str(value.getRed()) + \u0027,\u0027 + str(value.getGreen()) + \u0027,\u0027 + str(value.getBlue()) + \u0027,\u0027 + str(value.getAlpha()) + \u0027)\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "height": "60%",
+                      "rx": "3px",
+                      "type": "rect",
+                      "width": "60%",
+                      "x": "20%",
+                      "y": "20%"
+                    }
+                  ],
+                  "style": {
+                    "borderBottomColor": "--neutral-50",
+                    "borderBottomStyle": "solid",
+                    "borderBottomWidth": "0.5px",
+                    "marginRight": "-5px"
+                  },
+                  "viewBox": "0 0 24 24"
+                },
+                "type": "ia.shapes.svg"
+              },
+              {
+                "meta": {
+                  "name": "Color"
+                },
+                "position": {
+                  "basis": "35px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "/root.custom.color"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "borderBottomStyle": "solid",
+                    "borderLeftStyle": "none",
+                    "borderRightStyle": "none",
+                    "borderTopStyle": "none",
+                    "fontSize": "15px",
+                    "outlineStyle": "none"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "Color Cont"
+            },
+            "position": {
+              "basis": "35px",
+              "grow": 1
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Curr Option"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "style": {
+            "marginTop": "25px",
+            "paddingRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027change-color\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Cancel"
+            },
+            "position": {
+              "basis": "45%"
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "color": "--neutral-100",
+                "cursor": "pointer"
+              },
+              "text": "Cancel"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# Send a message to the updateColor handler, and in the payload include the current color.\n\t# Then, close this popup.\n\t\n\tsystem.perspective.sendMessage(\u0027updateColor\u0027,payload\u003d{\u0027color\u0027:self.view.getChild(\"root\").custom.color},scope\u003d\u0027page\u0027)\n\tsystem.perspective.closePopup(\u0027change-color\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Save"
+            },
+            "position": {
+              "basis": "45%"
+            },
+            "props": {
+              "style": {
+                "background-color": "--neutral-90",
+                "cursor": "pointer",
+                "marginLeft": "10%"
+              },
+              "text": "Save"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Options"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "marginTop": "25px",
+            "paddingRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.color": {
+        "binding": {
+          "config": {
+            "path": "view.params.color"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "paddingBottom": "15px",
+        "paddingLeft": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

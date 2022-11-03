@@ -1,0 +1,202 @@
+{
+  "custom": {},
+  "params": {
+    "ahu": 1,
+    "compNum": 1
+  },
+  "propConfig": {
+    "params.ahu": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.compNum": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 378,
+      "width": 406
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "ahu": "{view.params.ahu}",
+                      "compNum": "{view.params.compNum}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn \u0027AHU\u0027 + str(value[\u0027ahu\u0027]) + \u0027 - Comp\u0027 + str(value[\u0027compNum\u0027])",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontSize": "20px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t# Close this popup.\n\t\n\tsystem.perspective.closePopup(\u0027comp-notes\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "25px"
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M0 0h24v24H0V0z",
+                  "fill": {
+                    "paint": "none"
+                  },
+                  "name": "path",
+                  "type": "path"
+                },
+                {
+                  "d": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "fill": "var(--neutral-100)",
+              "style": {
+                "cursor": "pointer",
+                "marginRight": "3px"
+              },
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Text Area"
+        },
+        "position": {
+          "basis": "160px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "ahu": "{view.params.ahu}",
+                  "compNum": "{view.params.compNum}"
+                },
+                "tagPath": "[default]BMS/Blue/HVAC/AC{ahu}/Comp{compNum}/Note"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginBottom": "15px",
+            "marginRight": "15px"
+          }
+        },
+        "type": "ia.input.text-area"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# Close this popup. Any edits to notes are written to\n\t# the tag via bidirectional binding on the text area.\n\t\n\tsystem.perspective.closePopup(\u0027comp-notes\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Done"
+            },
+            "position": {
+              "basis": "64px"
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-100"
+              },
+              "text": "Done"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Done Cont"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "paddingRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "paddingBottom": "15px",
+        "paddingLeft": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

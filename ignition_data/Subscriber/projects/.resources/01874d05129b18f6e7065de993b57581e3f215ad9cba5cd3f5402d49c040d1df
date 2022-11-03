@@ -1,0 +1,122 @@
+{
+  "custom": {},
+  "params": {
+    "ac": -1,
+    "compressor": -1,
+    "mobile": false,
+    "name": "",
+    "nameOverride": "",
+    "path": "",
+    "type": ""
+  },
+  "propConfig": {
+    "params.ac": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.compressor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.nameOverride": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 37,
+      "width": 211
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.color": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-80\u0027,\u0027--neutral-50\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "path": "view.params.mobile"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d True:\n\t\treturn \u002718px\u0027\n\telse:\n\t\treturn \u002714px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "ahu": "{view.params.ahu}",
+                  "compressorNum": "{view.params.compressor}",
+                  "name": "{view.params.name}",
+                  "nameOverride": "{view.params.nameOverride}",
+                  "path": "{view.params.path}",
+                  "type": "{view.params.type}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If nameOverride is not equal to the empty string, then return nameOVerride (tag name\n\t# set by the user). Otherwise, create a tag name based on the other params.\n\tif value[\u0027nameOverride\u0027] !\u003d \u0027\u0027:\n\t\treturn value[\u0027nameOverride\u0027]\n\telse:\n\t\ttypeMap \u003d {\u0027\u0027:\u0027\u0027,\u0027fan\u0027:\u0027Fan\u0027, \u0027condenser\u0027:\u0027Condenser\u0027, \u0027economizer\u0027:\u0027Economizer\u0027,\u0027compressor\u0027:\u0027Compressor\u0027,\u0027heatingControls\u0027:\u0027Heating Controls\u0027,\u0027other\u0027:\u0027\u0027}\n\t\t\n\t\tahu \u003d value[\u0027ahu\u0027]\n\t\ttype \u003d value[\u0027type\u0027]\n\t\tname \u003d value[\u0027name\u0027]\n\t\tpath \u003d value[\u0027path\u0027]\n\t\t\n\t\tif ahu \u003d\u003d -1:\n\t\t\tahu \u003d \u0027\u0027\n\t\telse:\n\t\t\tahu \u003d \u0027AHU \u0027 + str(ahu) + \u0027 - \u0027\n\t\t\n\t\tif type \u003d\u003d \u0027compressor\u0027 and \u0027Comp\u0027 in path:\n\t\t\ttypeName \u003d \u0027Compressor \u0027 + str(value[\u0027compressorNum\u0027]) + \u0027 \u0027 + name\n\t\telif type \u003d\u003d \u0027other\u0027:\n\t\t\ttypeName \u003d name\n\t\telse:\n\t\t\ttypeName \u003d typeMap[type] + \u0027 \u0027 + name\n\t\t\n\t\treturn ahu + typeName",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden",
+            "textAlign": "right"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

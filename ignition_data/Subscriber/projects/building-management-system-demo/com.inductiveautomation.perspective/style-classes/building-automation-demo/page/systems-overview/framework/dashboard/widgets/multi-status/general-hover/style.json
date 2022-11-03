@@ -1,0 +1,18 @@
+{
+  "base": {
+    "style": {
+      "color": "var(--neutral-80)",
+      "fill": "var(--neutral-80)"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "color": "var(--neutral-100)",
+        "cursor": "pointer",
+        "fill": "var(--neutral-100)"
+      }
+    }
+  ]
+}

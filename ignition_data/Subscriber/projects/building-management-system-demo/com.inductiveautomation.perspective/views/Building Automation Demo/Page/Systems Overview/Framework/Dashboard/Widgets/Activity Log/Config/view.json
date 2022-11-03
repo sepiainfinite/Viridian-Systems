@@ -1,0 +1,171 @@
+{
+  "custom": {
+    "selectingColor": false
+  },
+  "params": {
+    "currentParams": {
+      "refresh": 300000,
+      "widgetTitle": ""
+    }
+  },
+  "propConfig": {
+    "custom.options": {
+      "persistent": true
+    },
+    "custom.selectingColor": {
+      "persistent": true
+    },
+    "params.currentParams": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.key": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 525
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label Widget Title"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Widget Title"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "35px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.currentParams.widgetTitle"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Activity Log",
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Widget Title"
+        },
+        "position": {
+          "basis": "45px"
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Refresh Rate"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Refresh Rate"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.currentParams.refresh"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "align": "left",
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "Refresh Rate Cont"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "35px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "direction": "column",
+      "style": {
+        "padding": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

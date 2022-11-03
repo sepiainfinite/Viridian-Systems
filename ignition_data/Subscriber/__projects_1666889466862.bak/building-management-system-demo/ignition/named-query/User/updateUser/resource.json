@@ -1,0 +1,75 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a88b239156748de978797a294dc9d1bf3d2fb625befc2b36218b9726165c961d",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2022-03-25T23:50:23Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "imagestr",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "builtin",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "profileimage",
+        "sqlType": 20
+      },
+      {
+        "type": "Parameter",
+        "identifier": "defaultdash",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "theme",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "usebuiltin",
+        "sqlType": 0
+      },
+      {
+        "type": "Parameter",
+        "identifier": "title",
+        "sqlType": 7
+      }
+    ]
+  }
+}

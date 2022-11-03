@@ -1,0 +1,709 @@
+{
+  "custom": {},
+  "params": {
+    "currEdit": ""
+  },
+  "propConfig": {
+    "params.currEdit": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 729,
+      "width": 343
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "fontSize": "21px",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              },
+              "text": "Dashboard Details"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Name"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Name"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "{session.custom.dashboard.objects.edit.action.action} \u003d \"add\""
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "session.custom.dashboard.objects.edit.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Name"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "URL"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "URL"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "session.custom.dashboard.objects.edit.url"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "URL"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "35px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "16px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Rows"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Rows"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "session.custom.dashboard.objects.edit.gridRows"
+                          },
+                          "overlayOptOut": true,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "align": "left",
+                      "format": "0,0",
+                      "style": {
+                        "backgroundColor": "--neutral-10",
+                        "borderBottomStyle": "solid",
+                        "borderLeftStyle": "none",
+                        "borderRightStyle": "none",
+                        "borderTopStyle": "none",
+                        "fontSize": "15px",
+                        "outlineStyle": "none"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "Rows"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "marginRight": "1em"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "16px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Row Gutter"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Row Gutter"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+                          },
+                          "overlayOptOut": true,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "align": "left",
+                      "format": "0,0",
+                      "style": {
+                        "backgroundColor": "--neutral-10",
+                        "borderBottomStyle": "solid",
+                        "borderLeftStyle": "none",
+                        "borderRightStyle": "none",
+                        "borderTopStyle": "none",
+                        "fontSize": "15px",
+                        "outlineStyle": "none"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "Row Gutter"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Rows"
+            },
+            "position": {
+              "basis": "50px",
+              "shrink": 0
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "16px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Columns"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Cols"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "session.custom.dashboard.objects.edit.gridCols"
+                          },
+                          "overlayOptOut": true,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "align": "left",
+                      "format": "0,0",
+                      "style": {
+                        "backgroundColor": "--neutral-10",
+                        "borderBottomStyle": "solid",
+                        "borderLeftStyle": "none",
+                        "borderRightStyle": "none",
+                        "borderTopStyle": "none",
+                        "fontSize": "15px",
+                        "outlineStyle": "none"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "Cols"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "marginRight": "1em"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "16px",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Column Gutter"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Col Gutter"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+                          },
+                          "overlayOptOut": true,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "align": "left",
+                      "format": "0,0.########",
+                      "style": {
+                        "backgroundColor": "--neutral-10",
+                        "borderBottomStyle": "solid",
+                        "borderLeftStyle": "none",
+                        "borderRightStyle": "none",
+                        "borderTopStyle": "none",
+                        "fontSize": "15px",
+                        "outlineStyle": "none"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "Col Gutter"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Columns"
+            },
+            "position": {
+              "basis": "50px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "marginTop": "35px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "GridConfig"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "35px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "16px",
+                "white-space": "nowrap"
+              },
+              "text": "Public"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Toggle Switch"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "{session.custom.dashboard.objects.edit.username}\u003d{session.props.auth.user.userName}"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "props.selected": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.public"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "if({value}, true, false)",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "property"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tif currentValue.value:\n\t\t\tself.session.custom.dashboard.objects.edit.public \u003d True\n\t\t\tself.session.custom.dashboard.objects.edit.parent_id \u003d None\n\t\t\tself.session.custom.dashboard.objects.edit.parent_path \u003d None\n\t\t\tself.session.custom.dashboard.objects.edit.default \u003d False\n\t\telse:\n\t\t\tself.session.custom.dashboard.objects.edit.public \u003d False"
+                }
+              }
+            },
+            "props": {
+              "label": {
+                "position": "left"
+              },
+              "style": {
+                "padding-bottom": 0,
+                "padding-left": 0,
+                "padding-right": 0,
+                "padding-top": 0
+              }
+            },
+            "type": "ia.input.toggle-switch"
+          }
+        ],
+        "meta": {
+          "name": "Access"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.access": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.public"
+              },
+              "transforms": [
+                {
+                  "expression": "if({value}, 1, 0)",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginTop": "35px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# When this dock is opened, the current \u0027edit dashboard\u0027 properties\n\t# are passed to this view in the \u0027currEdit\u0027 param. When this \u0027Cancel\u0027\n\t# button is pressed, the dashboard.objects.edit object is set equal\n\t# to the \u0027currEdit\u0027 param (reverting the \u0027edit dashboard\u0027 object,\n\t# effectively cancelling any changes that the user could have made).\n\t\n\tself.session.custom.dashboard.objects.edit \u003d self.view.params.currEdit\n\tsystem.perspective.closeDock(\u0027editDetails\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Cancel"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#FFFFFF00",
+                "color": "--neutral-100",
+                "margin": "0.5em",
+                "margin-left": "0.25em",
+                "marginRight": "20px",
+                "padding-bottom": "0.1ex",
+                "padding-top": "0.1ex"
+              },
+              "text": "Cancel"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# Due to the fact that the components on this view contain\n\t# bidirectional bindings to the \u0027edit dashboard\u0027 session\n\t# custom property object (the changes are applied right after\n\t# the user enters new info), this \u0027Done\u0027 button only needs\n\t# to close this dock.\n\t\n\tsystem.perspective.closeDock(\u0027editDetails\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Save"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "background-color": "--neutral-90",
+                "margin": "0.5em",
+                "margin-right": "0.25em",
+                "marginLeft": "20px",
+                "padding-bottom": "0.1ex",
+                "padding-top": "0.1ex"
+              },
+              "text": "Done"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Options"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "flex-end",
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.id": {
+        "binding": {
+          "config": {
+            "path": "session.custom.dashboard.objects.edit.id"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "paddingBottom": "15px",
+        "paddingLeft": "15px",
+        "paddingRight": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

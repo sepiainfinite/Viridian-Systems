@@ -1,0 +1,196 @@
+{
+  "custom": {},
+  "params": {
+    "mobile": true
+  },
+  "propConfig": {
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 418
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "basisMult": 24
+        },
+        "meta": {
+          "name": "Dashboard"
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile}, toString({this.props.stretch.rowCount} * {this.custom.basisMult}) + \"px\", \"auto\")"
+              },
+              "type": "expr"
+            }
+          },
+          "position.grow": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile}, 0, 1)"
+              },
+              "type": "expr"
+            }
+          },
+          "position.shrink": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile}, 0, 1)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.fixed.cellSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.cellSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridCols"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridRows"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.grid": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.grid"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.columnCount": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile}, 1, {session.custom.dashboard.objects.current.gridCols})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.stretch.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.rowCount": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "gridRows": "{session.custom.dashboard.objects.current.gridRows}",
+                  "mobile": "{view.params.mobile}",
+                  "widgets": "{session.custom.dashboard.objects.current.widgets}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If on a mobile device, call the getWidgetsRows function to get the total\n\t# number of rows that the dashboard\u0027s widgets span (because the widgets are\n\t# laid out in a single column on mobile, and the dashboard needs to know the\n\t# total number of rows needed to display the widgets). Otherwise, return the\n\t# number of rows in the grid.\n\t\n\tmobile \u003d value[\"mobile\"]\n\tgridRows \u003d value[\"gridRows\"]\n\twidgets \u003d self.session.custom.dashboard.objects.current.widgets\n\t\n\tif mobile:\n\t\treturn dashboard.getWidgetsRows(widgets,gridRows)\n\telse:\n\t\treturn gridRows",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.stretch.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value in [\u0027hvac-warm\u0027,\u0027hvac\u0027]:\n\t\treturn \u0027var(--neutral-20)\u0027\n\telse:\n\t\treturn \u0027var(--neutral-10)\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.widgets": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "columnCount": "{this.props.stretch.columnCount}",
+                  "mobile": "{view.params.mobile}",
+                  "rowCount": "{session.custom.dashboard.objects.current.gridRows}",
+                  "theme": "{session.props.theme}",
+                  "widgets": "{session.custom.dashboard.objects.current.widgets}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# Call getWidgets to get a list of widgets in the format expected by\n\t# the dashboard component. Include as params a boolean denoting whether\n\t# the user is on a mobile device, a boolean denoting whether the widgets\n\t# are configurable, the number of rows/cols of the dashboard\u0027s grid, and\n\t# the current theme being used in the session.\n\t\n\tmobile \u003d value[\"mobile\"]\n\twidgets \u003d value[\"widgets\"]\n\twidgets \u003d dashboard.getWidgets(widgets,mobile,True,value[\u0027rowCount\u0027],value[\u0027columnCount\u0027],value[\u0027theme\u0027],False)\n\t\n\treturn [] if value \u003d\u003d None else widgets",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "fixed": {},
+          "stretch": {},
+          "style": {
+            "borderStyle": "none"
+          }
+        },
+        "type": "ia.display.dashboard"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

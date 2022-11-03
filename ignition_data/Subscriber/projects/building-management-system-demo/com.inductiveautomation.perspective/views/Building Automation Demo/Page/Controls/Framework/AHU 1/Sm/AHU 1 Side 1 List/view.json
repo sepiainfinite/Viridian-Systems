@@ -1,0 +1,866 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 210,
+      "width": 379
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Economizer",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "ACCESS CONTROLS"
+                      }
+                    },
+                    "position": {
+                      "basis": "42px"
+                    },
+                    "propConfig": {
+                      "props.fill": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Economizer/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027var(--neutral-80)\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027#00FF00\u0027 if self.session.props.theme in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027] else \u0027#00eb00\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "elements": [
+                            {
+                              "d": "M189.955 75.381 L 164.006 101.428 232.003 100.714 L 300.000 100.000 300.755 74.667 L 301.510 49.333 258.708 49.333 L 215.905 49.333 189.955 75.381 M282.667 74.667 L 282.667 82.667 266.667 82.667 L 250.667 82.667 250.667 74.667 L 250.667 66.667 266.667 66.667 L 282.667 66.667 282.667 74.667 M48.000 192.000 L 48.000 286.380 57.333 277.333 L 66.667 268.287 76.000 277.333 L 85.333 286.380 85.333 192.000 L 85.333 97.620 76.000 106.667 L 66.667 115.713 57.333 106.667 L 48.000 97.620 48.000 192.000 M128.000 117.989 C 128.000 119.268,126.936 119.657,125.635 118.853 C 122.699 117.039,116.723 123.834,119.134 126.245 C 120.099 127.210,119.489 128.000,117.778 128.000 C 116.067 128.000,114.809 128.900,114.982 130.000 C 115.156 131.100,115.156 139.500,114.982 148.667 L 114.667 165.333 106.667 165.333 L 98.667 165.333 98.667 192.000 L 98.667 218.667 106.667 218.667 C 114.636 218.667,114.667 218.726,114.667 234.133 C 114.667 242.814,116.129 251.176,118.000 253.191 C 120.667 256.064,120.667 256.406,118.000 254.900 C 113.344 252.272,113.846 254.292,119.333 260.259 C 122.493 263.695,128.520 265.628,138.000 266.245 L 152.000 267.157 152.000 190.789 L 152.000 114.421 140.000 115.042 C 133.400 115.384,128.000 116.710,128.000 117.989 M165.333 124.000 L 165.333 133.333 233.333 133.333 L 301.333 133.333 301.333 124.000 L 301.333 114.667 233.333 114.667 L 165.333 114.667 165.333 124.000 M314.667 190.741 L 314.667 267.062 328.667 266.375 C 352.005 265.229,351.799 265.894,351.799 191.708 C 351.799 146.163,350.940 128.000,348.788 128.000 C 347.132 128.000,346.567 127.210,347.532 126.245 C 349.944 123.834,343.968 117.039,341.031 118.853 C 339.731 119.657,338.667 119.268,338.667 117.989 C 338.667 116.710,333.267 115.384,326.667 115.042 L 314.667 114.421 314.667 190.741 M165.333 158.667 L 165.333 168.000 233.333 168.000 L 301.333 168.000 301.333 158.667 L 301.333 149.333 233.333 149.333 L 165.333 149.333 165.333 158.667 M165.333 190.667 L 165.333 200.000 233.333 200.000 L 301.333 200.000 301.333 190.667 L 301.333 181.333 233.333 181.333 L 165.333 181.333 165.333 190.667 M165.333 225.333 L 165.333 234.667 233.333 234.667 L 301.333 234.667 301.333 225.333 L 301.333 216.000 233.333 216.000 L 165.333 216.000 165.333 225.333 M165.333 257.333 L 165.333 266.667 233.333 266.667 L 301.333 266.667 301.333 257.333 L 301.333 248.000 233.333 248.000 L 165.333 248.000 165.333 257.333 M166.667 298.667 L 150.834 314.667 132.750 314.667 L 114.667 314.667 114.667 324.000 L 114.667 333.333 233.333 333.333 L 352.000 333.333 352.000 324.000 L 352.000 314.667 333.917 314.667 L 315.833 314.667 300.000 298.667 L 284.167 282.667 233.333 282.667 L 182.500 282.667 166.667 298.667 ",
+                              "name": "path0",
+                              "stroke": {
+                                "paint": "none"
+                              },
+                              "type": "path"
+                            }
+                          ],
+                          "name": "svgg",
+                          "type": "group"
+                        }
+                      ],
+                      "style": {
+                        "cursor": "pointer"
+                      },
+                      "viewBox": "20, 20, 350,350"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "meta": {
+                  "name": "Icon Cont"
+                },
+                "position": {
+                  "basis": "35px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "17px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "14px",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Economizer"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "12px"
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Economizer/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Close\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027Open\u0027\n\telse:\n\t\treturn \u0027\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "11.5px"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Name And Status Cont"
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Icon And Desc Cont"
+            },
+            "position": {
+              "basis": "150px"
+            },
+            "props": {
+              "style": {
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "17px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "14px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Open Cmd"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC1/Economizer/Open_Cmd"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \"{:.1f}%\".format(value)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "11.5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Label And Value Cont"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "center",
+              "style": {
+                "marginRight": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the controls side panel to display the controls for the economizer.\n\t\n\tsystem.perspective.openDock(\u0027controlSidePanel\u0027,params\u003d{\u0027controlViewPath\u0027:\u0027Building Automation Demo/Page/Controls/Framework/AHU 1/Sm/Control Panels/Economizer Controls\u0027,\u0027compNumb\u0027:\u0027\u0027})"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseDown": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseLeave": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseUp": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchEnd": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchStart": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Economizer"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "--neutral-10",
+            "borderColor": "--neutral-40",
+            "borderRadius": "10px",
+            "borderStyle": "solid",
+            "borderWidth": "0.5px",
+            "cursor": "pointer",
+            "transition": "background-color 0.25s linear"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Supply Fan",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "ACCESS CONTROLS"
+                      }
+                    },
+                    "position": {
+                      "basis": "36px"
+                    },
+                    "propConfig": {
+                      "props.fill": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Supply Fan/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027var(--neutral-80)\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027#00FF00\u0027 if self.session.props.theme in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027] else \u0027#00eb00\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027#FF0000\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027#FFFF00\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "elements": [
+                            {
+                              "d": "M2.060 2.060 L 0.000 4.119 -0.000 200.000 L -0.000 395.881 2.060 397.940 L 4.119 400.000 200.000 400.000 L 395.881 400.000 397.940 397.940 L 400.000 395.881 400.000 200.000 L 400.000 4.119 397.940 2.060 L 395.881 0.000 200.000 0.000 L 4.119 0.000 2.060 2.060 M35.999 20.344 C 46.520 25.711,43.284 41.225,31.485 41.983 C 25.920 42.340,22.695 40.608,20.344 35.999 C 15.089 25.699,25.699 15.089,35.999 20.344 M216.797 40.642 C 349.313 55.450,407.337 215.536,314.871 311.225 C 231.272 397.738,85.829 364.184,47.793 249.609 C 11.617 140.635,102.790 27.903,216.797 40.642 M144.752 63.666 C 136.881 65.853,123.572 73.609,108.012 85.076 C 103.035 88.744,101.217 91.868,102.097 95.234 C 102.316 96.071,117.002 116.558,134.733 140.760 C 164.972 182.034,166.925 184.896,166.222 186.913 C 165.314 189.517,165.809 189.508,157.755 187.071 C 86.714 165.584,48.947 176.409,53.152 217.055 C 54.229 227.460,61.247 252.638,64.420 257.481 C 67.006 261.428,67.021 261.424,123.176 242.944 C 185.614 222.395,182.907 222.771,173.669 235.942 C 129.872 298.386,130.623 339.135,175.687 345.403 C 178.858 345.844,188.465 346.268,197.037 346.345 L 212.622 346.484 214.514 344.292 L 216.406 342.100 216.406 287.476 L 216.406 232.853 218.711 231.661 C 219.979 231.005,221.167 230.469,221.351 230.469 C 221.535 230.469,223.725 233.193,226.218 236.523 C 271.149 296.552,310.673 308.074,330.341 266.878 C 335.696 255.661,342.495 234.660,341.686 231.837 C 340.530 227.808,338.494 227.005,290.625 211.691 C 265.059 203.513,243.022 196.462,241.656 196.024 C 239.522 195.340,239.059 194.708,238.384 191.559 C 237.457 187.242,237.274 187.461,243.750 185.145 C 313.254 160.289,335.621 128.208,304.746 97.656 C 295.907 88.911,277.422 75.041,273.826 74.458 C 269.440 73.746,268.855 74.450,236.855 118.911 L 206.294 161.374 202.952 161.061 C 198.594 160.652,198.464 160.364,198.449 151.112 C 198.356 89.779,176.846 54.749,144.752 63.666 M206.900 180.893 C 226.988 186.858,222.889 216.532,201.953 216.704 C 180.127 216.884,176.759 185.600,198.047 180.418 C 201.632 179.545,202.523 179.593,206.900 180.893 M375.554 359.347 C 380.921 362.619,382.712 370.841,379.111 375.665 C 371.587 385.742,357.222 380.899,358.015 368.554 C 358.586 359.655,367.975 354.726,375.554 359.347 ",
+                              "name": "path0",
+                              "stroke": {
+                                "paint": "none"
+                              },
+                              "type": "path"
+                            }
+                          ],
+                          "name": "svgg",
+                          "type": "group"
+                        }
+                      ],
+                      "style": {
+                        "cursor": "pointer"
+                      },
+                      "viewBox": "-40, -5, 470,420"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "meta": {
+                  "name": "Icon Cont"
+                },
+                "position": {
+                  "basis": "35px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "17px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "14px",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Supply Fan"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "12px"
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Supply Fan/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Off\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027Running\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Run Fault\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027Spindown\u0027\n\telif value \u003d\u003d 4:\n\t\treturn \u0027Wait Cycle\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "11.5px"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Name And Status Cont"
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Icon And Desc Cont"
+            },
+            "position": {
+              "basis": "150px"
+            },
+            "props": {
+              "style": {
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "17px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "14px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Speed Cmd"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC1/Supply Fan/Speed_Cmd"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027{:.1f}%\u0027.format(value)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "11.5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Label And Value Cont"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "center",
+              "style": {
+                "marginRight": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the controls side panel to display the controls for the supply fan.\n\t\n\tsystem.perspective.openDock(\u0027controlSidePanel\u0027,params\u003d{\u0027controlViewPath\u0027:\u0027Building Automation Demo/Page/Controls/Framework/AHU 1/Sm/Control Panels/Supply Fan Controls\u0027,\u0027compNumb\u0027:\u0027\u0027})"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseDown": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseLeave": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseUp": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchEnd": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchStart": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Supply Fan"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "borderColor": "--neutral-40",
+            "borderRadius": "10px",
+            "borderStyle": "solid",
+            "borderWidth": "0.5px",
+            "marginTop": "15px",
+            "transition": "background-color 0.25s linear"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Exhaust Fan",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "ACCESS CONTROLS"
+                      }
+                    },
+                    "position": {
+                      "basis": "36px"
+                    },
+                    "propConfig": {
+                      "props.fill": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Exhaust Fan/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027var(--neutral-80)\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027#00FF00\u0027 if self.session.props.theme in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027] else \u0027#00eb00\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027#FF0000\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027#FFFF00\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "elements": [
+                            {
+                              "d": "M2.060 2.060 L 0.000 4.119 -0.000 200.000 L -0.000 395.881 2.060 397.940 L 4.119 400.000 200.000 400.000 L 395.881 400.000 397.940 397.940 L 400.000 395.881 400.000 200.000 L 400.000 4.119 397.940 2.060 L 395.881 0.000 200.000 0.000 L 4.119 0.000 2.060 2.060 M35.999 20.344 C 46.520 25.711,43.284 41.225,31.485 41.983 C 25.920 42.340,22.695 40.608,20.344 35.999 C 15.089 25.699,25.699 15.089,35.999 20.344 M216.797 40.642 C 349.313 55.450,407.337 215.536,314.871 311.225 C 231.272 397.738,85.829 364.184,47.793 249.609 C 11.617 140.635,102.790 27.903,216.797 40.642 M144.752 63.666 C 136.881 65.853,123.572 73.609,108.012 85.076 C 103.035 88.744,101.217 91.868,102.097 95.234 C 102.316 96.071,117.002 116.558,134.733 140.760 C 164.972 182.034,166.925 184.896,166.222 186.913 C 165.314 189.517,165.809 189.508,157.755 187.071 C 86.714 165.584,48.947 176.409,53.152 217.055 C 54.229 227.460,61.247 252.638,64.420 257.481 C 67.006 261.428,67.021 261.424,123.176 242.944 C 185.614 222.395,182.907 222.771,173.669 235.942 C 129.872 298.386,130.623 339.135,175.687 345.403 C 178.858 345.844,188.465 346.268,197.037 346.345 L 212.622 346.484 214.514 344.292 L 216.406 342.100 216.406 287.476 L 216.406 232.853 218.711 231.661 C 219.979 231.005,221.167 230.469,221.351 230.469 C 221.535 230.469,223.725 233.193,226.218 236.523 C 271.149 296.552,310.673 308.074,330.341 266.878 C 335.696 255.661,342.495 234.660,341.686 231.837 C 340.530 227.808,338.494 227.005,290.625 211.691 C 265.059 203.513,243.022 196.462,241.656 196.024 C 239.522 195.340,239.059 194.708,238.384 191.559 C 237.457 187.242,237.274 187.461,243.750 185.145 C 313.254 160.289,335.621 128.208,304.746 97.656 C 295.907 88.911,277.422 75.041,273.826 74.458 C 269.440 73.746,268.855 74.450,236.855 118.911 L 206.294 161.374 202.952 161.061 C 198.594 160.652,198.464 160.364,198.449 151.112 C 198.356 89.779,176.846 54.749,144.752 63.666 M206.900 180.893 C 226.988 186.858,222.889 216.532,201.953 216.704 C 180.127 216.884,176.759 185.600,198.047 180.418 C 201.632 179.545,202.523 179.593,206.900 180.893 M375.554 359.347 C 380.921 362.619,382.712 370.841,379.111 375.665 C 371.587 385.742,357.222 380.899,358.015 368.554 C 358.586 359.655,367.975 354.726,375.554 359.347 ",
+                              "name": "path0",
+                              "stroke": {
+                                "paint": "none"
+                              },
+                              "type": "path"
+                            }
+                          ],
+                          "name": "svgg",
+                          "type": "group"
+                        }
+                      ],
+                      "style": {
+                        "cursor": "pointer"
+                      },
+                      "viewBox": "-40, -5, 470,420"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "meta": {
+                  "name": "Icon Cont"
+                },
+                "position": {
+                  "basis": "35px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "17px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "14px",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Exhaust Fan"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "12px"
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Exhaust Fan/Status"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Off\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027Running\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Run Fault\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027Spindown\u0027\n\telif value \u003d\u003d 4:\n\t\treturn \u0027Wait Cycle\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "11.5px"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Name And Status Cont"
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Icon And Desc Cont"
+            },
+            "position": {
+              "basis": "150px"
+            },
+            "props": {
+              "style": {
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "17px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "fontSize": "14px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Speed Cmd"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC1/Exhaust Fan/Speed_Cmd"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027{:.1f}%\u0027.format(value)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-70",
+                    "fontSize": "11.5px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Label And Value Cont"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "center",
+              "style": {
+                "marginRight": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t# Open the controls side panel to display the controls for the exhaust fan.\n\t\n\tsystem.perspective.openDock(\u0027controlSidePanel\u0027,params\u003d{\u0027controlViewPath\u0027:\u0027Building Automation Demo/Page/Controls/Framework/AHU 1/Sm/Control Panels/Exhaust Fan Controls\u0027,\u0027compNumb\u0027:\u0027\u0027})"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseDown": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseLeave": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseUp": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchEnd": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-10\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onTouchStart": {
+              "config": {
+                "script": "\tself.props.style.backgroundColor \u003d \u0027--neutral-40\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Exhaust Fan"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "--neutral-10",
+            "borderColor": "--neutral-40",
+            "borderRadius": "10px",
+            "borderStyle": "solid",
+            "borderWidth": "0.5px",
+            "marginTop": "15px",
+            "transition": "background-color 0.25s linear"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "marginRight": "10px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

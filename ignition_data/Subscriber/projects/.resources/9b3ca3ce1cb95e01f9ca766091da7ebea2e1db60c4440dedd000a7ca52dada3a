@@ -1,0 +1,1130 @@
+{
+  "custom": {
+    "color": null
+  },
+  "params": {
+    "acSection": "",
+    "beingEdited": false,
+    "color": "",
+    "group": "",
+    "minutes": 30,
+    "mobile": "",
+    "name": "",
+    "numberFormat": "",
+    "path": "",
+    "refresh": 60000,
+    "showChange": true,
+    "showControls": true,
+    "showX": false,
+    "showY": false,
+    "units": "",
+    "vav": "",
+    "vavType": "",
+    "widgetID": -1,
+    "widgetTitle": ""
+  },
+  "propConfig": {
+    "custom.color": {
+      "binding": {
+        "config": {
+          "struct": {
+            "color": "{view.params.color}",
+            "theme": "{session.props.theme}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t# The user configures a color for the trend. The color that the user\n\t# selects will be based on the current theme that is being utilized.\n\t# For example, if the current theme is light, then the user will pick\n\t# a darker color, and if the current theme is dark, then a lighter\n\t# color will be chosen. But, when switching the theme, it is likely\n\t# that the trends (and the percent change and time controls) will be\n\t# difficult to view due to the contrast ratio (between trend color\n\t# and background color). So, this transform calculates the contrast\n\t# ratio between the trend color and background color, and if it is\n\t# less than 3.5, then continuously darken the trendColor if the\n\t# current theme is light, or continously lighten the trendColor if\n\t# the theme is dark, and each time that the color is modified,\n\t# calculate the new contrast ratio. Once the ratio is above 3.5,\n\t# return the modified trendColor.\n\t\n\timport re\n\timport colorsys\n\t\n\tdef getHexCode(color):\n\t\t\"\"\"\n\t\tTakes in a hex color string and returns a list containing\n\t\t\tthe red, green, and blue values.\n\t\t\t\t\n\t\tArgs:\n\t\t\tcolor: A hex color string.\n\t\t\t\t\n\t\tReturns:\n\t\t\tA list containing the red, green, and blue values.\n\t\t\"\"\"\n\t\tresult \u003d re.match(r\u0027^#?([a-f0-9]{3,3}|[a-f0-9]{6,6})$\u0027, color)\n\t\tresult \u003d list(result.group(1))\n\t\t\n\t\tif len(result) \u003d\u003d 6:\n\t\t\tresult \u003d [result[i] + result[i+1] for i in range(0, len(result), 2)]\n\t\telse:\n\t\t\tresult \u003d [result[i] + result[i] for i in range(0, len(result))]\n\t\t\t\n\t\treturn [int(hexCode, 16) for hexCode in result]\n\t\t\n\tdef calculateLuminace(colorCode):\n\t\t\"\"\"\n\t\tTakes in a rgb list (a color) and calculates the\n\t\t\tluminance.\n\t\t\t\t\n\t\tArgs:\n\t\t\tcolorCode: A rgb list.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe result of the luminance calculation.\n\t\t\"\"\"\n\t\n\t\tindex \u003d float(colorCode) / 255 \n\t\n\t\tif index \u003c 0.03928:\n\t\t\treturn index / 12.92\n\t\telse:\n\t\t\treturn ((index + 0.055) / 1.055) ** 2.4\n\t\t\t\n\tdef calculateRelativeLuminance(rgb):\n\t\t\"\"\"\n\t\tTakes in a rgb list (a color) and calculates the\n\t\t\trelative luminance.\n\t\t\t\t\n\t\tArgs:\n\t\t\tcolor: A rgb list.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe result of the relative luminance calculation.\n\t\t\"\"\"\n\t\n\t\treturn 0.2126 * calculateLuminace(rgb[0]) + 0.7152 * calculateLuminace(rgb[1]) + 0.0722 * calculateLuminace(rgb[2])\n\t\t\n\tdef adjustColorLightness(r, g, b, factor):\n\t\t\"\"\"\n\t\tTakes in a red, green, and blue value representing\n\t\t\ta color, and also takes in a factor value.\n\t\t\tConverts the rgb color to hsl, increases or\n\t\t\tdecreases the lightness, converts the hsl back\n\t\t\tto rgb, and then returns the new rgb values.\n\t\t\t\t\n\t\tArgs:\n\t\t\tr: Red value of the color.\n\t\t\tg: Green value of the color.\n\t\t\tb: Blue value of the color.\n\t\t\tfactor: Amount to increase/decrease the lightness.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe rgb values of the darkened/lightened color.\n\t\t\"\"\"\n\t\th, l, s \u003d colorsys.rgb_to_hls(r / 255.0, g / 255.0, b / 255.0)\n\t\tl \u003d max(min(l * factor, 1.0), 0.0)\n\t\tr, g, b \u003d colorsys.hls_to_rgb(h, l, s)\n\t\treturn [int(r * 255), int(g * 255), int(b * 255)]\n\t\n\tdef lightenColor(r, g, b, factor\u003d0.1):\n\t\t\"\"\"\n\t\tTakes in a red, green, and blue value representing\n\t\t\ta color, and also takes in a factor value.\n\t\t\tCalls adjustColorLightness with a factor of\n\t\t\t(1 + factor) to lighten the color.\n\t\t\t\t\n\t\tArgs:\n\t\t\tr: Red value of the color.\n\t\t\tg: Green value of the color.\n\t\t\tb: Blue value of the color.\n\t\t\tfactor: Amount to increase the lightness.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe rgb values of the lightened color.\n\t\t\"\"\"\n\t\treturn adjustColorLightness(r, g, b, 1 + factor)\n\t\n\tdef darkenColor(r, g, b, factor\u003d0.1):\n\t\t\"\"\"\n\t\tTakes in a red, green, and blue value representing\n\t\t\ta color, and also takes in a factor value.\n\t\t\tCalls adjustColorLightness with a factor of\n\t\t\t(1 - factor) to darken the color.\n\t\t\t\t\n\t\tArgs:\n\t\t\tr: Red value of the color.\n\t\t\tg: Green value of the color.\n\t\t\tb: Blue value of the color.\n\t\t\tfactor: Amount to decrease the lightness.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe rgb values of the darkened color.\n\t\t\"\"\"\n\t\treturn adjustColorLightness(r, g, b, 1 - factor)\n\t\t\n\tdef adjustColor(r, g, b, factor, mode):\n\t\t\"\"\"\n\t\tTakes in a red, green, and blue value representing\n\t\t\ta color, and also takes in a factor value and\n\t\t\ta mode value. Calls darkenColor if mode is\n\t\t\t\u0027darken\u0027, else calls lightenColor.\n\t\t\t\t\n\t\tArgs:\n\t\t\tr: Red value of the color.\n\t\t\tg: Green value of the color.\n\t\t\tb: Blue value of the color.\n\t\t\tfactor: Amount to increase/decrease the lightness.\n\t\t\tmode: A string denoting whether color should be\n\t\t\t\t  lighted or darkened.\n\t\t\t\t\n\t\tReturns:\n\t\t\tThe rgb values of the lightened/darkened color.\n\t\t\"\"\"\n\t\tif mode \u003d\u003d \u0027darken\u0027:\n\t\t\treturn darkenColor(r, g, b, factor)\n\t\telse:\n\t\t\treturn lightenColor(r, g, b, factor)\n\t\n\t# Define a color map so that we know the background color based\n\t# on the theme.\t\n\tbackgroundColorMap \u003d {\u0027hvac\u0027:\u0027#dde1e6\u0027,\u0027hvac-warm\u0027:\u0027#e5e0df\u0027,\u0027hvac-dark\u0027:\u0027#4d5358\u0027,\u0027hvac-dark-warm\u0027:\u0027#565151\u0027}\n\t\n\t# Get the rgb list for the trendColor and the backgroundColor.\n\ttrendColor \u003d getHexCode(value[\u0027color\u0027].lower())\n\tbackgroundColor \u003d getHexCode(backgroundColorMap[value[\u0027theme\u0027]])\n\t\n\t# Set the light and dark color.\n\tlight \u003d trendColor if sum(trendColor) \u003e sum(backgroundColor) else backgroundColor\n\tdark \u003d trendColor if sum(trendColor) \u003c sum(backgroundColor) else backgroundColor\n\t\n\t# Calculate the contrast ratio to see if the color needs to be\n\t# lightened/darkened.\n\tcontrastRatio \u003d (calculateRelativeLuminance(light) + 0.05) / (calculateRelativeLuminance(dark) + 0.05)\n\t\n\t# Setting mode to \u0027darken\u0027 if currently using a light theme,\n\t# otherwise mode is \u0027lighten\u0027.\n\tif value[\u0027theme\u0027] in [\u0027hvac\u0027,\u0027hvac-warm\u0027]:\t\n\t\tmode \u003d \u0027darken\u0027\n\telse:\n\t\tmode \u003d \u0027lighten\u0027\n\t\n\t# If the contrastRatio between the original trendColor and the\n\t# backgroundColor is greater than 3.5, then the original\n\t# trendColor will be returned. Otherwise, this loop will keep\n\t# darkening or brightening the trendColor until the contrastRatio\n\t# is greater than 3.5.\n\titer \u003d 0\n\twhile contrastRatio \u003c 3.5:\n\t\t# Utilize a factor of 0.04 when adjusting the color.\n\t\ttrendColor \u003d adjustColor(trendColor[0],trendColor[1],trendColor[2],0.04,mode)\n\t\t\n\t\t# Calculate the new contrast ratio.\n\t\tlight \u003d trendColor if sum(trendColor) \u003e sum(backgroundColor) else backgroundColor\n\t\tdark \u003d trendColor if sum(trendColor) \u003c sum(backgroundColor) else backgroundColor\t\n\t\tcontrastRatio \u003d (calculateRelativeLuminance(light) + 0.05) / (calculateRelativeLuminance(dark) + 0.05)\n\t\t\n\t\t# If an issue occurs such that this loop exceeds 200 iterations,\n\t\t# return the original trendColor.\n\t\titer \u003d iter + 1\n\t\tif iter \u003d\u003d 200:\n\t\t\tsystem.perspective.print(\u0027Too many iterations for color calculation\u0027)\n\t\t\treturn value[\u0027color\u0027]\n\t\n\t# Return the hex string representation of the color.\n\treturn \u0027#%02x%02x%02x\u0027 % (trendColor[0],trendColor[1],trendColor[2])",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.tagPath": {
+      "binding": {
+        "config": {
+          "struct": {
+            "compressor": "{view.params.compressor}",
+            "path": "{view.params.path}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t# If the user selected a path that should contain a compressor number in it,\n\t# then this transform adds the compressor number to the path.\n\t\n\tcompressor \u003d value[\u0027compressor\u0027]\n\tpath \u003d value[\u0027path\u0027]\n\t\n\tif \u0027BMS\u0027 not in path:\n\t\tpath \u003d \u0027[default]BMS/\u0027 + path\n\t\n\tif compressor \u003d\u003d -1:\n\t\treturn path\n\telse:\n\t\t# Path should contain compressor number.\n\t\t# Example: [default]BMS/Blue/HVAC/AC1/Comp1/HMI_HOA\n\t\tif len(path) \u003e 0 and \u0027Comp\u0027 in path:\n\t\t\tpathParts \u003d path.split(\u0027/\u0027)\n\t\t\tnewPath \u003d \u0027\u0027\n\t\t\ti \u003d 0\n\t\t\tfor part in pathParts:\n\t\t\t\tif i !\u003d 4:\n\t\t\t\t\tnewPath \u003d newPath + part + \u0027/\u0027\n\t\t\t\telse:\n\t\t\t\t\tnewPath \u003d newPath + \u0027Comp\u0027 + str(compressor) + \u0027/\u0027\n\t\t\t\ti \u003d i + 1\n\t\t\t\t\n\t\t\treturn newPath[:-1]\n\t\telse:\n\t\t\treturn path\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      }
+    },
+    "params.acSection": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.beingEdited": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.colors": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.floorNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.group": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.minutes": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.numberFormat": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.refresh": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showChange": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showControls": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showLegend": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showX": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showY": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.units": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.vav": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.vavType": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.widgetID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.widgetTitle": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 333,
+      "width": 457
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.defaultName": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "group": "{view.params.group}",
+                      "name": "{view.params.name}",
+                      "path": "{view.params.path}",
+                      "vav": "{view.params.vav}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tgroup \u003d value[\u0027group\u0027].replace(\u0027ac\u0027,\u0027ahu\u0027)\n\tname \u003d value[\u0027name\u0027]\n\t\n\tif group \u003d\u003d \u0027vav\u0027:\n\t\tvavParts \u003d value[\u0027vav\u0027].split(\u0027/\u0027)\n\t\tvav \u003d vavParts[len(vavParts)-1]\n\t\t\n\t\treturn vav + \u0027 - \u0027 + name\n\telif group !\u003d \u0027\u0027:\n\t\treturn group.upper() + \u0027 - \u0027 + name\n\telse:\n\t\treturn \u0027\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-60\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "defaultName": "{this.custom.defaultName}",
+                      "widgetTitle": "{view.params.widgetTitle}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif len(value[\u0027widgetTitle\u0027]) \u003d\u003d 0:\n\t\treturn value[\u0027defaultName\u0027]\n\telse:\n\t\treturn value[\u0027widgetTitle\u0027]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontSize": "15px",
+                "fontWeight": "bold",
+                "marginLeft": "8px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "25px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "marginTop": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Curr Value"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "toStr(round(tag({view.custom.tagPath}),2))+{view.params.units}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-100",
+                "fontSize": "22px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Change"
+                },
+                "propConfig": {
+                  "custom.change": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "currValue": "tag({view.custom.path})",
+                          "data": "{..../Chart.props.series[0].data}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Get the first value from the historical data, get the current value,\n\t# calculate the difference and the percent change, and return the\n\t# results of both calculations.\n\t\n\tif len(value[\u0027data\u0027]) \u003e\u003d 1:\n\t\tfirst \u003d value[\u0027data\u0027][0][\u0027value\u0027]\n\t\tlast \u003d value[\u0027currValue\u0027]\n\t\t\n\t\tif first \u003d\u003d 0:\n\t\t\tpercent \u003d \u0027\u0027\n\t\telse:\n\t\t\tpercent \u003d round(((last-first)/first)*100,2)\n\telse:\n\t\tfirst \u003d 0\n\t\tlast \u003d 0\n\t\tpercent \u003d \u0027\u0027\n\t\n\treturn {\u0027change\u0027:round(last-first,3),\u0027percent\u0027:percent}",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.showChange"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.color"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "this.custom.change"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Create the \u0027change string\u0027 based on the \u0027change\u0027 and \u0027percent\u0027 of the\n\t# \u0027change\u0027 custom property (keeps track of how much the tag has changed\n\t# in value).\n\t\n\tchange \u003d value[\u0027change\u0027]\n\tpercent \u003d value[\u0027percent\u0027]\n\tplusMinus \u003d \u0027\u0027\n\t\n\tif change \u003e 0:\n\t\tplusMinus \u003d \u0027+\u0027\n\t\t\n\tif percent !\u003d \u0027\u0027:\n\t\tpercentStr \u003d \u0027 (\u0027 + str(percent) + \u0027%)\u0027\n\telse:\n\t\tpercentStr \u003d \u0027\u0027\n\t\t\n\treturn plusMinus + str(change) + percentStr",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "13px",
+                    "fontWeight": "bold",
+                    "white-space": "nowrap"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Duration"
+                },
+                "propConfig": {
+                  "props.style.marginLeft": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.showChange},\u002715px\u0027,\u00270px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "minutes": "{view.params.minutes}",
+                          "timeSelection": "{..../Time Control.custom.currentSelection}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# Return more human-readable string based on the time selection.\n\t\n\ttimeSelection \u003d value[\u0027timeSelection\u0027]\n\tminutes \u003d value[\u0027minutes\u0027]\n\t\n\tif timeSelection \u003d\u003d 0:\n\t\treturn \u0027Past \u0027 + str(minutes) + \u0027 minutes\u0027\n\telif timeSelection \u003d\u003d 1:\n\t\treturn \u0027Past minute\u0027\n\telif timeSelection \u003d\u003d 2:\n\t\treturn \u0027Past hour\u0027\n\telif timeSelection \u003d\u003d 3:\n\t\treturn \u0027Past day\u0027\n\telse:\n\t\treturn \u0027Past week\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-80",
+                    "fontSize": "13px",
+                    "white-space": "nowrap"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Change"
+            },
+            "position": {
+              "basis": "15px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": ".../Chart.props.series[0].data"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif len(value) \u003d\u003d 0:\n\t\treturn False\n\telse:\n\t\treturn True",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Data"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.path"
+              },
+              "transforms": [
+                {
+                  "code": "\tif len(value) \u003d\u003d 0:\n\t\treturn False\n\telse:\n\t\treturn True",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "direction": "column",
+          "style": {
+            "marginBottom": "5px",
+            "marginLeft": "8px",
+            "marginRight": "8px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Chart"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "data": "{this.props.series[0].data}",
+                  "path": "{view.params.path}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tif len(value[\u0027data\u0027]) \u003d\u003d 0 and len(value[\u0027path\u0027]) \u003e 0:\n\t\treturn False\n\telif len(value[\u0027path\u0027]) \u003d\u003d 0:\n\t\treturn False\n\telif len(value[\u0027data\u0027]) \u003e 0:\n\t\treturn True",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.plots[0].axes[0].style.display": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showY},\u0027inline\u0027,\u0027none\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.plots[0].axes[0].style.stroke": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-70)\u0027,\u0027var(--neutral-100)\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.plots[0].axes[0].tick.label.style.display": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showY},\u0027inline\u0027,\u0027none\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.plots[0].axes[0].tick.style.display": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showY},\u0027inline\u0027,\u0027none\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.plots[0].axes[0].width": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showY},32,0.1)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.plots[0].trends[0].columns[0].color": {
+            "binding": {
+              "config": {
+                "path": "view.custom.color"
+              },
+              "type": "property"
+            }
+          },
+          "props.series[0].data": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "minutes": "{view.params.minutes}",
+                  "refresh": "now({view.params.refresh})",
+                  "tag": "{view.custom.tagPath}",
+                  "timeSelection": "{../Time Control.custom.currentSelection}"
+                },
+                "waitOnAll": false
+              },
+              "transforms": [
+                {
+                  "code": "\t# If timeSelection is 0, set minutes equal to minutes param.\n\tif value[\u0027timeSelection\u0027] \u003d\u003d 0:\n\t\tminutes \u003d value[\u0027minutes\u0027]\n\telse:\n\t\t# Otherwise, get the amount of minutes based on the\n\t\t# timeSelection. 1M\u003d1min,1H\u003d60min,1D\u003d1440min,1W\u003d10080min.\n\t\tminuteMap \u003d {1:1,2:60,3:1440,4:10080}\n\t\tminutes \u003d minuteMap[value[\u0027timeSelection\u0027]]\n\t\n\t# Query the historical data using now() as the endTime and\n\t# 0 - minutes (figured out minutes above) as the startTime,\n\t# and then put the data in a format expected by the chart\n\t# and return it.\n\tdata \u003d []\n\tif value[\u0027tag\u0027] !\u003d \u0027\u0027:\n\t\tpath \u003d value[\u0027tag\u0027]\n\t\tsystem.perspective.print(\u0027querying data for: \u0027 + str(path))\n\t\tendTime \u003d system.date.now()\n\t\tstartTime \u003d system.date.addMinutes(endTime,(0-minutes))\n\t\thistory \u003d system.tag.queryTagHistory(paths\u003d[path],startDate\u003dstartTime,endDate\u003dendTime,aggregationMode\u003d\u0027LastValue\u0027,returnSize\u003d300,noInterpolation\u003d0)\n\t\tif history.getValueAt(0,1) \u003d\u003d None:\n\t\t\treturn data\n\t\telse:\n\t\t\tfor x in range(0,history.getRowCount()):\n\t\t\t\tdata.append({\u0027time\u0027:system.date.toMillis(history.getValueAt(x,0)),\u0027value\u0027:history.getValueAt(x,1)})\n\t\n\treturn data",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.marginBottom": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX}\u003dtrue,\u00270px\u0027,\u0027-8px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.timeAxis.height": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX},25,0)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.timeAxis.tick.color": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX},\u0027var(--neutral-70)\u0027,\u0027#FFFFFF00\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.timeAxis.tickCount": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX},5,0)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.timeAxis.visible": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX},true,false)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "enablePanZoom": false,
+          "plots": [
+            {
+              "axes": [
+                {
+                  "alignment": "left",
+                  "label": {
+                    "font": {
+                      "color": "",
+                      "size": 10
+                    },
+                    "offset": 0,
+                    "style": {
+                      "classes": ""
+                    },
+                    "text": "",
+                    "visible": false
+                  },
+                  "max": "",
+                  "min": "",
+                  "name": "data",
+                  "style": {
+                    "classes": "",
+                    "strokeWidth": "0.6px"
+                  },
+                  "tick": {
+                    "color": "var(--neutral-70)",
+                    "label": {
+                      "font": {
+                        "color": "var(--neutral-70)",
+                        "size": 10
+                      },
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "style": {
+                      "classes": ""
+                    }
+                  }
+                }
+              ],
+              "markers": [],
+              "trends": [
+                {
+                  "axis": "data",
+                  "baselines": [],
+                  "breakLine": true,
+                  "columns": [
+                    {
+                      "key": "value",
+                      "styles": {
+                        "highlighted": {
+                          "fill": {
+                            "color": "",
+                            "opacity": null
+                          },
+                          "stroke": {
+                            "color": "",
+                            "dashArray": null,
+                            "opacity": null,
+                            "width": null
+                          }
+                        },
+                        "muted": {
+                          "fill": {
+                            "color": "",
+                            "opacity": null
+                          },
+                          "stroke": {
+                            "color": "",
+                            "dashArray": null,
+                            "opacity": null,
+                            "width": null
+                          }
+                        },
+                        "normal": {
+                          "fill": {
+                            "color": "",
+                            "opacity": null
+                          },
+                          "stroke": {
+                            "color": "",
+                            "dashArray": null,
+                            "opacity": null,
+                            "width": 2
+                          }
+                        },
+                        "selected": {
+                          "fill": {
+                            "color": "",
+                            "opacity": null
+                          },
+                          "stroke": {
+                            "color": "",
+                            "dashArray": null,
+                            "opacity": null,
+                            "width": null
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "interpolation": "curveLinear",
+                  "radius": 2,
+                  "series": "data",
+                  "stack": true,
+                  "type": "line",
+                  "visible": true
+                }
+              ]
+            }
+          ],
+          "series": [
+            {
+              "name": "data"
+            }
+          ],
+          "style": {
+            "marginLeft": "8px",
+            "marginRight": "15px",
+            "paddingBottom": "0px"
+          },
+          "timeAxis": {
+            "color": "var(--neutral-70)",
+            "tick": {
+              "label": {
+                "font": {
+                  "color": "var(--neutral-70)"
+                }
+              }
+            }
+          },
+          "timeRange": {
+            "visible": false
+          },
+          "xTrace": {
+            "infoBox": {
+              "fill": {
+                "color": "var(--neutral-10)"
+              }
+            }
+          }
+        },
+        "type": "ia.chart.timeseries"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.currentSelection \u003d 1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "One Min"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.currentSelection}\u003d1,{view.custom.color},\u0027--neutral-80\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.mobile}\u003dtrue,\u002715px\u0027,\u002713px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              },
+              "text": "1M"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.currentSelection \u003d 2"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "One Hour"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.currentSelection}\u003d2,{view.custom.color},\u0027--neutral-80\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.mobile}\u003dtrue,\u002715px\u0027,\u002713px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              },
+              "text": "1H"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.currentSelection \u003d 3"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "One Day"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.currentSelection}\u003d3,{view.custom.color},\u0027--neutral-80\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.mobile}\u003dtrue,\u002715px\u0027,\u002713px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              },
+              "text": "1D"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.currentSelection \u003d 4"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "One Week"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.currentSelection}\u003d4,{view.custom.color},\u0027--neutral-80\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.mobile}\u003dtrue,\u002715px\u0027,\u002713px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              },
+              "text": "1W"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Divider"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "style": {
+                "color": "--neutral-80",
+                "fontSize": "17px",
+                "fontWeight": "normal",
+                "textAlign": "center"
+              },
+              "text": "|"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.custom.currentSelection \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Default"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "propConfig": {
+              "props.style.color": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.custom.currentSelection}\u003d0,{view.custom.color},\u0027--neutral-80\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.fontSize": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.mobile}\u003dtrue,\u002715px\u0027,\u002713px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.minutes} + \u0027M\u0027"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer",
+                "fontWeight": "bold"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "custom": {
+          "currentSelection": 0
+        },
+        "meta": {
+          "name": "Time Control"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile}\u003dtrue,\u002730px\u0027,\u002720px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "noData": "{../No Data Label.position.display}",
+                  "showControls": "{view.params.showControls}",
+                  "tag": "{view.params.path}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If there is no data, then do not display the time control. If the tag path\n\t# is empty, or if the showControls param (setting) is false, then do not\n\t# display the time control. Otherwise, display the time control.\n\t\n\tif value[\u0027noData\u0027] \u003d\u003d True:\n\t\treturn False\n\telse:\n\t\tif len(value[\u0027tag\u0027]) \u003e 0:\n\t\t\tif value[\u0027showControls\u0027] \u003d\u003d True:\n\t\t\t\treturn True\n\t\t\telse:\n\t\t\t\treturn False\n\t\telse:\n\t\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.marginTop": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.showX}\u003dtrue,\u002710px\u0027,\u00270px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "center",
+          "justify": "space-between",
+          "style": {
+            "marginBottom": "5px",
+            "marginLeft": "10px",
+            "marginRight": "15px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "No Data Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "data": "{../Chart.props.series[0].data}",
+                  "path": "{view.params.path}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# Display this label if the tag path is not empty and no historical\n\t# data was found (this label informs the user that no historical data\n\t# was found).\n\t\n\tif len(value[\u0027data\u0027]) \u003d\u003d 0 and len(value[\u0027path\u0027]) \u003e 0:\n\t\treturn True\n\telse:\n\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "18px",
+            "textAlign": "center"
+          },
+          "text": "No Historical Data"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "style": {
+          "backgroundColor": "var(--neutral-10)",
+          "color": "var(--neutral-100)"
+        }
+      }
+    },
+    "propConfig": {
+      "meta.tooltip.enabled": {
+        "binding": {
+          "config": {
+            "path": "view.params.beingEdited"
+          },
+          "type": "property"
+        }
+      },
+      "meta.tooltip.text": {
+        "binding": {
+          "config": {
+            "expression": "\u0027Widget ID: \u0027 + toStr({view.params.widgetID})"
+          },
+          "type": "expr"
+        }
+      },
+      "props.style": {
+        "binding": {
+          "config": {
+            "path": "session.props.theme"
+          },
+          "transforms": [
+            {
+              "code": "\tif value in [\u0027hvac-warm\u0027,\u0027hvac\u0027]:\n\t\treturn {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundColor\": \"var(--neutral-10)\"}\n\telse:\n\t\treturn {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundColor\": \"var(--neutral-50)\"}\n\t\t#return {\"classes\": \"\",\"overflow\": \"hidden\",\"backgroundImage\": \"linear-gradient(var(--neutral-50),var(--neutral-40))\"}",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

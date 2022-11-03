@@ -1,0 +1,397 @@
+{
+  "custom": {
+    "tagPath": "",
+    "tagValue": "-1"
+  },
+  "params": {
+    "ac": -1,
+    "compressor": -1,
+    "editable": false,
+    "highThreshold": "",
+    "lowThreshold": "",
+    "mappings": [],
+    "mobile": false,
+    "numberFormat": "",
+    "path": "",
+    "type": "",
+    "units": ""
+  },
+  "propConfig": {
+    "custom.tagPath": {
+      "binding": {
+        "config": {
+          "struct": {
+            "compressor": "{view.params.compressor}",
+            "path": "{view.params.path}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t# If the user selected a path that should contain a compressor number in it,\n\t# then this transform adds the compressor number to the path.\n\t\n\tcompressor \u003d value[\u0027compressor\u0027]\n\tpath \u003d value[\u0027path\u0027]\n\t\n\tif compressor \u003d\u003d -1:\n\t\treturn path\n\telse:\n\t\t# Path should contain compressor number.\n\t\t# Example: [default]BMS/Blue/HVAC/AC1/Comp1/HMI_HOA\n\t\tif len(path) \u003e 0 and \u0027Comp\u0027 in path:\n\t\t\tpathParts \u003d path.split(\u0027/\u0027)\n\t\t\tnewPath \u003d \u0027\u0027\n\t\t\ti \u003d 0\n\t\t\tfor part in pathParts:\n\t\t\t\tif i !\u003d 4:\n\t\t\t\t\tnewPath \u003d newPath + part + \u0027/\u0027\n\t\t\t\telse:\n\t\t\t\t\tnewPath \u003d newPath + \u0027Comp\u0027 + str(compressor) + \u0027/\u0027\n\t\t\t\ti \u003d i + 1\n\t\t\t\t\n\t\t\treturn newPath[:-1]\n\t\telse:\n\t\t\treturn path\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.tagValue": {
+      "binding": {
+        "config": {
+          "expression": "numberFormat(tag({view.custom.tagPath}),{view.params.numberFormat})"
+        },
+        "transforms": [
+          {
+            "code": "\t# If mappings exist for this value, then return the \u0027mapped value\u0027.\n\t# Otherwise, return the value of the tag.\n\t\n\tmappings \u003d self.params.mappings\n\t\n\tif len(mappings) \u003d\u003d 0:\n\t\treturn value\n\telse:\n\t\tfor mapping in mappings:\n\t\t\tmappingParts \u003d mapping.split(\u0027,\u0027)\n\t\t\tif int(value) \u003d\u003d int(mappingParts[0]):\n\t\t\t\treturn mappingParts[1]",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.ac": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.compressor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.editable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.highThreshold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.lowThreshold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mappings": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.numberFormat": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.units": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 37,
+      "width": 55
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Value No Mapping"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "!{../Value Mapping.position.display} \u0026\u0026 !{view.params.editable}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "highThreshold": "{view.params.highThreshold}",
+                  "lowThreshold": "{view.params.lowThreshold}",
+                  "mappings": "{view.params.mappings}",
+                  "tagValue": "{view.custom.tagValue}",
+                  "type": "{view.params.type}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If this tag does not contain any mappings, then check to see if a\n\t# threshold is defined; if a threshold is defined (or both), then\n\t# check to see if the animateWarning class needs to be applied (to\n\t# animate the value in red).\n\t\n\tmappings \u003d value[\u0027mappings\u0027]\n\t\n\tif len(mappings) \u003e 0:\n\t\treturn \u0027\u0027\n\telse:\n\t\n\t\timport numbers\n\t\t\n\t\tlowThreshold \u003d value[\u0027lowThreshold\u0027]\n\t\thighThreshold \u003d value[\u0027highThreshold\u0027]\n\t\ttagValue \u003d value[\u0027tagValue\u0027]\n\t\t\n\t\t# Both thresholds are equal to the empty string by default.\n\t\t# So, if both thresholds are not of type numbers.Number, then they must be empty.\n\t\t# If they are of type numbers.Number, then user wants to utilize thresholds.\n\t\tif isinstance(lowThreshold,numbers.Number) and isinstance(highThreshold,numbers.Number):\n\t\t\tif tagValue \u003c lowThreshold or tagValue \u003e highThreshold:\n\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\telse:\n\t\t\t\treturn \u0027\u0027\n\t\telse:\n\t\t\tif not isinstance(lowThreshold,numbers.Number) and not isinstance(highThreshold,numbers.Number):\n\t\t\t\treturn \u0027\u0027\n\t\t\telse:\n\t\t\t\tif isinstance(lowThreshold,numbers.Number):\n\t\t\t\t\tif tagValue \u003c lowThreshold:\n\t\t\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\t\t\telse:\n\t\t\t\t\t\treturn \u0027\u0027\n\t\t\t\telif isinstance(highThreshold,numbers.Number):\n\t\t\t\t\tif tagValue \u003e highThreshold:\n\t\t\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\t\t\telse:\n\t\t\t\t\t\treturn \u0027\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "path": "view.params.mobile"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d True:\n\t\treturn \u002730px\u0027\n\telse:\n\t\treturn \u002720px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "tagValue": "{view.custom.tagValue}",
+                  "type": "{view.params.type}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tif value[\u0027type\u0027] \u003d\u003d -1:\n\t\treturn \u0027\u0027\n\telse:\n\t\treturn str(value[\u0027tagValue\u0027]) + self.view.params.units",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "--neutral-100",
+            "overflow": "hidden",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Value Mapping"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "editable": "{view.params.editable}",
+                  "mappings": "{view.params.mappings}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# Only display this component if the tag has mappings.\n\t\n\tif value[\u0027editable\u0027]:\n\t\treturn False\n\telse:\n\t\tif len(value[\u0027mappings\u0027]) \u003e 0:\n\t\t\treturn True\n\t\telse:\n\t\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.color": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "mappings": "{view.params.mappings}",
+                  "tagValue": "{view.custom.tagValue}",
+                  "theme": "{session.props.theme}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If the tag contains a mapping (which contains a color for each \u0027mapped value\u0027),\n\t# then return the color that corresponds with the current tag value.\n\t\n\tmappings \u003d value[\u0027mappings\u0027]\n\t\n\tif len(mappings) \u003d\u003d 0:\n\t\treturn \u0027--neutral-100\u0027\n\telse:\n\t\ttagValue \u003d value[\u0027tagValue\u0027]\n\t\tfor mapping in mappings:\n\t\t\tmappingParts \u003d mapping.split(\u0027,\u0027)\n\t\t\tif tagValue \u003d\u003d mappingParts[1]:\n\t\t\t\tif \u0027--\u0027 in mappingParts[2]:\n\t\t\t\t\treturn mappingParts[2]\n\t\t\t\telse:\n\t\t\t\t\t# Return a lighter color if current theme is light.\n\t\t\t\t\tif value[\u0027theme\u0027] in [\u0027hvac\u0027,\u0027hvac-warm\u0027]:\n\t\t\t\t\t\tcolorsLight \u003d ({\u0027#2CDB1A\u0027:\u0027#23bd13\u0027,\u0027ECCD04\u0027:\u0027#c4aa00\u0027,\n\t\t\t\t\t\t\u0027#f5a442\u0027:\u0027#cc7308\u0027,\u0027#2875fa\u0027:\u0027#0449bf\u0027})\n\t\t\t\t\t\t\n\t\t\t\t\t\treturn colorsLight[mappingParts[2]]\n\t\t\t\t\telse:\n\t\t\t\t\t\treturn mappingParts[2]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "path": "view.params.mobile"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d True:\n\t\treturn \u002730px\u0027\n\telse:\n\t\treturn \u002720px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "tagValue": "{view.custom.tagValue}",
+                  "type": "{view.params.type}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tif value[\u0027type\u0027] \u003d\u003d -1:\n\t\treturn \u0027\u0027\n\telse:\n\t\treturn str(value[\u0027tagValue\u0027]) + self.view.params.units",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "domId": "CustomNumericEntry",
+          "name": "Numeric Entry"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.editable"
+              },
+              "type": "property"
+            }
+          },
+          "props.format": {
+            "binding": {
+              "config": {
+                "path": "view.params.numberFormat"
+              },
+              "type": "property"
+            }
+          },
+          "props.inputBounds.maximum": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.engHigh"
+              },
+              "type": "tag"
+            }
+          },
+          "props.inputBounds.minimum": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.engLow"
+              },
+              "type": "tag"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "highThreshold": "{view.params.highThreshold}",
+                  "lowThreshold": "{view.params.lowThreshold}",
+                  "mappings": "{view.params.mappings}",
+                  "tagValue": "{view.custom.tagValue}",
+                  "type": "{view.params.type}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# If the tag does not contain mappings, then check to see if a threshold\n\t# has been configured. If a threshold has been configured (or if both have\n\t# been configured), then check to see if the animateWarning style class\n\t# needs to be utilized for this component.\n\t\n\tmappings \u003d value[\u0027mappings\u0027]\n\t\n\tif len(mappings) \u003e 0:\n\t\treturn \u0027\u0027\n\telse:\n\t\n\t\timport numbers\n\t\t\n\t\tlowThreshold \u003d value[\u0027lowThreshold\u0027]\n\t\thighThreshold \u003d value[\u0027highThreshold\u0027]\n\t\ttagValue \u003d value[\u0027tagValue\u0027]\n\t\t\n\t\t# Both thresholds are equal to the empty string by default.\n\t\t# So, if both thresholds are not of type numbers.Number, then they must be empty.\n\t\t# If they are of type numbers.Number, then user wants to utilize thresholds.\n\t\tif isinstance(lowThreshold,numbers.Number) and isinstance(highThreshold,numbers.Number):\n\t\t\tif tagValue \u003c lowThreshold or tagValue \u003e highThreshold:\n\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\telse:\n\t\t\t\treturn \u0027\u0027\n\t\telse:\n\t\t\tif not isinstance(lowThreshold,numbers.Number) and not isinstance(highThreshold,numbers.Number):\n\t\t\t\treturn \u0027\u0027\n\t\t\telse:\n\t\t\t\tif isinstance(lowThreshold,numbers.Number):\n\t\t\t\t\tif tagValue \u003c lowThreshold:\n\t\t\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\t\t\telse:\n\t\t\t\t\t\treturn \u0027\u0027\n\t\t\t\telif isinstance(highThreshold,numbers.Number):\n\t\t\t\t\tif tagValue \u003e highThreshold:\n\t\t\t\t\t\treturn \u0027building-automation-demo/page/animate-warning-text\u0027\n\t\t\t\t\telse:\n\t\t\t\t\t\treturn \u0027\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.fontSize": {
+            "binding": {
+              "config": {
+                "path": "view.params.mobile"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d True:\n\t\treturn \u002730px\u0027\n\telse:\n\t\treturn \u002720px\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "align": "center",
+          "inputBounds": {},
+          "style": {
+            "backgroundColor": "#FFFFFF00",
+            "borderStyle": "none",
+            "color": "--neutral-100",
+            "outlineStyle": "none",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.input.numeric-entry-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "alignItems": "center",
+      "justify": "center",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

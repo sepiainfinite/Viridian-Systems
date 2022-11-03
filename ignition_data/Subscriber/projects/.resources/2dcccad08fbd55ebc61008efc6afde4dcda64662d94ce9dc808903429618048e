@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "12px",
+      "fontWeight": "bold",
+      "paddingRight": "5px",
+      "textAlign": "right"
+    }
+  }
+}

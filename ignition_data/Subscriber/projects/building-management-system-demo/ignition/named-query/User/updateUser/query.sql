@@ -1,0 +1,1 @@
+update users set imagestr=:imagestr,builtin=:builtin,profileimage=:profileimage,defaultdash=:defaultdash,theme=:theme,usebuiltin=:usebuiltin,title=:title where id=:id
