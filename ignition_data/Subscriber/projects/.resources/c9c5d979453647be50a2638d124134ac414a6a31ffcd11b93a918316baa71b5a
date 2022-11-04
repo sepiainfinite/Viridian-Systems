@@ -1,0 +1,501 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 756,
+      "width": 881
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TitleDock"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "page.props.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "2rem",
+            "padding": "8px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Table"
+                    },
+                    "position": {
+                      "basis": "600px",
+                      "grow": 1,
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "aggregate": "MinMax",
+                            "avoidScanClassValidation": true,
+                            "dateRange": {
+                              "mostRecent": "1",
+                              "mostRecentUnits": "HOUR"
+                            },
+                            "enableValueCache": true,
+                            "ignoreBadQuality": false,
+                            "polling": {
+                              "enabled": true,
+                              "rate": "12"
+                            },
+                            "preventInterpolation": false,
+                            "returnFormat": "Wide",
+                            "returnSize": {
+                              "delay": "1",
+                              "delayUnits": "MIN",
+                              "type": "INTERVAL"
+                            },
+                            "tags": [
+                              {
+                                "aggregate": "Variance",
+                                "path": "[Supabase_DB/frontend:default]readqr"
+                              }
+                            ],
+                            "valueFormat": "DATASET"
+                          },
+                          "type": "tag-history"
+                        }
+                      }
+                    },
+                    "props": {
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": "auto"
+                        }
+                      ],
+                      "rows": {
+                        "style": {
+                          "paddingLeft": 4
+                        }
+                      },
+                      "selection": {
+                        "enableColumnSelection": true
+                      }
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\ttable \u003d event.source.parent.getComponent(\"Table\")\n\tfilePath \u003d system.dataset.exportCSV(\"data.csv\", 1, table.data)\n\tif filePath !\u003d None:\n\t    system.net.openURL(\"file:///\"+filePath.replace(\u0027\\\\\u0027,\u0027/\u0027))"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Import Table Container"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.direction": {
+                    "binding": {
+                      "config": {
+                        "path": "page.props.dimensions.screen.width"
+                      },
+                      "transforms": [
+                        {
+                          "fallback": "row",
+                          "inputType": "range",
+                          "mappings": [
+                            {
+                              "input": {
+                                "max": 640,
+                                "min": 1
+                              },
+                              "output": "column"
+                            }
+                          ],
+                          "outputType": "scalar",
+                          "type": "map"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\ttable \u003d event.source.parent.getComponent(\"Table\")\n\tfilePath \u003d system.dataset.exportCSV(\"data.csv\", 1, table.data)\n\tif filePath !\u003d None:\n\t    system.net.openURL(\"file:///\"+filePath.replace(\u0027\\\\\u0027,\u0027/\u0027))"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Inventory Tab"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "background-color": "--neutral-20",
+                "margin": "18px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "custom": {
+                      "Value": {}
+                    },
+                    "meta": {
+                      "name": "Table"
+                    },
+                    "position": {
+                      "basis": "600px",
+                      "grow": 1,
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "custom.Value.QRPayload": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]readQR"
+                          },
+                          "type": "tag"
+                        }
+                      },
+                      "props.data[0]": {
+                        "binding": {
+                          "config": {
+                            "path": "this.custom.Value"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": "auto"
+                        }
+                      ],
+                      "data": [
+                        null
+                      ],
+                      "rows": {
+                        "style": {
+                          "paddingLeft": 4
+                        }
+                      },
+                      "selection": {
+                        "enableColumnSelection": true
+                      }
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\ttable \u003d event.source.parent.getComponent(\"Table\")\n\tfilePath \u003d system.dataset.exportCSV(\"data.csv\", 1, table.data)\n\tif filePath !\u003d None:\n\t    system.net.openURL(\"file:///\"+filePath.replace(\u0027\\\\\u0027,\u0027/\u0027))"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Export Table Container"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.direction": {
+                    "binding": {
+                      "config": {
+                        "path": "page.props.dimensions.screen.width"
+                      },
+                      "transforms": [
+                        {
+                          "fallback": "row",
+                          "inputType": "range",
+                          "mappings": [
+                            {
+                              "input": {
+                                "max": 640,
+                                "min": 1
+                              },
+                              "output": "column"
+                            }
+                          ],
+                          "outputType": "scalar",
+                          "type": "map"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "overflow": "hidden"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "Export Button"
+                },
+                "position": {
+                  "basis": "60px"
+                },
+                "props": {
+                  "image": {
+                    "height": 25,
+                    "icon": {
+                      "color": "--neutral-10",
+                      "path": "material/save_alt"
+                    }
+                  },
+                  "style": {
+                    "marginTop": "1rem"
+                  },
+                  "text": "Add to Inventory List"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Add Tab"
+            },
+            "props": {
+              "alignContent": "center",
+              "direction": "column",
+              "justify": "space-evenly",
+              "style": {
+                "background-color": "--neutral-20",
+                "margin": "18px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "contentStyle": {
+            "border-radius": "--borderRadius"
+          },
+          "currentTabIndex": 1,
+          "menuStyle": {
+            "padding": "8px"
+          },
+          "menuType": "modern",
+          "tabSize": {
+            "height": 50,
+            "width": 100
+          },
+          "tabStyle": {
+            "active": {
+              "backgroundColor": "--callToAction",
+              "border-radius": "--borderRadiusInput",
+              "box-shadow": "--boxShadow1",
+              "marginRight": "5px"
+            },
+            "inactive": {
+              "backgroundColor": "--neutral-20",
+              "border-radius": "--borderRadiusInput",
+              "marginRight": "5px"
+            }
+          },
+          "tabs": [
+            "Add",
+            "Inventory"
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-evenly"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -31,4 +31,4 @@ docker-compose.yml
 *ignition_data/Publisher/
 !ignition_data/Publisher/projects
 *temp/
-*Modules/
+*Modules/ 

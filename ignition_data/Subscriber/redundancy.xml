@@ -2,8 +2,8 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>Redundancy Settings</comment>
-<entry key="redundancy.gan.pingTimeout">300</entry>
 <entry key="redundancy.noderole">Independent</entry>
+<entry key="redundancy.gan.pingTimeout">300</entry>
 <entry key="redundancy.gan.pingMaxMissed">10</entry>
 <entry key="redundancy.activehistorylevel">Full</entry>
 <entry key="redundancy.standbyactivitylevel">Cold</entry>
