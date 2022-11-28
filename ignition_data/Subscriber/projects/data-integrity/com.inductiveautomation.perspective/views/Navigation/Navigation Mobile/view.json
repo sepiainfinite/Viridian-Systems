@@ -49,7 +49,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "page": "/trending"
+                "page": "/analytics"
               },
               "scope": "C",
               "type": "nav"
@@ -76,7 +76,7 @@
           "style": {
             "fontSize": "0.65rem"
           },
-          "text": "Trending",
+          "text": "Analytics",
           "textStyle": {
             "fontSize": "0.65rem"
           }
@@ -88,7 +88,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "page": "/export"
+                "page": "/inventory"
               },
               "scope": "C",
               "type": "nav"
@@ -115,7 +115,7 @@
           "style": {
             "fontSize": "0.65rem"
           },
-          "text": "Export",
+          "text": "Inventory",
           "textStyle": {
             "fontSize": "0.65rem"
           }

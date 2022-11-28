@@ -2,6 +2,8 @@
 *.vscode
 *.vscode-workspace
 *.log
+*.key
+*.csr
 
 *.digest.json
 
@@ -11,6 +13,8 @@ docker-compose.yml
 
 *projects/conversion-report.txt
 *projects/.resources
+*Documentation/Frontend_Ignition-backup-20221104-1253.gwbk
+*Documentation/Frontend_Ignition-backup-20221104-1421.gwbk
 
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/fonts
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/icons
@@ -32,3 +36,6 @@ docker-compose.yml
 !ignition_data/Publisher/projects
 *temp/
 *Modules/ 
+
+*pw
+*frontend.crt

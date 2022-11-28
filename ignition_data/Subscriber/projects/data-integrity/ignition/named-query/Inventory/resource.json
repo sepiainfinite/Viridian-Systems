@@ -1,0 +1,34 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Supabase_DB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "dd22b8ab25cf1901a118338ede864abf78819ec52c6a0ee4bf0dc7b1d355fef1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "unauthenticated",
+      "timestamp": "2022-11-22T00:47:37Z"
+    },
+    "syntaxProvider": "class com.adbs.syntax.SQLiteSyntaxProvider"
+  }
+}

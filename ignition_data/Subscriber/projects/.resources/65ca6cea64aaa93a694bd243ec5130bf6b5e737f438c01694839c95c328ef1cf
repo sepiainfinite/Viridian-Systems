@@ -27,8 +27,8 @@
   },
   "props": {
     "defaultSize": {
-      "height": 799,
-      "width": 96
+      "height": 767,
+      "width": 189
     }
   },
   "root": {

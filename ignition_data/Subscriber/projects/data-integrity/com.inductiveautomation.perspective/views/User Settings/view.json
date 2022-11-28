@@ -49,20 +49,11 @@
                 "meta": {
                   "name": "Username"
                 },
-                "propConfig": {
-                  "props.text": {
-                    "binding": {
-                      "config": {
-                        "path": "session.props.auth.user.userName"
-                      },
-                      "type": "property"
-                    }
-                  }
-                },
                 "props": {
                   "style": {
                     "alignSelf": "center"
                   },
+                  "text": "Viridian Systems",
                   "textStyle": {
                     "fontSize": "24px"
                   }
@@ -76,20 +67,11 @@
                 "position": {
                   "basis": "32px"
                 },
-                "propConfig": {
-                  "props.text": {
-                    "binding": {
-                      "config": {
-                        "path": "session.props.auth.user.email"
-                      },
-                      "type": "property"
-                    }
-                  }
-                },
                 "props": {
                   "style": {
                     "alignSelf": "center"
                   },
+                  "text": "Administrator",
                   "textStyle": {
                     "fontSize": "24px"
                   }

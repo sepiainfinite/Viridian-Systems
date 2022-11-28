@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Context Settings</comment>
-<entry key="gateway.publicAddress.httpPort"></entry>
+<comment>Gateway Properties</comment>
+<entry key="gateway.publicAddress.httpPort">80</entry>
 <entry key="gateway.publicAddress.autoDetect">true</entry>
-<entry key="gateway.publicAddress.httpsPort"></entry>
+<entry key="gateway.publicAddress.httpsPort">443</entry>
 <entry key="gateway.forceSecureRedirect">false</entry>
 <entry key="gateway.metroSSLPort">8060</entry>
 <entry key="gateway.includedCipherSuites">[]</entry>
@@ -24,5 +24,5 @@
 <entry key="gateway.acceptCount">100</entry>
 <entry key="gateway.keepAliveTimeout">60000</entry>
 <entry key="gateway.excludedCipherSuites">[]</entry>
-<entry key="gateway.publicAddress.address"></entry>
+<entry key="gateway.publicAddress.address">vsaim.com</entry>
 </properties>

@@ -59,19 +59,19 @@
                 "style": {
                   "classes": ""
                 },
-                "title": "Alarm History"
+                "title": ""
               },
-              "isConfigurable": true,
+              "isConfigurable": false,
               "minSize": {
                 "columnSpan": 1,
                 "rowSpan": 1
               },
-              "name": "History",
+              "name": "Add Item",
               "style": {
                 "classes": ""
               },
               "viewParams": {},
-              "viewPath": "Alarm History"
+              "viewPath": "Data/AddDash"
             },
             {
               "body": {
@@ -89,51 +89,25 @@
                 "style": {
                   "classes": ""
                 },
-                "title": "Alarm Status"
+                "title": ""
               },
-              "isConfigurable": true,
+              "isConfigurable": false,
               "minSize": {
                 "columnSpan": 1,
                 "rowSpan": 1
               },
-              "name": "Status",
+              "name": "Inventory",
               "style": {
                 "classes": ""
               },
               "viewParams": {},
-              "viewPath": "Alarm Status"
-            },
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "category": "",
-              "defaultSize": {
-                "columnSpan": 2,
-                "rowSpan": 2
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": "Trending"
-              },
-              "isConfigurable": true,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Analytics",
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Trending/TrendingModule"
+              "viewPath": "Data/InventoryDash"
             }
           ],
+          "stretch": {
+            "columnCount": 16,
+            "rowCount": 16
+          },
           "style": {
             "overflow": "hidden"
           },
@@ -149,25 +123,25 @@
                 "style": {
                   "classes": ""
                 },
-                "title": "Alarm History"
+                "title": ""
               },
-              "isConfigurable": true,
+              "isConfigurable": false,
               "minSize": {
                 "columnSpan": 1,
                 "rowSpan": 1
               },
-              "name": "Alarm History",
+              "name": "Inventory",
               "position": {
-                "columnEnd": 5,
-                "columnStart": 1,
-                "rowEnd": 4,
+                "columnEnd": 17,
+                "columnStart": 9,
+                "rowEnd": 15,
                 "rowStart": 1
               },
               "style": {
                 "classes": ""
               },
               "viewParams": {},
-              "viewPath": "Alarm Modules/Alarm History"
+              "viewPath": "Data/InventoryDash"
             },
             {
               "body": {
@@ -180,56 +154,25 @@
                 "style": {
                   "classes": ""
                 },
-                "title": "Alarm Status"
+                "title": ""
               },
-              "isConfigurable": true,
+              "isConfigurable": false,
               "minSize": {
                 "columnSpan": 1,
                 "rowSpan": 1
               },
-              "name": "",
+              "name": "Add Item",
               "position": {
-                "columnEnd": 9,
-                "columnStart": 5,
-                "rowEnd": 4,
+                "columnEnd": 8,
+                "columnStart": 1,
+                "rowEnd": 13,
                 "rowStart": 1
               },
               "style": {
                 "classes": ""
               },
               "viewParams": {},
-              "viewPath": "Alarm Modules/Alarm Status"
-            },
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": "Trending"
-              },
-              "isConfigurable": true,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Trending",
-              "position": {
-                "columnEnd": 9,
-                "columnStart": 1,
-                "rowEnd": 9,
-                "rowStart": 4
-              },
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Trending/TrendingModule"
+              "viewPath": "Data/AddDash"
             }
           ]
         },

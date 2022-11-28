@@ -31,10 +31,13 @@ services:
 
   MQTTBroker:
     container_name: MQTTBroker
-    image: 4nxio/mosquitto
+    image: eclipse-mosquitto
     tty: true
     ports:
       - "83:8088"
+    environment:
+      USER_ID: "1001"
+      GROUP_ID: "1001"
 
 
 volumes:
