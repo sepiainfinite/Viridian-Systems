@@ -39,3 +39,16 @@ docker-compose.yml
 
 *pw
 *frontend.crt
+
+# ignoring unneeded files
+*ignition_data/Subscriber/__projects_1666889466862.bak
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool.css
+*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool

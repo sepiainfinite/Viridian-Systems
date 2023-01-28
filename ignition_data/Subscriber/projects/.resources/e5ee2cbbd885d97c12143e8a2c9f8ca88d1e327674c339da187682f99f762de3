@@ -5,31 +5,6 @@
   "root": {
     "children": [
       {
-        "meta": {
-          "name": "TitleDock"
-        },
-        "position": {
-          "grow": ""
-        },
-        "propConfig": {
-          "props.text": {
-            "binding": {
-              "config": {
-                "path": "page.props.title"
-              },
-              "type": "property"
-            }
-          }
-        },
-        "props": {
-          "style": {
-            "fontSize": "2rem",
-            "padding": "8px"
-          }
-        },
-        "type": "ia.display.label"
-      },
-      {
         "children": [
           {
             "meta": {
@@ -55,7 +30,7 @@
                   },
                   "text": "Viridian Systems",
                   "textStyle": {
-                    "fontSize": "24px"
+                    "fontSize": "1.5rem"
                   }
                 },
                 "type": "ia.display.label"
@@ -73,7 +48,7 @@
                   },
                   "text": "Administrator",
                   "textStyle": {
-                    "fontSize": "24px"
+                    "fontSize": "1.5rem"
                   }
                 },
                 "type": "ia.display.label"
@@ -380,10 +355,7 @@
           "justify": "space-evenly",
           "style": {
             "backgroundColor": "--neutral-20",
-            "border-radius": "--borderRadiusInput",
-            "marginLeft": "1rem",
-            "marginRight": "1rem",
-            "padding": "15px"
+            "border-radius": "--borderRadiusInput"
           }
         },
         "type": "ia.container.flex"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Gateway Properties</comment>
+<comment>Context Settings</comment>
 <entry key="gateway.publicAddress.httpPort">80</entry>
 <entry key="gateway.publicAddress.autoDetect">true</entry>
 <entry key="gateway.publicAddress.httpsPort">443</entry>
