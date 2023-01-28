@@ -1,1 +1,0 @@
-select * from notes where id=:noteID

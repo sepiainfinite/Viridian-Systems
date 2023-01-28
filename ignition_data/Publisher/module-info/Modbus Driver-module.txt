@@ -1,2 +1,0 @@
-version=7.1.21
-license=trial

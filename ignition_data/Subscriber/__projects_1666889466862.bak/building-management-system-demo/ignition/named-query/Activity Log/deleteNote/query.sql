@@ -1,1 +1,0 @@
-delete from notes where id=:noteID

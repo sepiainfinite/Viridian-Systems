@@ -1,7 +1,0 @@
-{
-  "base": {
-    "style": {
-      "backgroundImage": "}.psc-unflipImage svg { transition: transform .25s linear; transform: rotateY(0deg); }{"
-    }
-  }
-}

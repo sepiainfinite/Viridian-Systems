@@ -1,1 +1,0 @@
-UPDATE dashboards SET dashboard_order = :dashboard_order WHERE id = :id
