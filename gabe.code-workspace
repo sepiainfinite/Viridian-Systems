@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://ssh-remote+100.88.196.46/home/gabe"
+		},
+		{
+			"name": "Themes",
+			"path": "/Users/Sepia/Library/CloudStorage/OneDrive-CaliforniaStateUniversity,Sacramento/Semesters/Fall 2022/CPE 190A (Senior Project)/workspace/ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes"
+		}
+	],
+	"remoteAuthority": "ssh-remote+100.88.196.46",
+	"settings": {}
+}

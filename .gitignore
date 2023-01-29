@@ -19,28 +19,19 @@ docker-compose.yml
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/fonts
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/icons
 
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/.backup
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark.css
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light.css
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm.css
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-warm
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool.css
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark-cool
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool.css
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/light-cool
-*ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/README.md
-
-*ignition_data/Publisher/
-!ignition_data/Publisher/projects
 *temp/
-*Modules/ 
 
+# Folders to ignore
+*Modules/ 
+*Documentation/
+*Publisher/
+*Authenitcation/
+
+# Authenitcation files to ignore
 *pw
 *frontend.crt
 
-# ignoring unneeded files
+# ignoring unneeded theme folders
 *ignition_data/Subscriber/__projects_1666889466862.bak
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark.css
 *ignition_data/Subscriber/modules/com.inductiveautomation.perspective/themes/dark
