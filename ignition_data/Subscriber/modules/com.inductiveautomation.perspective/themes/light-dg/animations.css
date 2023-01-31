@@ -1,0 +1,33 @@
+/* Code provided, courtesy of victordcq on inductive automation forums */
+@media  (max-width: 750px){
+    .client-root:has(.psc-hideDockWhenSmall) .docked-view-left{
+        display: none !important;
+    }
+    .client-root:has(.psc-hideDockWhenSmall) .center.view-parent {
+        margin:unset !important;
+        max-width:unset !important
+    }    
+}
+
+@media  (min-width: 750px){
+    .client-root:has(.psc-hideDockWhenSmall) .docked-view-bottom{
+        display: none !important;
+    }
+    .client-root:has(.psc-hideDockWhenSmall) .docked-view-left{
+        height:100% !important;
+    }
+    .client-root:has(.psc-hideDockWhenSmall) .center.view-parent {
+        margin-bottom: 0 !important;
+        max-height: unset !important;
+    } 
+}
+
+.psc-neumorphic{
+    border-radius: 50px;
+    box-shadow: var(--boxShadow1);
+    background-color: var(--neutral-40) !important;
+}
+
+.psc-resizeTransition img{ 
+    transition: opacity .25s linear;
+}

@@ -1,0 +1,26 @@
+.ia_tagBrowseTreeComponent {
+    font-size: 0.75rem;
+    color: var(--neutral-100);
+    border: var(--containerBorder);
+    background-color: var(--neutral-20);
+}
+
+.ia_tagBrowseTreeComponent__title {
+    font-weight: bold;
+}
+
+.ia_tagBrowseTreeComponent__icon {
+    color: var(--neutral-70);
+    cursor: pointer;
+}
+
+.ia_tagBrowseTreeComponent__tree {
+    background-color: var(--neutral-10);
+    border: var(--containerBorder);
+}
+
+
+/********** MOBILE **********/
+.ia_tagBrowseTreeComponent.mobile {
+    font-size: .8rem;
+}
