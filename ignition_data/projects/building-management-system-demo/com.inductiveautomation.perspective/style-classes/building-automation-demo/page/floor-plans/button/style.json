@@ -1,0 +1,23 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--neutral-20)",
+      "borderColor": "var(--neutral-70)",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "color": "var(--neutral-80)",
+      "fill": "var(--neutral-80)"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "borderColor": "var(--neutral-100)",
+        "color": "var(--neutral-100)",
+        "cursor": "pointer",
+        "fill": "var(--neutral-100)"
+      }
+    }
+  ]
+}

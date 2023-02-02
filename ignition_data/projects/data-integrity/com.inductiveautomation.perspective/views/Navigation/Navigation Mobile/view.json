@@ -1,0 +1,185 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 100
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "page": "/dashboard"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Dashboard"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "props": {
+          "image": {
+            "height": 30,
+            "icon": {
+              "color": "--neutral-100",
+              "path": "material/dashboard"
+            },
+            "position": "top",
+            "width": 30
+          },
+          "primary": false,
+          "text": "Dashboard",
+          "textStyle": {
+            "fontSize": "0.65rem"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "page": "/analytics"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Trending"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "props": {
+          "image": {
+            "height": 30,
+            "icon": {
+              "color": "--neutral-100",
+              "path": "material/trending_up"
+            },
+            "position": "top",
+            "width": 30
+          },
+          "primary": false,
+          "style": {
+            "fontSize": "0.65rem"
+          },
+          "text": "Analytics",
+          "textStyle": {
+            "fontSize": "0.65rem"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "page": "/inventory"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Data"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "props": {
+          "image": {
+            "height": 30,
+            "icon": {
+              "color": "--neutral-100",
+              "path": "material/backup_table"
+            },
+            "position": "top",
+            "width": 30
+          },
+          "primary": false,
+          "style": {
+            "fontSize": "0.65rem"
+          },
+          "text": "Inventory",
+          "textStyle": {
+            "fontSize": "0.65rem"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "page": "/user"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "Account"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "props": {
+          "image": {
+            "height": 30,
+            "icon": {
+              "color": "--neutral-100",
+              "path": "material/account_circle"
+            },
+            "position": "top",
+            "width": 30
+          },
+          "primary": false,
+          "style": {
+            "fontSize": "0.65rem"
+          },
+          "text": "User",
+          "textStyle": {
+            "fontSize": "0.65rem"
+          }
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "custom": {
+      "menuItems": []
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "grow": 1
+    },
+    "props": {
+      "justify": "space-evenly",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "box-shadow": "--box-shadow1",
+        "classes": "hideDockWhenSmall",
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

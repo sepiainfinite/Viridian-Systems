@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--neutral-20)",
+      "paddingBottom": "8px",
+      "paddingLeft": "8px",
+      "paddingRight": "8px",
+      "paddingTop": "8px"
+    }
+  }
+}

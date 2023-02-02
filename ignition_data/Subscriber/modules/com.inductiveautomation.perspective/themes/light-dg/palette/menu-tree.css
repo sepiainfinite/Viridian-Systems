@@ -25,6 +25,12 @@
 .label-text.ia_menuTreeComponent__item__text div {
     transition: opacity 0.15s ease-in-out;
 }
-.psc-hideMenuText .label-text.ia_menuTreeComponent__item__text div {
+
+/* Added DomID's for account role/name to hideMenuText*/
+#accountName .ia_labelComponent, #accountRole .ia_LabelComponent {
+    line-height: 1rem;
+}
+
+.psc-hideMenuText .label-text.ia_menuTreeComponent__item__text, #accountName .ia_LabelComponent, #accountRole .ia_LabelComponent div {
     opacity: 0;
 }

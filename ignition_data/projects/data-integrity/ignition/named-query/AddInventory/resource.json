@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Supabase_DB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "6a6945f1dc936014249c32efd480c7cdd0c94a6ff992174fc2038a67a82fecc5",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "unauthenticated",
+      "timestamp": "2022-11-17T00:55:26Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "itemName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "itemQty",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "itemId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

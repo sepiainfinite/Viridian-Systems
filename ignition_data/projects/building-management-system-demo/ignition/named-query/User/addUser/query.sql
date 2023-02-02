@@ -1,0 +1,1 @@
+insert into users (username, defaultdash) values (:username,:defaultdash)

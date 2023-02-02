@@ -1,0 +1,186 @@
+{
+  "custom": {},
+  "params": {
+    "expanded-param": "value"
+  },
+  "propConfig": {
+    "params.expanded-param": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 145,
+      "width": 485
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "draggable": false,
+                "id": "ThemeLogout",
+                "modal": false,
+                "overlayDismiss": false,
+                "position": {
+                  "height": 180,
+                  "relativeLocation": "bottom-right",
+                  "width": 300
+                },
+                "positionType": "relative",
+                "resizable": false,
+                "showCloseIcon": false,
+                "type": "toggle",
+                "viewPath": "Theme Logout",
+                "viewportBound": false
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "props": {
+          "image": {
+            "height": 50,
+            "icon": {
+              "path": "material/account_circle"
+            },
+            "position": "center",
+            "width": 50
+          },
+          "text": ""
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "domId": "accountName",
+              "name": "Username"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "propConfig": {
+              "props.textStyle.opacity": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.expanded-param"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": 0,
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": null
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "alignSelf": "flex-start"
+              },
+              "text": "Viridian Systems",
+              "textStyle": {
+                "fontSize": "1rem",
+                "position": "fixed",
+                "transition": "opacity 0.15s ease-in-out"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "domId": "accountRole",
+              "name": "User Level"
+            },
+            "propConfig": {
+              "props.textStyle.opacity": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.expanded-param"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": 0,
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": null
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "alignSelf": "flex-start"
+              },
+              "text": "Administrator",
+              "textStyle": {
+                "color": "--neutral-60",
+                "fontSize": "0.8rem",
+                "position": "fixed",
+                "transition": "opacity 0.15s ease-in-out"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "User Label Container"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "direction": "column",
+          "justify": "center",
+          "style": {
+            "margin": "10px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "style": {
+        "overflow": "hidden",
+        "padding-bottom": "7px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

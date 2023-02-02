@@ -1,0 +1,14 @@
+/* Theme/Account popup styling */
+#popup-ThemeLogout {
+    background-color: var(--neutral-50);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow3);
+}
+
+#popup-ThemeLogout .popup-body {
+    background-color: transparent;
+}
+
+.modal {
+    background-color: transparent;
+}

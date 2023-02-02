@@ -1,0 +1,200 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Table"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Inventory"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "descending",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": "auto"
+                    }
+                  ],
+                  "dragOrderable": false,
+                  "rows": {
+                    "style": {
+                      "paddingLeft": 4
+                    }
+                  },
+                  "selection": {
+                    "data": [
+                      {
+                        "stringvalue": "Protein Bar - $2.74",
+                        "tagid": 1
+                      }
+                    ],
+                    "enableColumnSelection": true,
+                    "selectedColumn": "tagid",
+                    "selectedRow": 0
+                  }
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\ttable \u003d event.source.parent.getComponent(\"Table\")\n\tfilePath \u003d system.dataset.exportCSV(\"data.csv\", 1, table.data)\n\tif filePath !\u003d None:\n\t    system.net.openURL(\"file:///\"+filePath.replace(\u0027\\\\\u0027,\u0027/\u0027))"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Inventory"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.direction": {
+                "binding": {
+                  "config": {
+                    "path": "page.props.dimensions.screen.width"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "row",
+                      "inputType": "range",
+                      "mappings": [
+                        {
+                          "input": {
+                            "max": 640,
+                            "min": 1
+                          },
+                          "output": "column"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttable \u003d event.source.parent.getComponent(\"Table\")\n\tfilePath \u003d system.dataset.exportCSV(\"data.csv\", 1, table.data)\n\tif filePath !\u003d None:\n\t    system.net.openURL(\"file:///\"+filePath.replace(\u0027\\\\\u0027,\u0027/\u0027))"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Inventory Tab"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "background-color": "--neutral-20",
+            "margin": "18px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

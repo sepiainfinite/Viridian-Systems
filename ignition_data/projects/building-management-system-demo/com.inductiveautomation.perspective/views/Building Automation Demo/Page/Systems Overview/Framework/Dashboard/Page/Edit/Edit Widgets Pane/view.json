@@ -1,0 +1,164 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 580
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Dashboard"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.availableWidgets": {
+            "binding": {
+              "config": {
+                "queryPath": "Dashboard/Widget/Installed Widgets",
+                "returnFormat": "dataset"
+              },
+              "transforms": [
+                {
+                  "code": "\tvalue \u003d system.dataset.toPyDataSet(value)\n\treturn dashboard.getInstalledWidgets(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.fixed.cellSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.cellSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridCols"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRows"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.grid": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.grid"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.columnCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridCols"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.rowCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRows"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.widgets": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "columnCount": "{this.props.stretch.columnCount}",
+                  "mobile": false,
+                  "rowCount": "{this.props.stretch.rowCount}",
+                  "widgets": "{session.custom.dashboard.objects.edit.widgets}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\t# Pass the widgets from the \u0027edit dashboard\u0027 object, a boolean denoting whether the\n\t# user is on a mobile device, and the number of rows/cols in this dashboard to the\n\t# getWidgets function, which puts the widgets in a list and returns them (in a format\n\t# expected by the dashboard component).\n\n\tmobile \u003d value[\"mobile\"]\n\twidgets \u003d self.session.custom.dashboard.objects.edit.widgets\n\twidgets \u003d dashboard.getWidgets(widgets,mobile,True,value[\u0027rowCount\u0027],value[\u0027columnCount\u0027],editing\u003dTrue)\n\treturn [] if value \u003d\u003d None else widgets",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\t# When an existing widget\u0027s position is modified or a new widget is added, \n\t# call addUpdateWidget to either update the position properties of the\n\t# existing widget or to add a new widget (to the \u0027edit dashboard\u0027 object).\n\t\n\tif origin \u003d\u003d \"Browser\":\n\t\tdashboard.addUpdateWidget(self)"
+            }
+          }
+        },
+        "props": {
+          "editingToggle": false,
+          "fixed": {},
+          "isEditing": true,
+          "pack": false,
+          "stretch": {},
+          "style": {
+            "backgroundColor": "--neutral-40"
+          }
+        },
+        "type": "ia.display.dashboard"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

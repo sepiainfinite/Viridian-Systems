@@ -1,0 +1,51 @@
+:root {
+    --white: #E0E5EC;
+    --black: hsl(0, 0%, 0%);
+    --red-10: #FAF0F0;
+    --red-20: #661414;
+    --red-50: #F55353;
+    --red-60: #FA8E8E;
+
+    /* Neutrals */
+    --neutral-10: #303133;
+    --neutral-20: #3A3B3D;
+    --neutral-30: #46474A;
+    --neutral-40: #5E6063;
+    --neutral-50: #77797D;
+    --neutral-60: #BFC3C9;
+    --neutral-70: #E0E5EC;
+    --neutral-80: #D8DCE3;
+    --neutral-90: #E0E5EC;
+    --neutral-100: #F0F5FC;
+
+    /* Functional */
+    --error: var(--red-60); /* red-60 */
+    --info: #EF9207; /* orange-60 */
+    --infoSecondary: #FDDEAF; /* blue-30 */
+    --warning: #AD5F00; /* bronze-60 */
+    --warningSecondary: #F5BC76; /* bronze-30 */
+    --success: #038537; /* green-60 */
+
+      /* Typography */
+    --font-NunitoSans: 'NunitoSans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    /* Borders */
+    --border: var(--neutral-50);
+    --border--disabled: var(--neutral-50);
+    --containerBorder: 0px;
+
+    --input: var(--neutral-50);
+    --input--disabled: var(--neutral-40);
+
+    /* Box Shadow */
+    --boxShadow1: rgb(170 170 170 / 72%) 0px 2px 4px;
+    --boxShadow2: rgba(36, 36, 36, 0.18) 0px -25px 20px -20px;  /* Top box shadow style*/
+    --boxShadow3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    --boxShadow4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    --boxShadow5: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    --boxShadow--inset: inset 0 1px 0 rgb(236 240 243 / 15%), 0 1px 1px rgb(38 40 51 / 8%);
+
+    /* Border Radius */
+    --borderRadius: 50px;
+    --borderRadiusInput: 25px;
+}

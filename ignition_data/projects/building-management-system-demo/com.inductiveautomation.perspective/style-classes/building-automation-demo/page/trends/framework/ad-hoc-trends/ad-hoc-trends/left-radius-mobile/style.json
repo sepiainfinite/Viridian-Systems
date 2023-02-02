@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "borderTopLeftRadius": "8px",
+      "borderTopRightRadius": "0px",
+      "borderBottomLeftRadius": "8px",
+      "borderBottomRightRadius": "0px"
+    }
+  }
+}

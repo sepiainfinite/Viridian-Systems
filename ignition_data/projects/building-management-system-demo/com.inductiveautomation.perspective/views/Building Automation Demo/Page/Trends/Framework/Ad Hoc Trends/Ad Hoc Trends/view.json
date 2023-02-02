@@ -1,0 +1,3026 @@
+{
+  "custom": {
+    "activeControl": null,
+    "configureDatabases": {},
+    "databases": [
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "Automotive",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 11.990407673860911,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 1,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": true,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "BMS",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 27.84407319013524,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "Dashboard",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.09999000099990002,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 300,
+        "Name": "Demo",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 2.370604504148558,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": "vision + mobile project default",
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "IADemo",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 4.576203740549144,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": "TagDashboard",
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "IIoT",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.09999000099990002,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "OilSimData",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.998402555910543,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "RFID",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.09999000099990002,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "Sample_Database",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.09999000099990002,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "SQLITE",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "Sample_SQLite_Database",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 1.3730874852883483,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": "map feature demo",
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "telecom",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 0.09999000099990002,
+        "ValidationQuery": "SELECT 1"
+      },
+      {
+        "ActiveConnections": 0,
+        "DBType": "MYSQL",
+        "Description": null,
+        "Enabled": false,
+        "ExtStatus": "Valid",
+        "MaxConnections": 8,
+        "Name": "WaterSimData",
+        "Problem": "",
+        "Status": "Valid",
+        "Throughput": 3.1872509960159365,
+        "ValidationQuery": "SELECT 1"
+      }
+    ],
+    "functionTitle": "",
+    "refreshRate": 1000
+  },
+  "params": {
+    "mobile": true
+  },
+  "propConfig": {
+    "custom.activeControl": {
+      "persistent": true
+    },
+    "custom.configureDatabases": {
+      "binding": {
+        "config": {
+          "expression": "true"
+        },
+        "transforms": [
+          {
+            "code": "\t# resets this property when the view is opened\n\treturn {}",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.databases": {
+      "binding": {
+        "config": {
+          "expression": "runScript(\u0027system.db.getConnections\u0027, 0)"
+        },
+        "transforms": [
+          {
+            "code": "\t# collect the database connection info, check for which ones are enabled for storing ad hoc trend configs\n\tdatabases \u003d []\n\tfor row in range(value.getRowCount()):\n\t\tdatabase \u003d {}\n\t\tfor column in value.getColumnNames():\n\t\t\tdatabase[column] \u003d value.getValueAt(row, column)\n\t\ttry:\n\t\t\tdatabase[\u0027Enabled\u0027] \u003d database[\u0027Status\u0027] \u003d\u003d \u0027Valid\u0027 and self.rootContainer.databaseEnabled(database[\u0027Name\u0027])\n\t\texcept:\n\t\t\tdatabase[\u0027Enabled\u0027] \u003d False\n\t\tdatabases.append(database)\n\treturn databases",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.functionTitle": {
+      "persistent": true
+    },
+    "custom.refreshRate": {
+      "persistent": true
+    },
+    "params.mobile": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 789
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Icon"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "material/trending_up"
+                    },
+                    "type": "ia.display.icon"
+                  },
+                  {
+                    "meta": {
+                      "name": "Function Title"
+                    },
+                    "position": {
+                      "basis": "15px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.functionTitle"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-title",
+                        "textAlign": "right"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "title": "Load from Database"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027LoadFromDb\u0027, None, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Load From Db",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "LOAD CONFIGURATION"
+                      }
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/playlist_play"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/left-radius"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "custom": {
+                      "title": "Save to Database"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SaveToDb\u0027, None, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Save To Db",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SAVE CONFIGURATION"
+                      }
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/playlist_add"
+                        },
+                        "width": 23
+                      },
+                      "primary": false,
+                      "style": {
+                        "borderLeftWidth": "0px",
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/right-radius"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "meta": {
+                      "name": "Set Refresh Rate Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "title": "Set Real-Time Refresh Rate"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SetRefreshRate\u0027, \u0027root/Main Top Controls/Header Large/Set Refresh Rate/Rate\u0027, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Set Refresh Rate",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SET REFRESH RATE"
+                      }
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/access_time"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/left-radius"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.togglePause()"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Pause",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "PAUSE"
+                      }
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "props.image.icon.color": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({this.props.primary}, \u0027var(--neutral-20)\u0027, \u0027var(--neutral-70)\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.primary": {
+                        "binding": {
+                          "config": {
+                            "expression": "{...../Power Chart.props.config.refreshRate} \u003d 0"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "path": "material/pause_circle_outline"
+                        },
+                        "width": 23
+                      },
+                      "style": {
+                        "borderLeftWidth": "0px",
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/right-radius"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "meta": {
+                      "name": "Set Title Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "title": "Set Title"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SetTitle\u0027, \u0027root/Main Top Controls/Header Large/Set Title/Title\u0027, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Set Title",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SET TITLE"
+                      }
+                    },
+                    "position": {
+                      "basis": "26px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/text_fields"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control\nbuilding-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/full-radius"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Controls"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/control-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onKeyPress": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.setTitle(self.props.text)\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tself.view.rootContainer.closeFunction()\n\t\t# clearing own text during key press will not work\n\t\t# must be cleared it after this event\n\t\timport threading\n\t\tdef resetText():\n\t\t\tself.props.text \u003d \u0027\u0027\n\t\tthreading.Timer(0.3, resetText).start()\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Title"
+                    },
+                    "position": {
+                      "basis": "350px"
+                    },
+                    "props": {
+                      "deferUpdates": false,
+                      "placeholder": "Enter a new title or leave blank to clear...",
+                      "rejectUpdatesWhileFocused": false
+                    },
+                    "type": "ia.input.text-field"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.closeFunction()\n\tself.getSibling(\u0027Title\u0027).props.text \u003d \u0027\u0027"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Cancel"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-button"
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tnewTitle \u003d self.getSibling(\u0027Title\u0027).props.text\n\tself.getSibling(\u0027Title\u0027).props.text \u003d \u0027\u0027\n\t\n\tself.view.rootContainer.closeFunction()\n\tself.view.rootContainer.setTitle(newTitle)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Save"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button"
+                      },
+                      "text": "Save"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Set Title"
+                },
+                "position": {
+                  "basis": "40px",
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SetTitle\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onKeyDown": {
+                          "config": {
+                            "script": "\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tself.view.rootContainer.closeFunction()\n\t\t# the value entered will not yet be availble\n\t\t# must trigger the new rate after this event is done\n\t\timport threading\n\t\tdef setNewRate():\n\t\t\tself.view.rootContainer.setRate(self.props.value)\n\t\tthreading.Timer(0.3, setNewRate).start()\n\t\t\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Rate"
+                    },
+                    "position": {
+                      "basis": "150px"
+                    },
+                    "props": {
+                      "align": "left",
+                      "format": "0,0",
+                      "inputBounds": {
+                        "minimum": 0
+                      },
+                      "placeholder": "Enter a new rate for real-time mode...",
+                      "value": 5000
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  },
+                  {
+                    "meta": {
+                      "name": "Units"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "(ms)"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.closeFunction()"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Cancel"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-button"
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tnewRate \u003d self.getSibling(\u0027Rate\u0027).props.value\n\t\n\tself.view.rootContainer.closeFunction()\n\tself.view.rootContainer.setRate(newRate)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Save"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button"
+                      },
+                      "text": "Save"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Set Refresh Rate"
+                },
+                "position": {
+                  "basis": "40px",
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SetRefreshRate\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Plots"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      },
+                      "selected": true,
+                      "text": "Plots",
+                      "uncheckedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      }
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Options Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Display"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      },
+                      "selected": true,
+                      "text": "Display Settings",
+                      "uncheckedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      }
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Database Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Databases"
+                    },
+                    "position": {
+                      "basis": "256px",
+                      "display": false
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "MySQL (MYSQL)",
+                          "value": "MySQL"
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select a database..."
+                      },
+                      "search": {
+                        "noResultsText": "No databases found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": null
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Chart Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "key": "value"
+                    },
+                    "meta": {
+                      "name": "Charts"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "path": "../Databases.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn [{\u0027value\u0027: chart[\u0027id\u0027], \u0027label\u0027: chart[\u0027config_name\u0027]} for chart in self.view.rootContainer.getCharts(\u0027MySQL\u0027)]",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "placeholder": {
+                        "text": "Select a chart..."
+                      },
+                      "search": {
+                        "noResultsText": "No charts found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": null
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.closeFunction()\n\tself.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Cancel"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "Condenser Data",
+                          "value": 6
+                        },
+                        {
+                          "label": "VAV 1-01 HC Data",
+                          "value": 5
+                        }
+                      ],
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-button"
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tincludePlots \u003d self.getSibling(\u0027Plots\u0027).props.selected\n\tincludeDisplay \u003d self.getSibling(\u0027Display\u0027).props.selected\n\tdbName \u003d \u0027MySQL\u0027\n\tconfigId \u003d self.getSibling(\u0027Charts\u0027).props.value\n\t\n\tself.view.rootContainer.closeFunction()\n\t\n\tself.view.rootContainer.loadFromDb(dbName, configId, includePlots, includeDisplay)\n\tself.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Load"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button"
+                      },
+                      "text": "Load"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Load From Db"
+                },
+                "position": {
+                  "basis": "40px",
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027LoadFromDb\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Plots"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      },
+                      "selected": true,
+                      "text": "Plots",
+                      "uncheckedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      }
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Options Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Display"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      },
+                      "selected": true,
+                      "text": "Display Settings",
+                      "uncheckedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      }
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Private Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Private"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{session.props.auth.authenticated}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "checkedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      },
+                      "text": "Store Privately",
+                      "uncheckedIcon": {
+                        "style": {
+                          "width": "16px"
+                        }
+                      }
+                    },
+                    "type": "ia.input.checkbox"
+                  },
+                  {
+                    "meta": {
+                      "name": "Database Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Databases"
+                    },
+                    "position": {
+                      "basis": "256px",
+                      "display": false
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "MySQL (MYSQL)",
+                          "value": "MySQL"
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select a database..."
+                      },
+                      "search": {
+                        "noResultsText": "No databases found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": "MySQL"
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Chart Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "key": "value"
+                    },
+                    "meta": {
+                      "name": "Charts"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "path": "../Databases.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn [{\u0027value\u0027: chart[\u0027id\u0027], \u0027label\u0027: chart[\u0027config_name\u0027]} for chart in self.view.rootContainer.getOwnCharts(\u0027MySQL\u0027)]",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "allowCustomOptions": true,
+                      "placeholder": {
+                        "text": "Select or create a chart..."
+                      },
+                      "search": {
+                        "noResultsText": "No charts found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": null
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.closeFunction()\n\tself.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Cancel"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-button"
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t# If user is authenticated, call syncDashboardDB function, which will save\n\t# all changes to the db and refresh the binding on the \u0027dashboards\u0027 session \n\t# custom property.\n\t\n\tif self.session.props.auth.authenticated:\n\t\tincludePlots \u003d self.getSibling(\u0027Plots\u0027).props.selected\n\t\tincludeDisplay \u003d self.getSibling(\u0027Display\u0027).props.selected\n\t\tprivate \u003d self.session.props.auth.authenticated and self.getSibling(\u0027Private\u0027).props.selected\n\t\tdbName \u003d self.getSibling(\u0027Databases\u0027).props.value\n\t\tconfigId \u003d self.getSibling(\u0027Charts\u0027).props.value\n\t\t\n\t\tself.view.rootContainer.closeFunction()\n\t\t\n\t\tself.view.rootContainer.saveToDb(dbName, configId, includePlots, includeDisplay, private)\n\t\tself.getSibling(\u0027Databases\u0027).props.value \u003d None\n\t\tself.getSibling(\u0027Charts\u0027).props.value \u003d None\n\telse:\n\t\tdashboard.showMessage(\"\"\"We are glad that you are able to see \\\n\t\thow a Power Chart configuration can be saved in the database! \n\t\tBecause you are accessing this project publicly, any new Power\n\t\tChart configurations cannot be saved.\"\"\")"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Save"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button"
+                      },
+                      "text": "Save"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Save To Db"
+                },
+                "position": {
+                  "basis": "40px",
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SaveToDb\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Header Large"
+            },
+            "position": {
+              "size": "large"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/header",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Icon"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "material/trending_up"
+                    },
+                    "type": "ia.display.icon"
+                  },
+                  {
+                    "meta": {
+                      "name": "Title Spacer"
+                    },
+                    "position": {
+                      "basis": "15px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Function Title"
+                    },
+                    "position": {
+                      "basis": "15px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.functionTitle"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/function-title"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Controls"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/controlBar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Header Small"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Main Top Controls"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.breakpoint": {
+            "binding": {
+              "config": {
+                "expression": "{../Power Chart.props.config.responsiveDesignWidth}+2"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "maxHeight": "50px",
+            "zIndex": 1
+          }
+        },
+        "type": "ia.container.breakpt"
+      },
+      {
+        "meta": {
+          "name": "Power Chart"
+        },
+        "position": {
+          "basis": "500px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.config": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tconfig \u003d currentValue.value\n\t\n\tif config[\u0027mode\u0027].value \u003d\u003d \u0027historical\u0027:\n\t\tif previousValue !\u003d None:\n\t\t\tif previousValue.value !\u003d None:\n\t\t\t\tstartDate \u003d config[\u0027startDate\u0027].value\n\t\t\t\tendDate \u003d config[\u0027endDate\u0027].value\t\t\n\t\t\t\t\n\t\t\t\tdaysBetween \u003d system.date.daysBetween(startDate,endDate)\n\t\t\t\t\n\t\t\t\tif daysBetween \u003e 14:\n\t\t\t\t\toldStartDate \u003d previousValue.value[\u0027startDate\u0027].value\n\t\t\t\t\toldEndDate \u003d previousValue.value[\u0027endDate\u0027].value\n\t\t\t\t\t\n\t\t\t\t\tif oldStartDate \u003d\u003d startDate:\n\t\t\t\t\t\tself.props.config.startDate \u003d system.date.addDays(endDate,-14)\n\t\t\t\t\telse:\n\t\t\t\t\t\tself.props.config.endDate \u003d system.date.addDays(startDate,14)\n\telif config[\u0027mode\u0027].value \u003d\u003d \u0027realtime\u0027:\n\t\tunits \u003d config[\u0027measureOfTime\u0027].value\n\t\ttime \u003d config[\u0027unitOfTime\u0027].value\n\t\t\n\t\tif units \u003d\u003d \u0027seconds\u0027:\n\t\t\tif time \u003e 1209600:\n\t\t\t\tself.props.config.unitOfTime \u003d 1209600\n\t\telif units \u003d\u003d \u0027minutes\u0027:\n\t\t\tif time \u003e 20160:\n\t\t\t\tself.props.config.unitOfTime \u003d 20160\n\t\telif units \u003d\u003d \u0027hours\u0027:\n\t\t\tif time \u003e 336:\n\t\t\t\tself.props.config.unitOfTime \u003d 336\n\t\telif units \u003d\u003d \u0027days\u0027:\n\t\t\tif time \u003e 14:\n\t\t\t\tself.props.config.unitOfTime \u003d 14\n\t\telif units \u003d\u003d \u0027weeks\u0027:\n\t\t\tif time \u003e 2:\n\t\t\t\tself.props.config.unitOfTime \u003d 2\n\t\telse:\n\t\t\tself.props.config.unitOfTime \u003d 2\n\t\t\tself.props.config.measureOfTime \u003d \u0027weeks\u0027"
+            }
+          },
+          "props.plots": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tsystem.perspective.print(str(currentValue.value))"
+            }
+          },
+          "props.style.borderStyle": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.mobile},\u0027none\u0027,\u0027solid\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "config": {
+            "measureOfTime": "minutes",
+            "unitOfTime": 5
+          },
+          "interaction": {
+            "chartZoomLevel": 1,
+            "rangeZoomLevel": 1
+          },
+          "legend": {
+            "visible": true
+          },
+          "plots": [
+            {
+              "color": "var(--neutral-10)",
+              "markers": [],
+              "relativeWeight": 1,
+              "style": {
+                "classes": ""
+              }
+            }
+          ],
+          "timeAxis": {
+            "color": "#737676"
+          },
+          "title": {
+            "font": {
+              "color": ""
+            },
+            "visible": true
+          }
+        },
+        "type": "ia.chart.powerchart"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onKeyPress": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.setTitle(self.props.text)\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tself.view.rootContainer.closeFunction()\n\t\t# clearing own text during key press will not work\n\t\t# must be cleared it after this event\n\t\timport threading\n\t\tdef resetText():\n\t\t\tself.props.text \u003d \u0027\u0027\n\t\tthreading.Timer(0.3, resetText).start()\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Title"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "deferUpdates": false,
+                      "placeholder": "Enter a new title or leave blank to clear...",
+                      "rejectUpdatesWhileFocused": false
+                    },
+                    "type": "ia.input.text-field"
+                  },
+                  {
+                    "meta": {
+                      "name": "Save Spacer"
+                    },
+                    "position": {
+                      "basis": "8px",
+                      "shrink": 0
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tself.view.rootContainer.closeFunction()\n\tself.parent.getSibling(\u0027Title\u0027).props.text \u003d \u0027\u0027"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Cancel"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "primary": false,
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-buttonMobile"
+                          },
+                          "text": "Cancel",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      },
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tnewTitle \u003d self.parent.getSibling(\u0027Title\u0027).props.text\n\tself.parent.getSibling(\u0027Title\u0027).props.text \u003d \u0027\u0027\n\t\n\tself.view.rootContainer.closeFunction()\n\tself.view.rootContainer.setTitle(newTitle)"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Save"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button-mobile"
+                          },
+                          "text": "Save",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Cancel Save"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Set Title"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SetTitle\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "dom": {
+                            "onKeyDown": {
+                              "config": {
+                                "script": "\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tself.view.rootContainer.closeFunction()\n\t\t# the value entered will not yet be availble\n\t\t# must trigger the new rate after this event is done\n\t\timport threading\n\t\tdef setNewRate():\n\t\t\tself.view.rootContainer.setRate(self.props.value)\n\t\tthreading.Timer(0.3, setNewRate).start()\n\t\t\n\t\t"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Rate"
+                        },
+                        "position": {
+                          "basis": "60px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "align": "left",
+                          "format": "0,0",
+                          "inputBounds": {
+                            "minimum": 0
+                          },
+                          "placeholder": "Enter a new rate for real-time mode...",
+                          "style": {
+                            "height": "60px"
+                          },
+                          "value": 5000
+                        },
+                        "type": "ia.input.numeric-entry-field"
+                      },
+                      {
+                        "meta": {
+                          "name": "Units"
+                        },
+                        "position": {
+                          "basis": "50px"
+                        },
+                        "props": {
+                          "text": "(ms)"
+                        },
+                        "type": "ia.display.label"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Rate Input"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tself.view.rootContainer.closeFunction()\n"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Cancel"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "primary": false,
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-buttonMobile"
+                          },
+                          "text": "Cancel",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      },
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tnewRate \u003d self.parent.parent.getChild(\u0027Rate Input/Rate\u0027).props.value\n\t\n\tself.view.rootContainer.closeFunction()\n\tself.view.rootContainer.setRate(newRate)"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Save"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button-mobile"
+                          },
+                          "text": "Save",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Cancel Save"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Set Refresh Rate"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SetRefreshRate\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "flex-end",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Plots"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "label": {
+                        "text": "Plots"
+                      },
+                      "selected": true
+                    },
+                    "type": "ia.input.toggle-switch"
+                  },
+                  {
+                    "meta": {
+                      "name": "Display"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "label": {
+                        "text": "Display Settings"
+                      },
+                      "selected": true
+                    },
+                    "type": "ia.input.toggle-switch"
+                  },
+                  {
+                    "meta": {
+                      "name": "Databases"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "display": false,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "MySQL (MYSQL)",
+                          "value": "MySQL"
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select a database..."
+                      },
+                      "search": {
+                        "enabled": false,
+                        "noResultsText": "No databases found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": "MySQL"
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Chart Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "key": "value"
+                    },
+                    "meta": {
+                      "name": "Charts"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "path": "../Databases.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn [{\u0027value\u0027: chart[\u0027id\u0027], \u0027label\u0027: chart[\u0027config_name\u0027]} for chart in self.view.rootContainer.getCharts(\u0027MySQL\u0027)]",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "placeholder": {
+                        "text": "Select a chart..."
+                      },
+                      "search": {
+                        "noResultsText": "No charts found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": null
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Save Spacer"
+                    },
+                    "position": {
+                      "basis": "8px",
+                      "shrink": 0
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tself.view.rootContainer.closeFunction()\n\tself.parent.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.parent.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Cancel"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "primary": false,
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-buttonMobile"
+                          },
+                          "text": "Cancel",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      },
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tincludePlots \u003d self.parent.getSibling(\u0027Plots\u0027).props.selected\n\tincludeDisplay \u003d self.parent.getSibling(\u0027Display\u0027).props.selected\n\tdbName \u003d \u0027MySQL\u0027\n\tconfigId \u003d self.parent.getSibling(\u0027Charts\u0027).props.value\n\t\n\tself.view.rootContainer.closeFunction()\n\t\n\tself.view.rootContainer.loadFromDb(dbName, configId, includePlots, includeDisplay)\n\tself.parent.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.parent.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Load"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button-mobile"
+                          },
+                          "text": "Load",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Cancel Load"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Load From Db"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027LoadFromDb\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Display"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "label": {
+                        "text": "Display Settings"
+                      },
+                      "selected": true
+                    },
+                    "type": "ia.input.toggle-switch"
+                  },
+                  {
+                    "meta": {
+                      "name": "Plots"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "label": {
+                        "text": "Plots"
+                      },
+                      "selected": true
+                    },
+                    "type": "ia.input.toggle-switch"
+                  },
+                  {
+                    "meta": {
+                      "name": "Private"
+                    },
+                    "position": {
+                      "basis": "36px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{session.props.auth.authenticated}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "type": "ia.input.toggle-switch"
+                  },
+                  {
+                    "meta": {
+                      "name": "Databases"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "display": false,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "MySQL (MYSQL)",
+                          "value": "MySQL"
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select a database..."
+                      },
+                      "search": {
+                        "enabled": false,
+                        "noResultsText": "No databases found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": "MySQL"
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Chart Spacer"
+                    },
+                    "position": {
+                      "basis": "8px",
+                      "shrink": 0
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "key": "value"
+                    },
+                    "meta": {
+                      "name": "Charts"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "path": "../Databases.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn [{\u0027value\u0027: chart[\u0027id\u0027], \u0027label\u0027: chart[\u0027config_name\u0027]} for chart in self.view.rootContainer.getOwnCharts(\u0027MySQL\u0027)]",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "allowCustomOptions": true,
+                      "placeholder": {
+                        "text": "Select or create a chart..."
+                      },
+                      "search": {
+                        "noResultsText": "No charts found..."
+                      },
+                      "showClearIcon": true,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/dropdown"
+                      },
+                      "value": null
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "Input Spacer"
+                    },
+                    "position": {
+                      "basis": "8px",
+                      "shrink": 0
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tself.view.rootContainer.closeFunction()\n\tself.parent.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.parent.getSibling(\u0027Charts\u0027).props.value \u003d None"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Cancel"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "primary": false,
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/cancel-buttonMobile"
+                          },
+                          "text": "Cancel",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      },
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\tincludePlots \u003d self.parent.getSibling(\u0027Plots\u0027).props.selected\n\tincludeDisplay \u003d self.parent.getSibling(\u0027Display\u0027).props.selected\n\tprivate \u003d self.session.props.auth.authenticated and self.parent.getSibling(\u0027Private\u0027).props.selected\n\tdbName \u003d self.parent.getSibling(\u0027Databases\u0027).props.value\n\tconfigId \u003d self.parent.getSibling(\u0027Charts\u0027).props.value\n\t\n\tself.view.rootContainer.closeFunction()\n\t\n\tself.view.rootContainer.saveToDb(dbName, configId, includePlots, includeDisplay, private)\n\tself.parent.getSibling(\u0027Databases\u0027).props.value \u003d None\n\tself.parent.getSibling(\u0027Charts\u0027).props.value \u003d None\n"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Save"
+                        },
+                        "position": {
+                          "basis": "80px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/save-load-button-mobile"
+                          },
+                          "text": "Save",
+                          "textStyle": {
+                            "fontSize": "20px"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Cancel Save"
+                    },
+                    "position": {
+                      "basis": "60px"
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Save To Db"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.activeControl} \u003d \u0027SaveToDb\u0027"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-function-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "custom": {
+                      "title": "Load from Database"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027LoadFromDb\u0027, None, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Load From Db",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "LOAD CONFIGURATION"
+                      }
+                    },
+                    "position": {
+                      "basis": "35px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/playlist_play"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/left-radius-mobile building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-control"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "custom": {
+                      "title": "Save to Database"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SaveToDb\u0027, None, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Save To Db",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SAVE CONFIGURATION"
+                      }
+                    },
+                    "position": {
+                      "basis": "35px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "admin": "isAuthorized(true, \u0027Authenticated/Roles/Administrator\u0027)",
+                              "databases": "{view.custom.databases}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn value.admin or bool(filter(lambda x: x[\u0027Enabled\u0027], value.databases))",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/playlist_add"
+                        },
+                        "width": 23
+                      },
+                      "primary": false,
+                      "style": {
+                        "borderLeftWidth": "0px",
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/right-radius-mobile"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "meta": {
+                      "name": "Set Refresh Rate Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "title": "Set Real-Time Refresh Rate"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SetRefreshRate\u0027, \u0027root/Mobile Bottom Controls/Footer Small/Set Refresh Rate/Rate Input/Rate\u0027, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Set Refresh Rate",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SET REFRESH RATE"
+                      }
+                    },
+                    "position": {
+                      "basis": "35px"
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/access_time"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/left-radius-mobile building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-control"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.togglePause()"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Pause",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "PAUSE"
+                      }
+                    },
+                    "position": {
+                      "basis": "35px"
+                    },
+                    "propConfig": {
+                      "props.image.icon.color": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({this.props.primary}, \u0027var(--neutral-20)\u0027, \u0027var(--neutral-70)\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.primary": {
+                        "binding": {
+                          "config": {
+                            "expression": "{...../Power Chart.props.config.refreshRate} \u003d 0"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "path": "material/pause_circle_outline"
+                        },
+                        "width": 23
+                      },
+                      "style": {
+                        "borderLeftWidth": "0px",
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-control building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/right-radius-mobile"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "meta": {
+                      "name": "Set Title Spacer"
+                    },
+                    "position": {
+                      "basis": "8px"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "title": "Set Title"
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.rootContainer.toggleFunction(\u0027SetTitle\u0027, \u0027root/Mobile Bottom Controls/Footer Small/Set Title/Title\u0027, self.custom.title)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Set Title",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "top-left",
+                        "style": {
+                          "backgroundColor": "var(--neutral-10)",
+                          "color": "var(--neutral-100)"
+                        },
+                        "text": "SET TITLE"
+                      }
+                    },
+                    "position": {
+                      "basis": "36px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--neutral-70)",
+                          "path": "material/text_fields"
+                        }
+                      },
+                      "primary": false,
+                      "style": {
+                        "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/full-radius-mobile"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Controls"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "props": {
+                  "justify": "center",
+                  "style": {
+                    "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/mobile-control-bar",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Footer Small"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "classes": "building-automation-demo/page/trends/framework/ad-hoc-trends/ad-hoc-trends/header",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Mobile Bottom Controls"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.breakpoint": {
+            "binding": {
+              "config": {
+                "expression": "{../Power Chart.props.config.responsiveDesignWidth}+2"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "maxHeight": "50px",
+            "zIndex": 1
+          }
+        },
+        "type": "ia.container.breakpt"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "visible"
+      }
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "toggleFunction",
+          "params": [
+            "name",
+            "focusElement",
+            "title"
+          ],
+          "script": "\t# toggle just forwards to the open/close methods based on what\u0027s currently selected\n\t# visibility of each feature is based on the name that is stored in the activeControl property\n\tif self.view.custom.activeControl \u003d\u003d name:\n\t\tself.view.rootContainer.closeFunction()\n\telse:\n\t\tself.view.rootContainer.openFunction(name, focusElement, title)\n\t\t"
+        },
+        {
+          "name": "closeFunction",
+          "params": [],
+          "script": "\tself.view.custom.activeControl \u003d None\n\tself.view.custom.functionTitle \u003d \u0027\u0027"
+        },
+        {
+          "name": "openFunction",
+          "params": [
+            "name",
+            "focusElement",
+            "title"
+          ],
+          "script": "\tself.view.custom.activeControl \u003d name\n\tself.view.custom.functionTitle \u003d title\n\t\n\t# special case for auto focusing specific elements when opened\n\t# currently used for title and rate \n\t# a delay was necessary in order to allow the input component to become visible first, before focusing\n\tif focusElement:\n\t\timport threading\n\t\tdef focusWorker():\n\t\t\tself.view.getChild(focusElement).focus()\n\t\tthreading.Timer(0.3, focusWorker).start()"
+        },
+        {
+          "name": "setTitle",
+          "params": [
+            "title"
+          ],
+          "script": "\t# sets or hides the title of the chart\n\t# if you simply set it to empty,\n\t#  it still includes some extra whitespace where the title would be\n\tif title:\n\t\tself.view.getChild(\u0027root/Power Chart\u0027).props.title.text \u003d title\n\t\tself.view.getChild(\u0027root/Power Chart\u0027).props.title.visible \u003d True\n\telse:\n\t\tself.view.getChild(\u0027root/Power Chart\u0027).props.title.text \u003d \u0027\u0027\n\t\tself.view.getChild(\u0027root/Power Chart\u0027).props.title.visible \u003d False"
+        },
+        {
+          "name": "setRate",
+          "params": [
+            "rate"
+          ],
+          "script": "\tself.view.getChild(\u0027root/Power Chart\u0027).props.config.refreshRate \u003d rate"
+        },
+        {
+          "name": "togglePause",
+          "params": [],
+          "script": "\t# this will store the current refresh rate before setting it to 0 so it can be unpaused later\n\tpowerChart \u003d self.view.getChild(\u0027root/Power Chart\u0027)\n\tif powerChart.props.config.refreshRate \u003d\u003d 0:\n\t\tself.view.rootContainer.setRate(self.view.custom.refreshRate)\n\telse:\n\t\tself.view.custom.refreshRate \u003d powerChart.props.config.refreshRate\n\t\tself.view.rootContainer.setRate(0)"
+        },
+        {
+          "name": "configureDatabases",
+          "params": [],
+          "script": "\t# current functionality allows an admin to toggle the available databases\n\t# the list of databases to enable/disable is store in a property until the admin selects \u0027Save\u0027\n\t# based on that list, this function will attempt to enable/disable each one\n\t# enable means there is a matching configs table and the first row has private\u003d0\n\t# disabled means the first row has private\u003d1, or there is no matching configs table \n\t# for enable: this will check for valid connection, create configs table if necessary, or update the existing matching table with private\u003d0\n\t# for disable: this will check for valid connection, update the existing matching table with private\u003d1\n\t# after doing this, we send out a message to open sessions to update their db listing, so they don\u0027t have to manually refresh anything\n\t\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\tfor dbName in self.view.custom.configureDatabases:\n\t\tdbInfo \u003d next((d for d in self.view.custom.databases if d.Name \u003d\u003d dbName), False)\n\t\tif not dbInfo:\n\t\t\tlogger.error(\u0027Unable to create configuration table for database \"%s\" because it was not found in database list (view.custom.databases).\u0027 %dbName)\n\t\t\tcontinue\n\t\t\n\t\tif dbInfo[\u0027Status\u0027] !\u003d \"Valid\":\n\t\t\tlogger.error(\u0027Unable to create configuration table for database \"%s\" because database does not have a valid connection.\u0027 %dbName)\n\t\t\tcontinue\n\t\t\n\t\tdbType \u003d dbInfo[\u0027DBType\u0027]\n\t\tdbEnable \u003d self.view.custom.configureDatabases[dbName]\n\t\t\n\t\ttableExistsQuery \u003d self.view.rootContainer.getTableExistsQuery(dbType)\n\t\ttableFormatMatchesQuery \u003d self.view.rootContainer.getTableFormatMatchesQuery(dbType)\n\t\tcreateTableQuery \u003d self.view.rootContainer.getCreateTableQuery(dbType)\n\t\tmakeDatabasePrivateQuery \u003d self.view.rootContainer.getMakeDatabasePrivateQuery(dbType)\n\t\t\n\t\tif not tableExistsQuery or not tableFormatMatchesQuery or not createTableQuery or not makeDatabasePrivateQuery:\n\t\t\tlogger.error(\u0027Unable to create configuration table for database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\t\tcontinue\n\t\t\n\t\ttableExists \u003d system.db.runScalarPrepQuery(tableExistsQuery, None, dbName)\n\t\t\n\t\tif dbEnable:\n\t\t\tif tableExists:\n\t\t\t\ttableFormatMatches \u003d system.db.runScalarPrepQuery(tableFormatMatchesQuery, None, dbName)\n\t\t\t\tif tableFormatMatches:\n\t\t\t\t\tsystem.db.runPrepUpdate(makeDatabasePrivateQuery, [False, False], dbName)\n\t\t\t\t\tlogger.info(\u0027Enabled database \"%s\"\u0027 %dbName)\n\t\t\t\telse:\n\t\t\t\t\tlogger.error(\u0027Unable to create configuration table for database \"%s\" because configuration table but does not match expected format [id,user,public,config, config_name,timestamp].\u0027 %dbName)\n\t\t\telse:\n\t\t\t\tsystem.db.runPrepUpdate(createTableQuery, None, dbName)\n\t\t\t\tlogger.info(\u0027Created configuration table for database \"%s\"\u0027 %dbName)\n\t\t\t\tsystem.db.runPrepUpdate(makeDatabasePrivateQuery, [False, False], dbName)\n\t\t\t\tlogger.info(\u0027Enabled database \"%s\"\u0027 %dbName)\n\t\telse:\n\t\t\tif tableExists:\n\t\t\t\ttableFormatMatches \u003d system.db.runScalarPrepQuery(tableFormatMatchesQuery, None, dbName)\n\t\t\t\tif tableFormatMatches:\n\t\t\t\t\tsystem.db.runPrepUpdate(makeDatabasePrivateQuery, [True, True], dbName)\n\t\t\t\t\tlogger.info(\u0027Disabled database \"%s\"\u0027 %dbName)\n\t\t\t\telse:\n\t\t\t\t\tlogger.error(\u0027Unable to create configuration table for database \"%s\" because configuration table but does not match expected format [id,user,public,config, config_name,timestamp].\u0027 %dbName)\n\t\t\telse:\n\t\t\t\t# ad hoc trends config table does not exist, so there is no change needed\n\t\t\t\tpass\n\n\tfor session in filter(lambda x: x.sessionScope !\u003d \u0027designer\u0027, system.perspective.getSessionInfo()):\n\t\tsystem.perspective.sendMessage(\u0027ad_hoc_trends_databaseReconfigured\u0027, {}, \u0027session\u0027, session.id)"
+        },
+        {
+          "name": "databaseEnabled",
+          "params": [
+            "dbName"
+          ],
+          "script": "\t# enable means there is a matching configs table and the first row has private\u003d0\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\tdbInfo \u003d system.db.getConnectionInfo(dbName)\n\tif not dbInfo:\n\t\tlogger.error(\u0027Unable to check if database \"%s\" is enabled because it was not found in database connection list (system.db.getConnectionInfo).\u0027 %dbName)\n\t\treturn False\n\n\tdbType \u003d dbInfo.getValueAt(0, \u0027DBType\u0027)\n\t\n\ttableExistsQuery \u003d self.view.rootContainer.getTableExistsQuery(dbType)\n\ttableFormatMatchesQuery \u003d self.view.rootContainer.getTableFormatMatchesQuery(dbType)\n\tdatabaseEnabledQuery \u003d self.view.rootContainer.getDatabaseEnabledQuery(dbType)\n\t\n\tif not tableExistsQuery or not tableFormatMatchesQuery or not databaseEnabledQuery:\n\t\tlogger.debug(\u0027Unable to check if database \"%s\" is enabled because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\treturn False\n\n\treturn bool(system.db.runScalarPrepQuery(tableExistsQuery, None, dbName)) and \\\n\t\tbool(system.db.runScalarPrepQuery(tableFormatMatchesQuery, None, dbName)) and \\\n\t\tbool(system.db.runScalarPrepQuery(databaseEnabledQuery, None, dbName))"
+        },
+        {
+          "name": "getCharts",
+          "params": [
+            "dbName"
+          ],
+          "script": "\t# get any chart created by this user or any chart made available publicly (null user or private\u003d0)\n\tif not dbName:\n\t\treturn system.dataset.toPyDataSet(system.dataset.toDataSet([\u0027id\u0027, \u0027username\u0027, \u0027config_name\u0027, \u0027private\u0027, \u0027config\u0027, \u0027t_stamp\u0027], []))\n\t\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\tdbInfo \u003d next((d for d in self.view.custom.databases if d.Name \u003d\u003d dbName), False)\n\tif not dbInfo:\n\t\tlogger.error(\u0027Unable to load charts of database \"%s\" because it was not found in database list (view.custom.databases).\u0027 %dbName)\n\t\treturn\n\n\tdbType \u003d dbInfo[\u0027DBType\u0027]\n\t\n\tavailableChartsQuery \u003d self.view.rootContainer.getAvailableChartsQuery(dbType)\n\t\n\tif not availableChartsQuery:\n\t\tlogger.debug(\u0027Unable to load charts of database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\treturn system.dataset.toPyDataSet(system.dataset.toDataSet([\u0027id\u0027, \u0027username\u0027, \u0027config_name\u0027, \u0027private\u0027, \u0027config\u0027, \u0027t_stamp\u0027], []))\n\t\n\treturn system.db.runPrepQuery(availableChartsQuery, [self.session.props.auth.user.userName], dbName)\n"
+        },
+        {
+          "name": "getOwnCharts",
+          "params": [
+            "dbName"
+          ],
+          "script": "\t# only returns the list of charts created by this user, or ones created globally (null user)\n\t# used for the saving feature, so that you don\u0027t edit someone else\u0027s charts\n\tif not dbName:\n\t\treturn system.dataset.toPyDataSet(system.dataset.toDataSet([\u0027id\u0027, \u0027username\u0027, \u0027config_name\u0027, \u0027private\u0027, \u0027config\u0027, \u0027t_stamp\u0027], []))\n\t\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\tdbInfo \u003d next((d for d in self.view.custom.databases if d.Name \u003d\u003d dbName), False)\n\tif not dbInfo:\n\t\tlogger.error(\u0027Unable to load charts of database \"%s\" because it was not found in database list (view.custom.databases).\u0027 %dbName)\n\t\treturn\n\n\tdbType \u003d dbInfo[\u0027DBType\u0027]\n\n\townChartsQuery \u003d self.view.rootContainer.getOwnChartsQuery(dbType)\n\n\tif not ownChartsQuery:\n\t\tlogger.debug(\u0027Unable to load charts of database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\treturn system.dataset.toPyDataSet(system.dataset.toDataSet([\u0027id\u0027, \u0027username\u0027, \u0027config_name\u0027, \u0027private\u0027, \u0027config\u0027, \u0027t_stamp\u0027], []))\n\t\n\treturn system.db.runPrepQuery(ownChartsQuery, [self.session.props.auth.user.userName], dbName)"
+        },
+        {
+          "name": "loadFromDb",
+          "params": [
+            "dbName",
+            "configId",
+            "includePlots",
+            "includeDisplay"
+          ],
+          "script": "\tif not dbName or not configId:\n\t\treturn\n\t\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\tdbInfo \u003d next((d for d in self.view.custom.databases if d.Name \u003d\u003d dbName), False)\n\tif not dbInfo:\n\t\tlogger.error(\u0027Unable to load chart configuration from database \"%s\" because it was not found in database list (view.custom.databases).\u0027 %dbName)\n\t\treturn\n\n\tdbType \u003d dbInfo[\u0027DBType\u0027]\n\t\n\tchartConfigQuery \u003d self.view.rootContainer.getChartConfigQuery(dbType)\n\tif not chartConfigQuery:\n\t\tlogger.debug(\u0027Unable to load chart configuration from database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\treturn\n\t\n\tself.view.rootContainer.loadFromFile(system.db.runScalarPrepQuery(chartConfigQuery, [configId], dbName), includePlots, includeDisplay)"
+        },
+        {
+          "name": "saveToDb",
+          "params": [
+            "dbName",
+            "configId",
+            "includePlots",
+            "includeDisplay",
+            "private"
+          ],
+          "script": "\t\n\tif not dbName or not configId:\n\t\treturn\n\t\n\tlogger \u003d system.util.getLogger(\u0027Ad Hoc Trends\u0027)\n\t\n\tconfigJson \u003d self.view.rootContainer.getConfigJson(includePlots, includeDisplay)\n\tusername \u003d self.session.props.auth.user.userName\n\tdbInfo \u003d next((d for d in self.view.custom.databases if d.Name \u003d\u003d dbName), False)\n\tif not dbInfo:\n\t\tlogger.error(\u0027Unable to save chart configuration to database \"%s\" because it was not found in database list (view.custom.databases).\u0027 %dbName)\n\t\treturn\n\n\tdbType \u003d dbInfo[\u0027DBType\u0027]\n\t\n\t\n\t# if the user creates a new chart, then the config id will be a string\n\t# otherwise it will be a number, representing the existing row to update\n\tif isinstance(configId, unicode):\n\t\tinsertChartConfigQuery \u003d self.view.rootContainer.getInsertChartConfigQuery(dbType)\n\t\tif not insertChartConfigQuery:\n\t\t\tlogger.debug(\u0027Unable to save chart configuration to database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\t\treturn\n\t\t\t\n\t\tsystem.db.runPrepUpdate(insertChartConfigQuery, [configJson, configId, private, username], dbName)\n\t\tlogger.debug(\u0027Saved new chart configuration to database \"%s\"\u0027 %dbName)\n\telse:\n\t\tupdateChartConfigQuery \u003d self.view.rootContainer.getUpdateChartConfigQuery(dbType)\n\t\tif not updateChartConfigQuery:\n\t\t\tlogger.debug(\u0027Unable to save chart configuration to database \"%s\" because it is an unknown database type \"%s\".\u0027 %(dbName, dbType))\n\t\t\treturn\n\t\t\t\n\t\tsystem.db.runPrepUpdate(updateChartConfigQuery, [configJson, username, private, configId], dbName)\n\t\tlogger.debug(\u0027Updated chart configuration in database \"%s\"\u0027 %dbName)\n\t\n\t"
+        },
+        {
+          "name": "getConfigJson",
+          "params": [
+            "includePlots",
+            "includeDisplay"
+          ],
+          "script": "\tconfig \u003d {}\n\tpowerChart \u003d self.view.getChild(\u0027root/Power Chart\u0027)\n\n\t# added a deepcopy utility that includes an option to convert Date to Instant format string\n\n\tif includePlots:\n\t\tconfig[\u0027config\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.config, True)\n\t\tconfig[\u0027axes\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.axes, True)\n\t\tconfig[\u0027pens\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.pens, True)\n\t\tconfig[\u0027plots\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.plots, True)\n\t\tconfig[\u0027title\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.title, True)\n\t\t\n\tif includeDisplay:\n\t\tconfig[\u0027timeAxis\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.timeAxis, True)\n\n\t\tconfig[\u0027interaction\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.interaction, True)\n\t\t\n\t\tconfig[\u0027dataColumns\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.dataColumns, True)\n\t\tconfig[\u0027legend\u0027] \u003d self.view.rootContainer.propertyDeepcopy(powerChart.props.legend, True)\n\t\n\t# this method easily converts the perspective property trees into json\n\t# using str() of the property itself can include various parts that are not json compatible\n\tif config:\n\t\tfrom com.inductiveautomation.ignition.common import TypeUtilities\n\t\treturn str(TypeUtilities.pyToGson(config))\n\treturn \u0027{}\u0027"
+        },
+        {
+          "name": "getTableExistsQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT EXISTS(\n\t\t\tSELECT\n\t\t\t\t*\n\t\t\tFROM\n\t\t\t\tinformation_schema.tables\n\t\t\tWHERE\n\t\t\t\ttable_schema NOT IN (\u0027information_schema\u0027, \u0027pg_catalog\u0027) AND\n\t\t\t\ttable_type \u003d \u0027BASE TABLE\u0027 AND\n\t\t\t\ttable_name \u003d \u0027ad_hoc_trends_config\u0027)\u0027\u0027\u0027\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT EXISTS(\n\t\t\tSELECT\n\t\t\t\t*\n\t\t\tFROM\n\t\t\t\tsqlite_master\n\t\t\tWHERE\n\t\t\t\ttype\u003d\u0027table\u0027 AND\n\t\t\t\tname\u003d\u0027ad_hoc_trends_config\u0027)\u0027\u0027\u0027\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT EXISTS(\n\t\t\tSELECT\n\t\t\t\t*\n\t\t\tFROM\n\t\t\t\tinformation_schema.tables\n\t\t\tWHERE\n\t\t\t\ttable_name \u003d \u0027ad_hoc_trends_config\u0027)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tCASE WHEN EXISTS \n\t\t\t(\n\t\t\t\tSELECT * \n\t\t\t\tFROM INFORMATION_SCHEMA.TABLES\n\t\t\t\tWHERE TABLE_TYPE \u003d \u0027BASE TABLE\u0027\n\t\t\t\tAND TABLE_NAME \u003d \u0027ad_hoc_trends_config\u0027\n\t\t\t)\n\t\t\t\tTHEN 1\n\t\t\t\tELSE 0\n\t\t\tEND\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tcount(*)\n\t\tFROM\n\t\t\tdba_tables\n\t\tWHERE\n\t\t\ttable_name \u003d \u0027AD_HOC_TRENDS_CONFIG\u0027\n\t\t\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getDatabaseEnabledQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tprivate \u003d false\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d 0\u0027\u0027\u0027\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tprivate \u003d false\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d 0\u0027\u0027\u0027\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\t# by deafult, MySQL will auto increment when you try to set an auto increment column to 0 on INSERT.\n\t\t# using -1 here instead\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tprivate \u003d false\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d -1\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tCASE WHEN private \u003d \u0027FALSE\u0027\n\t\t\t\tTHEN 1\n\t\t\t\tELSE 0\n\t\t\tEND\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d 0\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tCASE WHEN private \u003d 0\n\t\t\t\tTHEN 1\n\t\t\t\tELSE 0\n\t\t\tEND\n\t\tFROM\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\tWHERE\n\t\t\tid \u003d 0\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getTableFormatMatchesQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tcount(*) \u003d 6\n\t\tFROM\n\t\t\tinformation_schema.columns\n\t\tWHERE\n\t\t\ttable_name \u003d \u0027ad_hoc_trends_config\u0027 AND\n\t\t\tcolumn_name IN (\u0027id\u0027,\u0027username\u0027,\u0027config_name\u0027,\u0027private\u0027,\u0027config\u0027,\u0027t_stamp\u0027)\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tcount(*) \u003d 6\n\t\tFROM\n\t\t\tpragma_table_info(\u0027ad_hoc_trends_config\u0027)\n\t\tWHERE\n\t\t\tname IN (\u0027id\u0027,\u0027username\u0027,\u0027config_name\u0027,\u0027private\u0027,\u0027config\u0027,\u0027t_stamp\u0027)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tcount(*) \u003d 6\n\t\tFROM\n\t\t\tinformation_schema.columns\n\t\tWHERE\n\t\t\ttable_name \u003d \u0027ad_hoc_trends_config\u0027 AND\n\t\t\tcolumn_name IN (\u0027id\u0027,\u0027username\u0027,\u0027config_name\u0027,\u0027private\u0027,\u0027config\u0027,\u0027t_stamp\u0027)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tCASE WHEN COUNT(*) \u003d 6\n\t\t\t\tTHEN 1\n\t\t\t\tELSE 0\n\t\t\tEND\n\t\tFROM\n\t\t\tinformation_schema.columns\n\t\tWHERE\n\t\t\tTABLE_NAME \u003d \u0027ad_hoc_trends_config\u0027 AND\n\t\t\tCOLUMN_NAME IN (\u0027id\u0027,\u0027username\u0027,\u0027config_name\u0027,\u0027private\u0027,\u0027config\u0027,\u0027t_stamp\u0027)\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tCASE WHEN COUNT(*) \u003d 6\n\t\t\t\tTHEN 1\n\t\t\t\tELSE 0\n\t\t\tEND\n\t\tFROM\n\t\t\tall_tab_cols\n\t\tWHERE\n\t\t\tTABLE_NAME \u003d \u0027AD_HOC_TRENDS_CONFIG\u0027 AND\n\t\t\tCOLUMN_NAME IN (\u0027ID\u0027,\u0027USERNAME\u0027,\u0027CONFIG_NAME\u0027,\u0027PRIVATE\u0027,\u0027CONFIG\u0027,\u0027T_STAMP\u0027)\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getCreateTableQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tCREATE TABLE ad_hoc_trends_config(\n\t\t\tid SERIAL PRIMARY KEY,\n\t\t\tusername text,\n\t\t\tconfig_name text,\n\t\t\tprivate boolean,\n\t\t\tconfig text,\n\t\t\tt_stamp timestamp DEFAULT CURRENT_TIMESTAMP,\n\t\t\tCONSTRAINT name UNIQUE(username, config_name)\n\t\t)\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tCREATE TABLE ad_hoc_trends_config(\n\t\t\tid INTEGER PRIMARY KEY,\n\t\t\tusername TEXT,\n\t\t\tconfig_name TEXT,\n\t\t\tprivate INTEGER,\n\t\t\tconfig TEXT,\n\t\t\tt_stamp TEXT DEFAULT CURRENT_TIMESTAMP,\n\t\t\tUNIQUE(username, config_name)\n\t\t)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tCREATE TABLE ad_hoc_trends_config(\n\t\t\tid INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,\n\t\t\tusername VARCHAR(255),\n\t\t\tconfig_name VARCHAR(255),\n\t\t\tprivate BOOLEAN,\n\t\t\tconfig TEXT,\n\t\t\tt_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n\t\t\tCONSTRAINT name UNIQUE(username, config_name)\n\t\t)\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tCREATE TABLE ad_hoc_trends_config(\n\t\t\tid INT NOT NULL PRIMARY KEY IDENTITY(1, 1),\n\t\t\tusername VARCHAR(255),\n\t\t\tconfig_name VARCHAR(255),\n\t\t\tprivate BIT,\n\t\t\tconfig TEXT,\n\t\t\tt_stamp DATETIME DEFAULT CURRENT_TIMESTAMP,\n\t\t\tCONSTRAINT name UNIQUE(username, config_name)\n\t\t)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tCREATE TABLE ad_hoc_trends_config(\n\t\t\tid NUMBER GENERATED BY DEFAULT ON NULL AS IDENTITY,\n\t\t    username VARCHAR(255),\n\t\t    config_name VARCHAR(255),\n\t\t    private NUMBER,\n\t\t    config NCLOB,\n\t\t    t_stamp DATE DEFAULT CURRENT_TIMESTAMP,\n\t\t    CONSTRAINT name UNIQUE(username, config_name)\n\t\t)\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getMakeDatabasePrivateQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO ad_hoc_trends_config\n\t\t\t(id, config, config_name, private, username)\n\t\tVALUES\n\t\t\t(0, null, null, ?, null) \n\t\tON CONFLICT (id) \n\t\tDO UPDATE\n\t\t\tSET\n\t\t\t\tprivate \u003d ?\n\t\t\tWHERE\n\t\t\t\tad_hoc_trends_config.id \u003d 0\n\t\t\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\t# using ? AND ? here to use up to arguments, matching the other SQL queries\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT OR REPLACE INTO ad_hoc_trends_config\n\t\t\t(id, config, config_name, private, username)\n\t\tVALUES\n\t\t\t(0, null, null, ? AND ?, null)\n\t\t\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO ad_hoc_trends_config\n\t\t\t\t\t(id, config, config_name, private, username)\n\t\t\t\tVALUES\n\t\t\t\t\t(-1, null, null, ?, null) \n\t\t\t\tON DUPLICATE KEY UPDATE\n\t\t\t\t\tprivate \u003d ?\n\t\t\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tBEGIN TRAN\n\t\t\tUPDATE ad_hoc_trends_config\n\t\t\tWITH (SERIALIZABLE)\n\t\t\tSET private \u003d ?\n\t\t\tWHERE id \u003d 0\n\t\t\t\n\t\t\tIF @@rowcount \u003d 0\n\t\t\tBEGIN\n\t\t\t\tSET IDENTITY_INSERT ad_hoc_trends_config ON\n\t\t\t\tINSERT INTO ad_hoc_trends_config\n\t\t\t\t(id, config, config_name, private, username)\n\t\t\t\tVALUES\n\t\t\t\t(0, null, null, ?, null)\n\t\t\t\tSET IDENTITY_INSERT ad_hoc_trends_config OFF\n\t\t\tEND\n\t\tCOMMIT TRAN\n\t\t\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tMERGE INTO AD_HOC_TRENDS_CONFIG a\n\t\t\tUSING (SELECT 0 AS ID FROM DUAL d) d\n\t\t\tON (a.ID \u003d d.ID)\n\t\t\tWHEN MATCHED THEN UPDATE SET a.PRIVATE \u003d ?\n\t\t\tWHEN NOT MATCHED THEN INSERT (ID, CONFIG, CONFIG_NAME, PRIVATE, USERNAME) VALUES (0, null, null, ?, null)\n\t\t\u0027\u0027\u0027\n\t\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getAvailableChartsQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR \n\t\t\t(private \u003d FALSE) OR \n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR \n\t\t\t(private \u003d FALSE) OR \n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR \n\t\t\t(private \u003d FALSE) OR \n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR \n\t\t\t(private \u003d \u0027FALSE\u0027) OR \n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid as \"id\",\n\t\t\tusername as \"username\",\n\t\t\tconfig_name as \"config_name\"\n\t\tFROM\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\tWHERE\n\t\t\t((USERNAME IS NULL) OR \n\t\t\t(PRIVATE \u003d 0) OR \n\t\t\t(USERNAME \u003d ?)) AND\n\t\t\tID \u003e 0\u0027\u0027\u0027\n\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getOwnChartsQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR\n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR\n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR\n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid,\n\t\t\tusername,\n\t\t\tconfig_name\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\t((username IS NULL) OR\n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tid as \"id\",\n\t\t\tusername as \"username\",\n\t\t\tconfig_name as \"config_name\"\n\t\tFROM\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\tWHERE\n\t\t\t((username IS NULL) OR\n\t\t\t(username \u003d ?)) AND\n\t\t\tid \u003e 0\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getChartConfigQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tconfig\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tconfig\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tconfig\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tconfig\n\t\tFROM\n\t\t\tad_hoc_trends_config\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tSELECT\n\t\t\tconfig as \"config\"\n\t\tFROM\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getInsertChartConfigQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO\n\t\t\tad_hoc_trends_config\n\t\t\t(config, config_name, private, username)\n\t\tVALUES\n\t\t\t(?, ?, ?, ?)\u0027\u0027\u0027\n\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO\n\t\t\tad_hoc_trends_config\n\t\t\t(config, config_name, private, username)\n\t\tVALUES\n\t\t\t(?, ?, ?, ?)\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO\n\t\t\tad_hoc_trends_config\n\t\t\t(config, config_name, private, username)\n\t\tVALUES\n\t\t\t(?, ?, ?, ?)\u0027\u0027\u0027\n\t\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO\n\t\t\tad_hoc_trends_config\n\t\t\t(config, config_name, private, username)\n\t\tVALUES\n\t\t\t(?, ?, ?, ?)\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tINSERT INTO\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\t\t(config, config_name, private, username)\n\t\tVALUES\n\t\t\t(?, ?, ?, ?)\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "getUpdateChartConfigQuery",
+          "params": [
+            "dbType"
+          ],
+          "script": "\tif dbType \u003d\u003d \u0027POSTGRES\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tUPDATE\n\t\t\tad_hoc_trends_config\n\t\tSET\n\t\t\tconfig \u003d ?,\n\t\t\tprivate \u003d CASE\n\t\t\t\tWHEN username \u003d ? THEN ?\n\t\t\t\tELSE private\n\t\t\tEND\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\n\telif dbType \u003d\u003d \u0027SQLITE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tUPDATE\n\t\t\tad_hoc_trends_config\n\t\tSET\n\t\t\tconfig \u003d ?,\n\t\t\tprivate \u003d CASE\n\t\t\t\tWHEN username \u003d ? THEN ?\n\t\t\t\tELSE private\n\t\t\tEND\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027MYSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tUPDATE\n\t\t\tad_hoc_trends_config\n\t\tSET\n\t\t\tconfig \u003d ?,\n\t\t\tprivate \u003d CASE\n\t\t\t\tWHEN username \u003d ? THEN ?\n\t\t\t\tELSE private\n\t\t\tEND\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\n\telif dbType \u003d\u003d \u0027MSSQL\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tUPDATE\n\t\t\tad_hoc_trends_config\n\t\tSET\n\t\t\tconfig \u003d ?,\n\t\t\tprivate \u003d CASE\n\t\t\t\tWHEN username \u003d ? THEN ?\n\t\t\t\tELSE private\n\t\t\tEND\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\t\t\n\telif dbType \u003d\u003d \u0027ORACLE\u0027:\n\t\treturn \u0027\u0027\u0027\n\t\tUPDATE\n\t\t\tAD_HOC_TRENDS_CONFIG\n\t\tSET\n\t\t\tconfig \u003d ?,\n\t\t\tprivate \u003d CASE\n\t\t\t\tWHEN username \u003d ? THEN ?\n\t\t\t\tELSE private\n\t\t\tEND\n\t\tWHERE\n\t\t\tid \u003d ?\u0027\u0027\u0027\n\t\n\treturn \u0027\u0027"
+        },
+        {
+          "name": "dateToInstant",
+          "params": [
+            "date"
+          ],
+          "script": "\t# using this to convert Date props into string format that can be stored and easily turned back into Date\n\t# using the type ultility converter to string alone does not work well enough as no timezone is included\n\n\treturn str(date.toInstant())"
+        },
+        {
+          "name": "dateFromInstant",
+          "params": [
+            "instant"
+          ],
+          "script": "\t# using this to convert a string in Instant form back to java.util.Date for certain props\n\tfrom java.util import Date\n\tfrom java.time import Instant\n\tif isinstance(instant, basestring):\n\t\treturn Date.from(Instant.parse(instant))\n\treturn Date.from(instant)"
+        },
+        {
+          "name": "propertyDeepcopy",
+          "params": [
+            "property",
+            "convertDates\u003dFalse"
+          ],
+          "script": "\t# utility for copying the values from a perspective prop tree\n\t# deepcopy() does not appear to work directly on the prop tree wrapper type\n\t# also converting Date object to Instant format string\n\t\n\timport collections\n\tfrom java.util import Date\n\t\n\tdef copyProperties(node):\n\t\t# perspective arrays and python lists (but not strings)\n\t\tif \u0027PropertyTreeScriptWrapper$ArrayWrapper\u0027 in str(type(node)) or \\\n\t\t(isinstance(node, collections.Sequence) and not isinstance(node, basestring)):\n\t\t\tnodeCopy \u003d []\n\t\t\tfor i in node:\n\t\t\t\tnodeCopy.append(copyProperties(i))\n\t\t\treturn nodeCopy\n\t\t# perspective objects and python dictionaries\n\t\telif \u0027PropertyTreeScriptWrapper$ObjectWrapper\u0027 in str(type(node)) or isinstance(node, collections.Mapping):\n\t\t\tnodeCopy \u003d {}\n\t\t\tfor k in node:\n\t\t\t\tnodeCopy[k] \u003d copyProperties(node[k])\n\t\t\treturn nodeCopy\n\t\t# single value, with optional date conversion\n\t\telse:\n\t\t\tif convertDates and isinstance(node, Date):\n\t\t\t\treturn self.view.rootContainer.dateToInstant(node)\n\t\t\treturn node\n\t\t\t\n\treturn copyProperties(property)"
+        },
+        {
+          "name": "propertyTreeRestoreDate",
+          "params": [
+            "propertyTree"
+          ],
+          "script": "\t# creates a new copy of the given property tree, replacing Instant formatted strings with java.util.Date\n\timport collections\n\t\n\tdef convertProperties(node):\n\t\t# perspective arrays and python lists (but not strings)\n\t\tif \u0027PropertyTreeScriptWrapper$ArrayWrapper\u0027 in str(type(node)) or \\\n\t\t(isinstance(node, collections.Sequence) and not isinstance(node, basestring)):\n\t\t\tnodeCopy \u003d []\n\t\t\tfor i in node:\n\t\t\t\tnodeCopy.append(convertProperties(i))\n\t\t\treturn nodeCopy\n\t\t# perspective objects and python dictionaries\n\t\telif \u0027PropertyTreeScriptWrapper$ObjectWrapper\u0027 in str(type(node)) or isinstance(node, collections.Mapping):\n\t\t\tnodeCopy \u003d {}\n\t\t\tfor k in node:\n\t\t\t\tnodeCopy[k] \u003d convertProperties(node[k])\n\t\t\treturn nodeCopy\n\t\t# single value\n\t\telse:\n\t\t\t# this will attempt to convert the string back into Date, otherwise just returns the value\n\t\t\tif isinstance(node, basestring):\n\t\t\t\ttry:\n\t\t\t\t\treturn self.view.rootContainer.dateFromInstant(node)\n\t\t\t\texcept:\n\t\t\t\t\treturn node\n\t\t\treturn node\n\t\t\t\n\treturn convertProperties(propertyTree)"
+        },
+        {
+          "name": "loadFromFile",
+          "params": [
+            "configJson",
+            "includePlots",
+            "includeDisplay"
+          ],
+          "script": "\t# save files are split into two sections -\n\t#  the configured plots (pens/axes/plots) and the overall display settings (legends/columns)\n\tif configJson:\n\t\tconfig \u003d system.util.jsonDecode(configJson.decode(\u0027utf-8\u0027))\n\t\tconfig \u003d self.view.rootContainer.propertyTreeRestoreDate(config)\n\t\t\n\t\tpowerChart \u003d self.view.getChild(\u0027root/Power Chart\u0027)\n\t\tif includePlots:\n\t\t\tif \u0027config\u0027 in config:\n\t\t\t\tpowerChart.props.config \u003d config[\u0027config\u0027]\n\t\t\t\t\n\t\t\tif \u0027axes\u0027 in config:\n\t\t\t\tpowerChart.props.axes \u003d config[\u0027axes\u0027]\n\t\t\tif \u0027pens\u0027 in config:\n\t\t\t\tpowerChart.props.pens \u003d config[\u0027pens\u0027]\n\t\t\tif \u0027plots\u0027 in config:\n\t\t\t\tpowerChart.props.plots \u003d config[\u0027plots\u0027]\n\t\t\tif \u0027title\u0027 in config:\n\t\t\t\tpowerChart.props.title \u003d config[\u0027title\u0027]\n\t\t\t\n\t\tif includeDisplay:\n\t\t\tif \u0027timeAxis\u0027 in config:\n\t\t\t\tpowerChart.props.timeAxis \u003d config[\u0027timeAxis\u0027]\n\t\t\tif \u0027interaction\u0027 in config:\n\t\t\t\t# range brushes are not currently writable through the property tree\n\t\t\t\tconfig[\u0027interaction\u0027][\u0027rangeBrush\u0027][\u0027values\u0027] \u003d []\n\t\t\t\tpowerChart.props.interaction \u003d config[\u0027interaction\u0027]\n\t\t\tif \u0027dataColumns\u0027 in config:\n\t\t\t\tpowerChart.props.dataColumns \u003d config[\u0027dataColumns\u0027]\n\t\t\tif \u0027legend\u0027 in config:\n\t\t\t\tpowerChart.props.legend \u003d config[\u0027legend\u0027]"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "ad_hoc_trends_databaseReconfigured",
+          "pageScope": false,
+          "script": "\t# called when someone enables/disables a database\n\t# this way, users don\u0027t have to manually refresh their db listing\n\tself.view.custom.configureDatabases \u003d {}\n\tself.view.refreshBinding(\u0027custom.databases\u0027)\n\tif self.view.custom.activeControl in [\u0027LoadFromDb\u0027, \u0027SaveToDb\u0027]:\n\t\tself.view.rootContainer.closeFunction()",
+          "sessionScope": true,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,1 @@
+SELECT * FROM sp_requests WHERE (opened_time >= :startDate AND opened_time <= :endDate) OR (closed_time >= :startDate AND closed_time <= :endDate)

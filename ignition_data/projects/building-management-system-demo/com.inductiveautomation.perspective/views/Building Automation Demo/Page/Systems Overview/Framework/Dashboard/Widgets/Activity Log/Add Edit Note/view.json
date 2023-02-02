@@ -1,0 +1,527 @@
+{
+  "custom": {},
+  "params": {
+    "id": -1
+  },
+  "propConfig": {
+    "custom.material": {
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id.key": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id.key[0]": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.materials[0]": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.materials[1]": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 317,
+      "width": 487
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.id}\u003d-1,\u0027Add Note\u0027,\u0027Edit Note\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontSize": "20px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "25px"
+            },
+            "props": {
+              "elements": [
+                {
+                  "d": "M0 0h24v24H0V0z",
+                  "fill": {
+                    "paint": "none"
+                  },
+                  "name": "path",
+                  "type": "path"
+                },
+                {
+                  "d": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
+                  "name": "path",
+                  "type": "path"
+                }
+              ],
+              "fill": "var(--neutral-100)",
+              "style": {
+                "cursor": "pointer",
+                "marginRight": "3px"
+              },
+              "viewBox": "0 0 24 24"
+            },
+            "type": "ia.shapes.svg"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "marginBottom": "20px",
+            "marginTop": "8px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "fontSize": "15px",
+                "white-space": "nowrap"
+              },
+              "text": "Title"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "try({/root.custom.note}[\u0027title\u0027],\u0027\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "borderBottomStyle": "solid",
+                "borderLeftStyle": "none",
+                "borderRightStyle": "none",
+                "borderTopStyle": "none",
+                "fontSize": "15px",
+                "outlineStyle": "none"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Title Cont"
+        },
+        "position": {
+          "basis": "45px"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "fontSize": "15px",
+                "white-space": "nowrap"
+              },
+              "text": "Note"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Note"
+            },
+            "position": {
+              "basis": "32px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "try({/root.custom.note}[\u0027note\u0027],\u0027\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "marginTop": "15px"
+              }
+            },
+            "type": "ia.input.text-area"
+          }
+        ],
+        "meta": {
+          "name": "Note Cont"
+        },
+        "position": {
+          "basis": "55px",
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginRight": "15px",
+            "marginTop": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Cancel"
+            },
+            "position": {
+              "basis": "45%"
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--neutral-10",
+                "color": "--neutral-100",
+                "cursor": "pointer"
+              },
+              "text": "Cancel"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# Retrieve the title and the note that the user entered.\n\t\n\ttitle \u003d self.parent.parent.getChild(\"Title Cont\").getChild(\"Title\").props.text\n\tnote \u003d self.parent.parent.getChild(\"Note Cont\").getChild(\"Note\").props.text\n\t\n\tif self.view.params.id \u003d\u003d -1:\n\t\t# Try to retrieve the user\u0027s first and last name. If both are empty, then\n\t\t# utilize the username.\n\t\t\n\t\tfirstName \u003d self.session.props.auth.user.firstName\n\t\tlastName \u003d self.session.props.auth.user.lastName\n\t\n\t\tif firstName !\u003d None and lastName !\u003d None:\n\t\t\tuser \u003d firstName + \u0027 \u0027 + lastName\n\t\telif firstName !\u003d None:\n\t\t\tuser \u003d firstName\n\t\telif lastName !\u003d None:\n\t\t\tuser \u003d lastName\n\t\telse:\n\t\t\tuser \u003d self.session.props.auth.user.userName\n\t\t\n\t\t# Get the current time.\n\t\t\n\t\ttime \u003d system.date.now()\n\t\t\n\t\t# Execute insertNote named query to save the note.\n\t\t\n\t\tparams \u003d {\u0027date\u0027:time,\u0027title\u0027:title,\u0027note\u0027:note,\u0027user\u0027:user}\n\t\tsystem.db.runNamedQuery(\u0027Activity Log/insertNote\u0027,parameters\u003dparams)\n\t\t\n\telse:\n\t\t# Execute updateNote named query to edit the note.\n\t\t\n\t\tparams \u003d {\u0027noteID\u0027:self.view.params.id,\u0027title\u0027:title,\u0027note\u0027:note}\n\t\tsystem.db.runNamedQuery(\u0027Activity Log/updateNote\u0027,parameters\u003dparams)\n\t\n\tsystem.perspective.sendMessage(\u0027refreshActivityLog\u0027,payload\u003d{},scope\u003d\u0027page\u0027)\n\t\n\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Save"
+            },
+            "position": {
+              "basis": "45%"
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "note": "{.../Note Cont/Note.props.text}",
+                      "title": "{.../Title Cont/Title.props.text}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# User cannot save the note if title or note is empty.\n\t\n\tif len(value[\u0027title\u0027]) \u003e 0 and len(value[\u0027note\u0027]) \u003e 0:\n\t\treturn True\n\telse:\n\t\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              },
+              "props.style.cursor": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.enabled"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# If the button is enabled, display a pointer. Otherwise, display \u0027not-allowed\u0027.\n\t\n\tif value:\n\t\treturn \u0027pointer\u0027\n\telse:\n\t\treturn \u0027not-allowed\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "background-color": "--neutral-90",
+                "marginLeft": "10%"
+              },
+              "text": "Save"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Options Insert Cont"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.id} \u003d -1"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "marginTop": "35px",
+            "paddingRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t# Get the note ID and call deleteNote named query.\n\t\n\tnoteID \u003d self.view.params.id\n\t\n\tsystem.db.runNamedQuery(\u0027Activity Log/deleteNote\u0027,parameters\u003d{\u0027noteID\u0027:noteID})\n\t\n\tsystem.perspective.sendMessage(\u0027refreshActivityLog\u0027,payload\u003d{},scope\u003d\u0027page\u0027)\n\t\t\n\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Delete"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#FFFFFF00",
+                    "borderStyle": "none",
+                    "classes": "building-automation-demo/page/general-icon",
+                    "color": "--neutral-100",
+                    "cursor": "pointer",
+                    "outline": "none"
+                  },
+                  "text": "Delete Note"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Delete"
+            },
+            "position": {
+              "basis": "100px"
+            },
+            "props": {
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Cancel"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "color": "--neutral-100",
+                    "cursor": "pointer"
+                  },
+                  "text": "Cancel"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t# Retrieve the title and the note that the user entered.\n\t\n\ttitle \u003d self.parent.parent.parent.getChild(\"Title Cont\").getChild(\"Title\").props.text\n\tnote \u003d self.parent.parent.parent.getChild(\"Note Cont\").getChild(\"Note\").props.text\n\t\n\tif self.view.params.id \u003d\u003d -1:\n\t\t# Try to retrieve the user\u0027s first and last name. If both are empty, then\n\t\t# utilize the username.\n\t\t\n\t\tfirstName \u003d self.session.props.auth.user.firstName\n\t\tlastName \u003d self.session.props.auth.user.lastName\n\t\n\t\tif firstName !\u003d None and lastName !\u003d None:\n\t\t\tuser \u003d firstName + \u0027 \u0027 + lastName\n\t\telif firstName !\u003d None:\n\t\t\tuser \u003d firstName\n\t\telif lastName !\u003d None:\n\t\t\tuser \u003d lastName\n\t\telse:\n\t\t\tuser \u003d self.session.props.auth.user.userName\n\t\t\n\t\t# Get the current time.\n\t\t\n\t\ttime \u003d system.date.now()\n\t\t\n\t\t# Execute insertNote named query to save the note.\n\t\t\n\t\tparams \u003d {\u0027date\u0027:time,\u0027title\u0027:title,\u0027note\u0027:note,\u0027user\u0027:user}\n\t\tsystem.db.runNamedQuery(\u0027Activity Log/insertNote\u0027,parameters\u003dparams)\n\t\t\n\telse:\n\t\t# Execute updateNote named query to edit the note.\n\t\t\n\t\tparams \u003d {\u0027noteID\u0027:self.view.params.id,\u0027title\u0027:title,\u0027note\u0027:note}\n\t\tsystem.db.runNamedQuery(\u0027Activity Log/updateNote\u0027,parameters\u003dparams)\n\t\n\tsystem.perspective.sendMessage(\u0027refreshActivityLog\u0027,payload\u003d{},scope\u003d\u0027page\u0027)\n\t\n\tsystem.perspective.closePopup(\u0027add-edit-note\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Save"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "background-color": "--neutral-90",
+                    "cursor": "pointer"
+                  },
+                  "text": "Save"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Cancel Save"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "props": {
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Options Edit Cont"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "!{../Options Insert Cont.position.display}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "marginTop": "35px",
+            "paddingRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.note": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "noteID": "{view.params.id}"
+            },
+            "queryPath": "Activity Log/getNote"
+          },
+          "type": "query"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-10",
+        "paddingBottom": "15px",
+        "paddingLeft": "15px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

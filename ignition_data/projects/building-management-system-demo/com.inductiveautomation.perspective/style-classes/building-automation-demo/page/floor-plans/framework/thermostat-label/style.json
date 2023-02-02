@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "color": "#000000",
+      "fontSize": "1.1vh",
+      "fontWeight": "100",
+      "overflow": "hidden",
+      "whiteSpace": "nowrap"
+    }
+  }
+}

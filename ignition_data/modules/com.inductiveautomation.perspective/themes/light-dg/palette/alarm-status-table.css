@@ -1,0 +1,31 @@
+.ia_alarmStatusTableComponent {
+    background-color: var(--neutral-20);
+    border: var(--containerBorder);
+    border-radius: var(--borderRadius);
+    padding: 15px;
+}
+
+.ia_alarmStatusTableComponent__selection {
+    background-color: var(--callToAction--hover);
+}
+
+.ia_alarmStatusTableComponent__foot__message {
+    color: var(--neutral-90);
+    line-height: 1rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+.ia_alarmStatusTableComponent__foot__message--success {
+    color: var(--success);
+}
+
+.ia_alarmStatusTableComponent__foot__message--error {
+    color: var(--error);
+}
+
+
+.ia_alarmStatusTableComponent__alarmNotesRequiredModal__foot {
+    background-color: var(--neutral-30);
+    border: var(--containerBorder);
+}

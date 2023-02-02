@@ -1,0 +1,729 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 860
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Curr Dash"
+                        },
+                        "position": {
+                          "grow": 1,
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.text": {
+                            "binding": {
+                              "config": {
+                                "struct": {
+                                  "currDashName": "{session.custom.dashboard.objects.current.name}",
+                                  "editID": "{session.custom.dashboard.objects.edit.id}"
+                                },
+                                "waitOnAll": true
+                              },
+                              "transforms": [
+                                {
+                                  "code": "\tif value[\u0027editID\u0027] \u003d\u003d None:\n\t\treturn \u0027Creating new dashboard\u0027\n\telse:\n\t\treturn value[\u0027currDashName\u0027]",
+                                  "type": "script"
+                                }
+                              ],
+                              "type": "expr-struct"
+                            }
+                          }
+                        },
+                        "props": {
+                          "style": {
+                            "fontSize": "13px",
+                            "fontWeight": "normal",
+                            "transition": "font-color 0.25s linear"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "Expand"
+                        },
+                        "position": {
+                          "basis": "23px",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "position.display": {
+                            "binding": {
+                              "config": {
+                                "expression": "{parent.custom.expanded}\u003dfalse"
+                              },
+                              "type": "expr"
+                            }
+                          }
+                        },
+                        "props": {
+                          "elements": [
+                            {
+                              "d": "M0 0h24v24H0z",
+                              "fill": {
+                                "paint": "none"
+                              },
+                              "name": "path",
+                              "type": "path"
+                            },
+                            {
+                              "d": "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+                              "name": "path",
+                              "type": "path"
+                            }
+                          ],
+                          "style": {
+                            "transition": "fill 0.25s linear"
+                          },
+                          "viewBox": "0 0 24 24"
+                        },
+                        "type": "ia.shapes.svg"
+                      },
+                      {
+                        "meta": {
+                          "name": "Collapse"
+                        },
+                        "position": {
+                          "basis": "23px",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "position.display": {
+                            "binding": {
+                              "config": {
+                                "expression": "{parent.custom.expanded}\u003dtrue"
+                              },
+                              "type": "expr"
+                            }
+                          }
+                        },
+                        "props": {
+                          "elements": [
+                            {
+                              "d": "M0 0h24v24H0z",
+                              "fill": {
+                                "paint": "none"
+                              },
+                              "name": "path",
+                              "type": "path"
+                            },
+                            {
+                              "d": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+                              "name": "path",
+                              "type": "path"
+                            }
+                          ],
+                          "style": {
+                            "transition": "fill 0.25s linear"
+                          },
+                          "viewBox": "0 0 24 24"
+                        },
+                        "type": "ia.shapes.svg"
+                      }
+                    ],
+                    "custom": {
+                      "expanded": false
+                    },
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.custom.expanded \u003d not self.custom.expanded"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Select Dashboard"
+                    },
+                    "position": {
+                      "basis": "32px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "building-automation-demo/page/general-button",
+                        "minHeight": "32px",
+                        "paddingBottom": "3px",
+                        "paddingLeft": "10px",
+                        "paddingRight": "4px",
+                        "paddingTop": "3px",
+                        "transition": "border-color 0.25s linear"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "meta": {
+                      "name": "Select Dashboard View"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.basis": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({session.props.auth.authenticated},\u0027365px\u0027,\u0027150px\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "path": "../Select Dashboard.custom.expanded"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.newDash": {
+                        "binding": {
+                          "config": {
+                            "expression": "{session.custom.dashboard.objects.edit.id}\u003dnull"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.style.minHeight": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({session.props.auth.authenticated},\u0027365px\u0027,\u0027150px\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "params": {
+                        "inEditDash": true
+                      },
+                      "path": "Building Automation Demo/Page/Systems Overview/Framework/Dashboard/Select Dashboard/Select Dashboard",
+                      "style": {
+                        "borderColor": "var(--neutral-70)",
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                        "zIndex": 1
+                      }
+                    },
+                    "type": "ia.display.view"
+                  }
+                ],
+                "meta": {
+                  "name": "Select Dash Column Cont"
+                },
+                "position": {
+                  "basis": "225px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "marginRight": "30px",
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "..../Edit Cont.custom.addEdit"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value \u003d\u003d \u0027edit\u0027:\n\t\treturn \u0027Editing dashboard:\u0027\n\telif \u0027editNewName\u0027 in value:\n\t\treturn \u0027Editing dashboard (new name):\u0027\n\telse:\n\t\treturn \u0027Creating new dashboard:\u0027",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-70",
+                        "fontSize": "14px",
+                        "fontWeight": "bolder",
+                        "marginRight": "5px"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "New Dashboard Name"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "addEdit": "{..../Edit Cont.custom.addEdit}",
+                              "editName": "{session.custom.dashboard.objects.edit.name}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif \u0027editNewName\u0027 in value[\u0027addEdit\u0027]:\n\t\treturn value[\u0027addEdit\u0027].replace(\u0027editNewName\u0027,\u0027\u0027)\n\telse:\n\t\treturn value[\u0027editName\u0027]",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "fontSize": "14px",
+                        "fontWeight": "bolder",
+                        "marginRight": "20px"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Settings"
+                        },
+                        "position": {
+                          "basis": "17px",
+                          "shrink": 0
+                        },
+                        "props": {
+                          "elements": [
+                            {
+                              "elements": [
+                                {
+                                  "d": "M0,0h24v24H0V0z",
+                                  "fill": {
+                                    "paint": "none"
+                                  },
+                                  "name": "path",
+                                  "type": "path"
+                                },
+                                {
+                                  "d": "M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z",
+                                  "name": "path",
+                                  "type": "path"
+                                }
+                              ],
+                              "name": "group",
+                              "type": "group"
+                            }
+                          ],
+                          "style": {
+                            "marginRight": "2px",
+                            "maxWidth": "17px",
+                            "minWidth": "17px",
+                            "transition": "fill 0.25s linear"
+                          },
+                          "viewBox": "0 0 24 24"
+                        },
+                        "type": "ia.shapes.svg"
+                      },
+                      {
+                        "meta": {
+                          "name": "Label"
+                        },
+                        "position": {
+                          "shrink": 0
+                        },
+                        "props": {
+                          "style": {
+                            "marginRight": "2px",
+                            "transition": "color 0.25s linear"
+                          },
+                          "text": "Edit Details"
+                        },
+                        "type": "ia.display.label"
+                      }
+                    ],
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\t# Allows user to change dashboard name, number of rows/cols in the grid, etc.\n\tsystem.perspective.openDock(\u0027editDetails\u0027,params\u003d{\u0027currEdit\u0027:self.session.custom.dashboard.objects.edit})"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Edit Details Cont"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "alignItems": "center",
+                      "justify": "center",
+                      "style": {
+                        "borderStyle": "none",
+                        "classes": "building-automation-demo/page/general-button",
+                        "overflow": "hidden",
+                        "transition": "border-color 0.25s linear"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Edit Container"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-30",
+                    "borderColor": "--neutral-50",
+                    "borderRadius": "3px",
+                    "borderStyle": "solid",
+                    "borderWidth": "1px",
+                    "overflow": "hidden",
+                    "paddingLeft": "8px",
+                    "paddingRight": "8px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Edit Cont"
+            },
+            "position": {
+              "basis": "500px",
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.addEdit": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "currentName": "{session.custom.dashboard.objects.current.name}",
+                      "editID": "{session.custom.dashboard.objects.edit.id}",
+                      "editName": "{session.custom.dashboard.objects.edit.name}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# Returns \u0027edit\u0027 or \u0027editNewName + dashName\u0027 if the user\n\t# is currently editing an existing dashboard. If the user\n\t# is editing a new dashboard, then the name of that new\n\t# dashboard is returned.\n\t\n\tif value[\u0027editName\u0027] \u003d\u003d value[\u0027currentName\u0027]:\n\t\treturn \u0027edit\u0027\n\telse:\n\t\tif value[\u0027editID\u0027] !\u003d None:\n\t\t\treturn \u0027editNewName\u0027 + value[\u0027editName\u0027]\n\t\telse:\n\t\t\treturn value[\u0027editName\u0027]",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginLeft": "20px",
+                "maxHeight": "30px",
+                "minHeight": "30px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Add"
+                },
+                "position": {
+                  "basis": "23px",
+                  "shrink": 0
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "d": "M0 0h24v24H0z",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    },
+                    {
+                      "d": "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "style": {
+                    "transition": "fill 0.25s linear"
+                  },
+                  "viewBox": "0 0 24 24"
+                },
+                "type": "ia.shapes.svg"
+              },
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "marginRight": "2px",
+                    "transition": "color 0.25s linear"
+                  },
+                  "text": "New Dashboard"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t# Call editDashboard, which will initiate the process of creating\n\t# a new dashboard.\n\tdashboard.editDashboard(self)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Add Dashboard"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "justify": "center",
+              "style": {
+                "classes": "building-automation-demo/page/general-button",
+                "marginRight": "20px",
+                "maxHeight": "30px",
+                "minHeight": "30px",
+                "transition": "border-color 0.25s linear"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "70px",
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "overflow": "visible",
+            "zIndex": 1
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Widgets"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "path": "Building Automation Demo/Page/Systems Overview/Framework/Dashboard/Page/Edit/Edit Widgets Pane",
+          "style": {
+            "zIndex": 0
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# If the user is authenticated, then the showConfirmation function will \n\t# open a popup that will execute dashboard.deleteDashboard when clicking \n\t# the \u0027Yes\u0027 button.\n\t\n\tif self.session.props.auth.authenticated:\n\t\tdashboard.showConfirmation(\"Are you sure you want to delete this dashboard?\", \"dashboard.deleteDashboard\")\n\telse:\n\t\tdashboard.showMessage(\"\"\"We are glad that you are able to see \\\n\t\thow dashboards can be configured in Ignition! Because you are \\\n\t\taccessing this project publicly, any new dashboard configurations \\\n\t\tcannot be saved.\"\"\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Delete"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#FFFFFF00",
+                "borderStyle": "none",
+                "classes": "building-automation-demo/page/general-icon",
+                "color": "--neutral-100",
+                "margin": "0.5em",
+                "margin-left": "0.25em",
+                "margin-right": "0.25em",
+                "padding-bottom": "0.5ex",
+                "padding-top": "0.5ex"
+              },
+              "text": "Delete Dashboard"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t# Call the back function, which will navigate back to the previous page.\n\t\n\tdashboard.back(self)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Cancel"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#FFFFFF00",
+                    "color": "--neutral-100",
+                    "margin": "0.5em",
+                    "margin-left": "0.25em",
+                    "margin-right": "0.25em",
+                    "padding-bottom": "0.5ex",
+                    "padding-top": "0.5ex"
+                  },
+                  "text": "Cancel"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t# If user is authenticated, call syncDashboardDB function, which will save\n\t# all changes to the db and refresh the binding on the \u0027dashboards\u0027 session \n\t# custom property.\n\t\n\tif self.session.props.auth.authenticated:\n\t\tdashboard.syncDashboardDB(self)\n\telse:\n\t\tdashboard.showMessage(\"\"\"We are glad that you are able to see \\\n\t\thow dashboards can be configured in Ignition! Because you are \\\n\t\taccessing this project publicly, any new dashboard configurations \\\n\t\tcannot be saved.\"\"\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Save"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "background-color": "--neutral-90",
+                    "margin": "0.5em",
+                    "margin-left": "0.25em",
+                    "margin-right": "0.25em",
+                    "padding-bottom": "0.5ex",
+                    "padding-top": "0.5ex"
+                  },
+                  "text": "Save Dashboard"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Cancel Save"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Actions"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "--container"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-20"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}
