@@ -10,7 +10,7 @@ services:
       - SYMLINK_GITIGNORE=false
       - SYMLINK_LOGBACK=false
 
-  # Start the traefik with the latest version
+    # Start the agent with the latest version
   hub-agent:
     image: ghcr.io/traefik/hub-agent-traefik:v1.0.0
     pull_policy: always
@@ -18,7 +18,7 @@ services:
     restart: "on-failure"
     command:
       - run
-      - --hub.token=97c42de7-6dd8-4472-9747-6c69bcdde8e1
+      - --hub.token=4958f9af-32ea-4dd2-a684-68eee4d2a4ac
       - --auth-server.advertise-url=http://hub-agent
       - --traefik.host=traefik
       - --traefik.tls.insecure=true
@@ -26,7 +26,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - traefik
-    
+
   # Start Traefik with the latest version
   traefik:
     image: traefik:v2.8
