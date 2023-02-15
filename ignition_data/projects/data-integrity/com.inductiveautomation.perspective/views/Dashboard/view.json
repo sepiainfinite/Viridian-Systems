@@ -13,6 +13,10 @@
         "meta": {
           "name": "TitleDock"
         },
+        "position": {
+          "basis": "100px",
+          "grow": 1
+        },
         "propConfig": {
           "props.text": {
             "binding": {

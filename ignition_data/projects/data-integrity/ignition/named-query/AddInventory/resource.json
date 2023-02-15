@@ -16,9 +16,9 @@
     "enabled": true,
     "cacheAmount": 1,
     "cacheEnabled": false,
-    "database": "Supabase_DB",
+    "database": "aim_database",
     "fallbackEnabled": false,
-    "lastModificationSignature": "6a6945f1dc936014249c32efd480c7cdd0c94a6ff992174fc2038a67a82fecc5",
+    "lastModificationSignature": "5e8f636db906b435557d7a0be7d620c116e987af85c6ac8ededd69dc7285928c",
     "permissions": [
       {
         "zone": "",
@@ -26,24 +26,24 @@
       }
     ],
     "lastModification": {
-      "actor": "unauthenticated",
-      "timestamp": "2022-11-17T00:55:26Z"
+      "actor": "admin",
+      "timestamp": "2023-02-15T01:19:39Z"
     },
     "parameters": [
       {
         "type": "Parameter",
-        "identifier": "itemName",
+        "identifier": "itemQty",
         "sqlType": 7
       },
       {
         "type": "Parameter",
-        "identifier": "itemQty",
-        "sqlType": 3
+        "identifier": "itemId",
+        "sqlType": 7
       },
       {
         "type": "Parameter",
-        "identifier": "itemId",
-        "sqlType": 2
+        "identifier": "itemName",
+        "sqlType": 7
       }
     ]
   }

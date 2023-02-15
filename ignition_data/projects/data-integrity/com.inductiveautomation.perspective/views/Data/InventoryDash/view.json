@@ -100,15 +100,7 @@
                     }
                   },
                   "selection": {
-                    "data": [
-                      {
-                        "stringvalue": "Protein Bar - $2.74",
-                        "tagid": 1
-                      }
-                    ],
-                    "enableColumnSelection": true,
-                    "selectedColumn": "tagid",
-                    "selectedRow": 0
+                    "enableColumnSelection": true
                   }
                 },
                 "type": "ia.display.table"

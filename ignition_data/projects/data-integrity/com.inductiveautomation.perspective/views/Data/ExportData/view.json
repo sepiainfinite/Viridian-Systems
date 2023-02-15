@@ -1,6 +1,6 @@
 {
   "custom": {
-    "addValue": ""
+    "addValue": null
   },
   "params": {},
   "propConfig": {
@@ -294,6 +294,7 @@
                                 "fontSize": "22px",
                                 "overflow": "hidden"
                               },
+                              "text": "Chocolate",
                               "wrap": "off"
                             },
                             "type": "ia.input.text-area"
@@ -326,20 +327,15 @@
                           },
                           {
                             "meta": {
-                              "name": "Quantity"
+                              "name": "Quantity Field"
                             },
                             "position": {
                               "basis": "50px"
                             },
                             "props": {
-                              "style": {
-                                "border-radius": "50px",
-                                "fontSize": "22px",
-                                "overflow": "hidden"
-                              },
-                              "wrap": "off"
+                              "value": 4
                             },
-                            "type": "ia.input.text-area"
+                            "type": "ia.input.numeric-entry-field"
                           }
                         ],
                         "meta": {
@@ -355,7 +351,7 @@
                           "component": {
                             "onActionPerformed": {
                               "config": {
-                                "script": "\tupdateString \u003d self.parent.getChild(\"Name Section\").getChild(\"Name\").props.text + \" - \" + self.parent.getChild(\"Quantity Section\").getChild(\"Quantity\").props.text\n\t\n\tself.view.custom.addValue \u003d updateString"
+                                "script": "\tupdateString \u003d self.parent.getChild(\"Name Section\").getChild(\"Name\").props.text + \" - \" + str(self.parent.getChild(\"Quantity Section\").getChild(\"Quantity Field\").props.value)\n\t\n\tself.view.custom.addValue \u003d updateString\n\t\n\t# User ability to add manually configured data to the database.\n\t\n\tname \u003d self.parent.getChild(\"Name Section\").getChild(\"Name\").props.text\n\tsystem.db.runNamedQuery(\"AddInventory\", {\"itemName\":name})\n\t\n\tquantity \u003d str(self.parent.getChild(\"Quantity Section\").getChild(\"Quantity Field\").props.value)\n\tsystem.db.runNamedQuery(\"AddInventory\", {\"itemQty\":quantity})\n\t\n\t#identifier \u003d \u0027\u0027.join(random.choices(string.ascii_uppercase, k\u003d3)) + \u0027-\u0027 + \u0027\u0027.join(random.choices(string.digits, k\u003d2))\n\t#system.db.runNamedQuery(\"AddInventory\", {\"itemId\":identifier})\n\t"
                               },
                               "scope": "G",
                               "type": "script"

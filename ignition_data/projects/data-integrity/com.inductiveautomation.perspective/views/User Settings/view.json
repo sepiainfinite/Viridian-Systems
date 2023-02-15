@@ -44,19 +44,19 @@
           }
         },
         "meta": {
-          "name": "Button"
-        },
-        "position": {
-          "basis": "50px"
+          "name": "AccountConfig"
         },
         "props": {
           "image": {
-            "height": 50,
+            "height": 40,
             "icon": {
               "path": "material/account_circle"
             },
             "position": "center",
-            "width": 50
+            "width": 40
+          },
+          "style": {
+            "position": "absolute"
           },
           "text": ""
         },
@@ -164,8 +164,10 @@
           "direction": "column",
           "justify": "center",
           "style": {
-            "margin": "10px",
-            "overflow": "hidden"
+            "margin-left": "50px",
+            "overflow": "hidden",
+            "padding-bottom": "15px",
+            "position": "fixed"
           }
         },
         "type": "ia.container.flex"
@@ -175,10 +177,10 @@
       "name": "root"
     },
     "props": {
+      "alignContent": "flex-start",
       "alignItems": "center",
       "style": {
-        "overflow": "hidden",
-        "padding-bottom": "7px"
+        "overflow": "hidden"
       }
     },
     "type": "ia.container.flex"

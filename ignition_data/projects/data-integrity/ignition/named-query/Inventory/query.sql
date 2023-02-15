@@ -1,1 +1,1 @@
-SELECT "stringvalue"FROM sqlt_data_1_2022_11
+SELECT * FROM "stored_inventory"

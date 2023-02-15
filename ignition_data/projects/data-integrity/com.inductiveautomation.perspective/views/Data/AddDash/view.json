@@ -38,7 +38,7 @@
               "name": "Barcode_0"
             },
             "position": {
-              "basis": "300px"
+              "grow": 1
             },
             "propConfig": {
               "props.value": {
@@ -53,9 +53,6 @@
               }
             },
             "props": {
-              "style": {
-                "margin-top": ""
-              },
               "type": "qrcode"
             },
             "type": "ia.display.barcode"
@@ -69,7 +66,7 @@
         },
         "props": {
           "direction": "column",
-          "justify": "space-around",
+          "justify": "center",
           "style": {
             "overflow": "hidden"
           }
