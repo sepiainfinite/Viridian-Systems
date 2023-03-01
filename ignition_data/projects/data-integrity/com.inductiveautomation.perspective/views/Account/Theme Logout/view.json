@@ -1,7 +1,12 @@
 {
   "custom": {},
   "params": {},
-  "props": {},
+  "props": {
+    "defaultSize": {
+      "height": 206,
+      "width": 693
+    }
+  },
   "root": {
     "children": [
       {
@@ -251,8 +256,17 @@
             "type": "ia.container.flex"
           },
           {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {},
+                  "scope": "C",
+                  "type": "logout"
+                }
+              }
+            },
             "meta": {
-              "name": "Button"
+              "name": "Login"
             },
             "position": {
               "basis": "50px"
@@ -269,18 +283,23 @@
           }
         ],
         "meta": {
+          "domId": "settingsContainer",
           "name": "Button Container"
         },
         "position": {
           "basis": "180px"
         },
         "props": {
+          "alignContent": "center",
           "direction": "column",
           "justify": "space-evenly",
           "style": {
             "backgroundColor": "--neutral-20",
             "border-radius": "--borderRadiusInput",
-            "padding": "15px"
+            "classes": "SettingsContainer",
+            "overflow": "hidden",
+            "padding": "15px",
+            "width": "600px"
           }
         },
         "type": "ia.container.flex"
@@ -290,7 +309,13 @@
       "name": "root"
     },
     "props": {
-      "direction": "column"
+      "alignContent": "center",
+      "alignItems": "center",
+      "direction": "column",
+      "justify": "flex-end",
+      "style": {
+        "overflow": "hidden"
+      }
     },
     "type": "ia.container.flex"
   }

@@ -46,3 +46,8 @@
 .ia_pager__jump:focus {
     outline: none;
 }
+
+div.pager-container.ia_pager > div.pager {
+    border: unset;
+    box-shadow: unset;
+}

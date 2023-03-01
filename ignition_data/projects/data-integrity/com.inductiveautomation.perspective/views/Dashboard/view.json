@@ -14,8 +14,7 @@
           "name": "TitleDock"
         },
         "position": {
-          "basis": "100px",
-          "grow": 1
+          "basis": "90px"
         },
         "propConfig": {
           "props.text": {
@@ -29,158 +28,94 @@
         },
         "props": {
           "style": {
-            "fontSize": "2rem",
+            "fontSize": "3rem",
+            "fontWeight": 900,
             "padding": "8px"
           }
         },
         "type": "ia.display.label"
       },
       {
-        "meta": {
-          "name": "Dashboard",
-          "tooltip": {
-            "enabled": true
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Table"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Inventory"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "noTablePager",
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "InventoryView"
+            },
+            "props": {
+              "alignContent": "center",
+              "direction": "column",
+              "justify": "space-evenly",
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
           }
+        ],
+        "meta": {
+          "name": "Dashtabs"
         },
         "position": {
           "grow": 1
         },
         "props": {
-          "availableWidgets": [
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "category": "",
-              "defaultSize": {
-                "columnSpan": 2,
-                "rowSpan": 2
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "isConfigurable": false,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Add Item",
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Data/AddDash"
-            },
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "category": "",
-              "defaultSize": {
-                "columnSpan": 2,
-                "rowSpan": 2
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "isConfigurable": false,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Inventory",
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Data/InventoryDash"
-            }
-          ],
-          "stretch": {
-            "columnCount": 16,
-            "rowCount": 16
+          "contentStyle": {
+            "border-radius": "--borderRadius"
           },
-          "style": {
-            "overflow": "hidden"
+          "menuStyle": {
+            "padding": "8px"
           },
-          "widgets": [
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "isConfigurable": false,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Inventory",
-              "position": {
-                "columnEnd": 17,
-                "columnStart": 9,
-                "rowEnd": 15,
-                "rowStart": 1
-              },
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Data/InventoryDash"
+          "menuType": "modern",
+          "tabSize": {
+            "height": 50,
+            "width": 100
+          },
+          "tabStyle": {
+            "active": {
+              "backgroundColor": "--callToAction",
+              "border-radius": "--borderRadiusInput",
+              "box-shadow": "--boxShadow1",
+              "marginRight": "5px"
             },
-            {
-              "body": {
-                "style": {
-                  "classes": ""
-                }
-              },
-              "header": {
-                "enabled": true,
-                "style": {
-                  "classes": ""
-                },
-                "title": ""
-              },
-              "isConfigurable": false,
-              "minSize": {
-                "columnSpan": 1,
-                "rowSpan": 1
-              },
-              "name": "Add Item",
-              "position": {
-                "columnEnd": 8,
-                "columnStart": 1,
-                "rowEnd": 13,
-                "rowStart": 1
-              },
-              "style": {
-                "classes": ""
-              },
-              "viewParams": {},
-              "viewPath": "Data/AddDash"
+            "inactive": {
+              "backgroundColor": "--neutral-20",
+              "border-radius": "--borderRadiusInput",
+              "marginRight": "5px"
             }
+          },
+          "tabs": [
+            "Inventory",
+            "QR Codes"
           ]
         },
-        "type": "ia.display.dashboard"
+        "type": "ia.container.tab"
       }
     ],
     "meta": {

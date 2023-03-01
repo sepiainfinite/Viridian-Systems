@@ -4,21 +4,17 @@
       "title": "",
       "viewPath": "Navigation/Redirect"
     },
-    "/analytics": {
-      "title": "Analytics",
-      "viewPath": "Trending/TrendingFull"
-    },
     "/dashboard": {
       "title": "Dashboard",
       "viewPath": "Dashboard"
     },
     "/inventory": {
       "title": "Inventory",
-      "viewPath": "Data/ExportData"
+      "viewPath": "Inventory/Inventory"
     },
     "/user": {
       "title": "User Settings",
-      "viewPath": "User Settings"
+      "viewPath": "Account/User Settings"
     }
   },
   "sharedDocks": {
@@ -42,7 +38,7 @@
     "left": [
       {
         "anchor": "fixed",
-        "autoBreakpoint": 600,
+        "autoBreakpoint": 480,
         "content": "push",
         "handle": "hide",
         "iconUrl": "",
@@ -50,7 +46,7 @@
         "modal": false,
         "resizable": false,
         "show": "visible",
-        "size": 200,
+        "size": 150,
         "viewParams": {},
         "viewPath": "Navigation/Navigation Full"
       }

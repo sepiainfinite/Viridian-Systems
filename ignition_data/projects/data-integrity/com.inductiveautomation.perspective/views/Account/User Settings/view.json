@@ -1,0 +1,120 @@
+{
+  "custom": {},
+  "params": {
+    "expanded-param": "value"
+  },
+  "propConfig": {
+    "params.expanded-param": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 490,
+      "width": 815
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TitleDock"
+        },
+        "position": {
+          "basis": "90px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "page.props.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "3rem",
+            "fontWeight": 900,
+            "padding": "8px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "domId": "accountName",
+              "name": "Username"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "props": {
+              "text": "Viridian Systems",
+              "textStyle": {
+                "fontSize": "1rem",
+                "transition": "opacity 0.15s ease-in-out"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "domId": "accountRole",
+              "name": "User Level"
+            },
+            "props": {
+              "text": "Administrator",
+              "textStyle": {
+                "color": "--neutral-60",
+                "fontSize": "0.8rem",
+                "transition": "opacity 0.15s ease-in-out"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "User Label Container"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "center",
+          "direction": "column",
+          "justify": "center",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Settings"
+        },
+        "props": {
+          "path": "Account/Theme Logout"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "direction": "column",
+      "justify": "space-between",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

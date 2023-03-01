@@ -6,6 +6,6 @@
 }
 
 body, input, textarea, keygen, select, button {
-    font-family: var(--font-NunitoSans);
+    font-family: var(--font-NeueHaasDisplay);
     font-weight: 400;
 }

@@ -21,6 +21,7 @@
           }
         },
         "meta": {
+          "domId": "mobileButtons",
           "name": "Dashboard"
         },
         "position": {
@@ -37,46 +38,10 @@
             "width": 30
           },
           "primary": false,
-          "text": "Dashboard",
-          "textStyle": {
-            "fontSize": "0.65rem"
-          }
-        },
-        "type": "ia.input.button"
-      },
-      {
-        "events": {
-          "component": {
-            "onActionPerformed": {
-              "config": {
-                "page": "/analytics"
-              },
-              "scope": "C",
-              "type": "nav"
-            }
-          }
-        },
-        "meta": {
-          "name": "Trending"
-        },
-        "position": {
-          "basis": "100px"
-        },
-        "props": {
-          "image": {
-            "height": 30,
-            "icon": {
-              "color": "--neutral-100",
-              "path": "material/trending_up"
-            },
-            "position": "top",
-            "width": 30
-          },
-          "primary": false,
           "style": {
-            "fontSize": "0.65rem"
+            "classes": "MobileButtons"
           },
-          "text": "Analytics",
+          "text": "Dashboard",
           "textStyle": {
             "fontSize": "0.65rem"
           }
@@ -96,7 +61,7 @@
           }
         },
         "meta": {
-          "name": "Data"
+          "name": "Inventory"
         },
         "position": {
           "basis": "100px"
@@ -113,6 +78,7 @@
           },
           "primary": false,
           "style": {
+            "classes": "MobileButtons",
             "fontSize": "0.65rem"
           },
           "text": "Inventory",
@@ -135,7 +101,7 @@
           }
         },
         "meta": {
-          "name": "Account"
+          "name": "User"
         },
         "position": {
           "basis": "100px"
@@ -152,6 +118,7 @@
           },
           "primary": false,
           "style": {
+            "classes": "MobileButtons",
             "fontSize": "0.65rem"
           },
           "text": "User",
@@ -174,8 +141,7 @@
     "props": {
       "justify": "space-evenly",
       "style": {
-        "backgroundColor": "--neutral-10",
-        "box-shadow": "--box-shadow1",
+        "backgroundColor": "--neutral-20",
         "classes": "hideDockWhenSmall",
         "overflow": "hidden"
       }
