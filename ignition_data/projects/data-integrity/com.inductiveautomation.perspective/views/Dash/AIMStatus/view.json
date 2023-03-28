@@ -1,0 +1,271 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 443,
+      "width": 329
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]current-item/payload-ref"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t\tif value:\n\t\t\tout \u003d \"material/check\"\n\t\telse:\n\t\t\tout \u003d \"material/close\"\n\t\t\t\n\t\treturn out",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "color": "#fdfdfd",
+              "style": {
+                "margin-right": "10px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Status"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]current-item/payload-ref"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value:\n\t\tout \u003d \"Connected to AIM Broker\"\n\telse:\n\t\tout \u003d \"No connection to AIM Broker\"\n\t\t\n\treturn out",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "textStyle": {
+                "color": "#fdfdfd"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "StatusContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.style.background-color": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]current-item/payload-ref.Enabled"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "--callToAction"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "justify": "center",
+          "style": {
+            "border-radius": "50px",
+            "max-height": "50px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "AIMHardware"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "fit": {
+            "mode": "contain"
+          },
+          "source": "/system/images/AIMHardware.png",
+          "style": {
+            "height": "50%",
+            "padding": "10px"
+          }
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]current-item/payload-ref.Enabled"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "No Data",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": "Last Received Payload from Scanner"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "font-size": "14px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Payload"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]current-item/payload-ref.Enabled"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tname \u003d system.tag.read(\"[default]current-item/item-name\").value\n\tqty \u003d system.tag.read(\"[default]current-item/item-qty\").value\n\tident \u003d system.tag.read(\"[default]current-item/item-id\").value\n\t\t\n\tif value:\n\t\tout \u003d str(name) + \"\\n\" + str(qty) + \"\\n\" + str(ident)\n\t\n\treturn out",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "font-size": "18px",
+                "text-align": "center"
+              },
+              "textStyle": {
+                "fontWeight": 600
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Timestamp"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[default]current-item/payload-ref"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tname \u003d system.tag.read(\u0027[default]current-item/payload-ref\u0027).timestamp\n\treturn str(name)",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "font-size": "18px",
+                "text-align": "center"
+              },
+              "textStyle": {
+                "fontWeight": 600
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Information"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "center",
+          "direction": "column",
+          "justify": "space-evenly",
+          "style": {
+            "max-height": "100px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

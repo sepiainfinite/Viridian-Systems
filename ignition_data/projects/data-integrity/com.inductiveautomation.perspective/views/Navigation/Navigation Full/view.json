@@ -57,8 +57,7 @@
           "name": "MenuTree"
         },
         "position": {
-          "grow": 1,
-          "shrink": 0
+          "basis": "200px"
         },
         "propConfig": {
           "props.items": {
@@ -138,9 +137,9 @@
     },
     "props": {
       "direction": "column",
-      "justify": "center",
+      "justify": "space-evenly",
       "style": {
-        "backgroundColor": "transparent",
+        "backgroundColor": "--neutral-20",
         "classes": "hideDockWhenSmall",
         "overflow": "hidden",
         "transition": "width .25s ease-in"

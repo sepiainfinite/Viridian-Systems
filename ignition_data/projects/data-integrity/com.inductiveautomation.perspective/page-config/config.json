@@ -6,7 +6,7 @@
     },
     "/dashboard": {
       "title": "Dashboard",
-      "viewPath": "Dashboard"
+      "viewPath": "Dash/Dashboard"
     },
     "/inventory": {
       "title": "Inventory",
@@ -29,7 +29,7 @@
         "modal": false,
         "resizable": false,
         "show": "visible",
-        "size": 70,
+        "size": 60,
         "viewParams": {},
         "viewPath": "Navigation/Navigation Mobile"
       }

@@ -11,8 +11,8 @@
   },
   "props": {
     "defaultSize": {
-      "height": 490,
-      "width": 815
+      "height": 768,
+      "width": 783
     }
   },
   "root": {
@@ -20,9 +20,6 @@
       {
         "meta": {
           "name": "TitleDock"
-        },
-        "position": {
-          "basis": "90px"
         },
         "propConfig": {
           "props.text": {
@@ -36,7 +33,7 @@
         },
         "props": {
           "style": {
-            "fontSize": "3rem",
+            "fontSize": "2.5rem",
             "fontWeight": 900,
             "padding": "8px"
           }
@@ -47,17 +44,50 @@
         "children": [
           {
             "meta": {
+              "name": "Profile"
+            },
+            "position": {
+              "basis": "220px"
+            },
+            "props": {
+              "path": "Account/ProfilePic",
+              "style": {
+                "padding": "10px",
+                "width": "220px"
+              }
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
               "domId": "accountName",
               "name": "Username"
             },
             "position": {
               "basis": "32px"
             },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.authenticated"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value is True:\n\t\tname \u003d self.session.props.auth.user.firstName + \" \" + self.session.props.auth.user.lastName\n\telse:\n\t\tname \u003d \"Guest User\"\n\t\t\n\treturn name",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
             "props": {
-              "text": "Viridian Systems",
+              "style": {
+                "margin-top": "20px"
+              },
               "textStyle": {
-                "fontSize": "1rem",
-                "transition": "opacity 0.15s ease-in-out"
+                "fontSize": "1.6rem"
               }
             },
             "type": "ia.display.label"
@@ -67,12 +97,30 @@
               "domId": "accountRole",
               "name": "User Level"
             },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.authenticated"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\n\tif value:\n\t\trole \u003d self.session.props.auth.user.roles[0]\n\telse:\n\t\trole \u003d \"Guest\"\n\treturn role",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
             "props": {
-              "text": "Administrator",
+              "style": {
+                "margin-top": "10px"
+              },
               "textStyle": {
                 "color": "--neutral-60",
-                "fontSize": "0.8rem",
-                "transition": "opacity 0.15s ease-in-out"
+                "font": "",
+                "fontSize": "1.2rem"
               }
             },
             "type": "ia.display.label"

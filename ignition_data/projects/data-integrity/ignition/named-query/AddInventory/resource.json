@@ -18,7 +18,7 @@
     "cacheEnabled": false,
     "database": "aim_database",
     "fallbackEnabled": false,
-    "lastModificationSignature": "5e8f636db906b435557d7a0be7d620c116e987af85c6ac8ededd69dc7285928c",
+    "lastModificationSignature": "e3ed3f5ae0d3385f286000fb21aebec40a4eff0c02d9f4d4ce81a8615527e6cd",
     "permissions": [
       {
         "zone": "",
@@ -26,23 +26,23 @@
       }
     ],
     "lastModification": {
-      "actor": "admin",
-      "timestamp": "2023-02-15T01:19:39Z"
+      "actor": "sepiainfinite",
+      "timestamp": "2023-03-05T19:03:55Z"
     },
     "parameters": [
       {
         "type": "Parameter",
-        "identifier": "itemQty",
+        "identifier": "name",
         "sqlType": 7
       },
       {
         "type": "Parameter",
-        "identifier": "itemId",
+        "identifier": "identifier",
         "sqlType": 7
       },
       {
         "type": "Parameter",
-        "identifier": "itemName",
+        "identifier": "quantity",
         "sqlType": 7
       }
     ]

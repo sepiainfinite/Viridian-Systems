@@ -1,7 +1,0 @@
-{
-  "base": {
-    "style": {
-      "backgroundImage": "} .ia_button--secondary:enabled:active svg {fill: red !important} {"
-    }
-  }
-}

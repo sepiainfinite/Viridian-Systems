@@ -1,0 +1,230 @@
+{
+  "custom": {
+    "payload": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.payload": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 626,
+      "width": 273
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Barcode"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.payload"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value:\n\t\tstring \u003d value\n\telse:\n\t\tstring \u003d \"No Payload\"\n\t\n\treturn string",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "type": "qrcode"
+            },
+            "type": "ia.display.barcode"
+          }
+        ],
+        "meta": {
+          "name": "Back Color"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "background-color": "#F0F5FC",
+            "border-radius": "50px",
+            "color": "#0d0d0d",
+            "overflow": "hidden",
+            "padding-bottom": "5%"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "props": {
+                  "style": {
+                    "padding": "2px"
+                  },
+                  "text": "Item Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Name"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "placeholder": "Enter Item Name...",
+                  "style": {
+                    "border-radius": "50px",
+                    "fontSize": "20px",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "off"
+                },
+                "type": "ia.input.text-area"
+              }
+            ],
+            "meta": {
+              "name": "Name Section"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "padding": "0 5px 0 5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "props": {
+                  "style": {
+                    "padding": "2px"
+                  },
+                  "text": "Quantity"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Quantity Field"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "align": "left",
+                  "format": "0,0",
+                  "inputBounds": {
+                    "minimum": 1
+                  },
+                  "placeholder": 0,
+                  "style": {
+                    "font-size": "20px",
+                    "padding": "10px"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Quantity Section"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "padding": "0 5px 0 5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t# User ability to add manually configured data to the database.\n\timport random, string\n\t\n\tname \u003d self.parent.getChild(\"Name Section\").getChild(\"Name\").props.text\n\t#system.db.runNamedQuery(\"AddInventory\", {\"itemName\":name})\n\t\n\tquantity \u003d str(self.parent.getChild(\"Quantity Section\").getChild(\"Quantity Field\").props.value)\n\t#system.db.runNamedQuery(\"AddInventory\", {\"itemQty\":quantity})\n\n\tidentifier \u003d \u0027\u0027.join(random.choice(string.ascii_uppercase) for i in range(3)) + \u0027-\u0027 + \u0027\u0027.join(random.choice(string.digits) for i in range(3))\n\t#system.db.runNamedQuery(\"AddInventory\", {\"itemId\":identifier})\n\t\n\tself.view.custom.payload \u003d name + \"*\" + quantity + \"*\" + identifier\n\t\n\tquery \u003d \"INSERT INTO stored_inventory (name, quantity, identifier) VALUES (?,?,?)\"\n\targs \u003d [name, quantity, identifier]\n\tsystem.db.runPrepUpdate(query, args)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Generate"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "image": {
+                "height": 25,
+                "icon": {
+                  "color": "--neutral-10",
+                  "path": "material/qr_code_2"
+                },
+                "width": 25
+              },
+              "style": {
+                "margin-top": "10px"
+              },
+              "text": "Generate QR Code"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Generate"
+        },
+        "props": {
+          "direction": "column",
+          "justify": "space-evenly",
+          "style": {
+            "margin-top": "5px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "domId": "",
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-evenly",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

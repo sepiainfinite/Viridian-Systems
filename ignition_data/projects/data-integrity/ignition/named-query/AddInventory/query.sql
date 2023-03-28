@@ -1,1 +1,1 @@
-INSERT INTO stored_inventory (name, quantity, identifier) VALUES (:itemName, :itemQty, :itemId)
+INSERT INTO stored_inventory (name, quantity, identifier) VALUES (:name, :quantity, :identifier)

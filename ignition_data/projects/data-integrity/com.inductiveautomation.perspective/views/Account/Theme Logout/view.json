@@ -259,9 +259,11 @@
             "events": {
               "component": {
                 "onActionPerformed": {
-                  "config": {},
-                  "scope": "C",
-                  "type": "logout"
+                  "config": {
+                    "script": "\tif self.session.props.auth.authenticated:\n\t\tsystem.perspective.logout()\n\telse:\n\t\tsystem.perspective.login()"
+                  },
+                  "scope": "G",
+                  "type": "script"
                 }
               }
             },
@@ -269,34 +271,55 @@
               "name": "Login"
             },
             "position": {
-              "basis": "50px"
+              "basis": "50px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.authenticated"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "Login",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": "Logout"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
             },
             "props": {
               "image": {
                 "icon": {
                   "path": "material/login"
                 }
-              },
-              "text": "Log In"
+              }
             },
             "type": "ia.input.button"
           }
         ],
         "meta": {
-          "domId": "settingsContainer",
+          "domId": "fixedDM",
           "name": "Button Container"
-        },
-        "position": {
-          "basis": "180px"
         },
         "props": {
           "alignContent": "center",
           "direction": "column",
-          "justify": "space-evenly",
+          "justify": "space-between",
           "style": {
             "backgroundColor": "--neutral-20",
             "border-radius": "--borderRadiusInput",
-            "classes": "SettingsContainer",
+            "classes": "fixContainer",
             "overflow": "hidden",
             "padding": "15px",
             "width": "600px"
@@ -312,7 +335,7 @@
       "alignContent": "center",
       "alignItems": "center",
       "direction": "column",
-      "justify": "flex-end",
+      "justify": "space-between",
       "style": {
         "overflow": "hidden"
       }

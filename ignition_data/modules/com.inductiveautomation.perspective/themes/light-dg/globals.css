@@ -1,7 +1,7 @@
 @import "../light/globals.css";
 
 ::selection {
-    background: rgba(12, 41, 61, 0.99);
+    background: rgba(139, 195, 138, 0.99);
     color: var(--label);
 }
 

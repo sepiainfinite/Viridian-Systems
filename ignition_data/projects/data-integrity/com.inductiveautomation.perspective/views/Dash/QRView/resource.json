@@ -4,13 +4,14 @@
   "restricted": false,
   "overridable": true,
   "files": [
-    "style.json"
+    "view.json",
+    "thumbnail.png"
   ],
   "attributes": {
     "lastModification": {
       "actor": "sepiainfinite",
-      "timestamp": "2023-03-05T17:56:58Z"
+      "timestamp": "2023-03-14T21:41:54Z"
     },
-    "lastModificationSignature": "e66788808cfdb88490b6059df6b6e0e7cec8448d401eddcb556e09539e3fb912"
+    "lastModificationSignature": "3b4954304e32daf4091b2d69961458a27d89646ab19eb4633f1a0ca898fc0f5d"
   }
 }

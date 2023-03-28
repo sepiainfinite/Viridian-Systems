@@ -1,0 +1,59 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 400,
+      "width": 399
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Logo"
+        },
+        "position": {
+          "basis": "100px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "session.props.auth.authenticated"
+              },
+              "transforms": [
+                {
+                  "code": "\tuser \u003d self.session.props.auth.user.userName\n\t\n\tif value is True and user is not \u0027admin\u0027:\n\t\tpic \u003d \"https://github.com/\" + user + \".png\"\n\t\n\telse:\n\t\tpic \u003d \"/system/images/Style2.png\"\n\t\n\treturn pic",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "fit": {
+            "mode": "contain"
+          }
+        },
+        "type": "ia.display.image"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "direction": "column",
+      "justify": "center",
+      "style": {
+        "background-color": "--neutral-30",
+        "border-radius": "400px",
+        "box-shadow": "--boxShadow1"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

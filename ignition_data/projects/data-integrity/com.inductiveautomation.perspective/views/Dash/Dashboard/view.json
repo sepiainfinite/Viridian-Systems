@@ -13,9 +13,6 @@
         "meta": {
           "name": "TitleDock"
         },
-        "position": {
-          "basis": "90px"
-        },
         "propConfig": {
           "props.text": {
             "binding": {
@@ -28,7 +25,7 @@
         },
         "props": {
           "style": {
-            "fontSize": "3rem",
+            "fontSize": "2.5rem",
             "fontWeight": 900,
             "padding": "8px"
           }
@@ -41,28 +38,19 @@
             "children": [
               {
                 "meta": {
-                  "name": "Table"
+                  "domID": "fixedDM",
+                  "name": "EmbeddedView"
                 },
                 "position": {
                   "grow": 1
                 },
-                "propConfig": {
-                  "props.data": {
-                    "binding": {
-                      "config": {
-                        "queryPath": "Inventory"
-                      },
-                      "type": "query"
-                    }
-                  }
-                },
                 "props": {
+                  "path": "Dash/AIMStatus",
                   "style": {
-                    "classes": "noTablePager",
-                    "margin": "10px"
+                    "classes": "fixContainer"
                   }
                 },
-                "type": "ia.display.table"
+                "type": "ia.display.view"
               }
             ],
             "meta": {
@@ -70,16 +58,48 @@
             },
             "props": {
               "alignContent": "center",
+              "alignItems": "flex-start",
               "direction": "column",
               "justify": "space-evenly",
               "style": {
-                "overflow": "hidden"
+                "overflow": "hidden",
+                "padding": "20px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "EmbeddedView"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "path": "Dash/QRView"
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "Add Items"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "margin": "10px"
               }
             },
             "type": "ia.container.flex"
           }
         ],
         "meta": {
+          "domId": "fixedDM",
           "name": "Dashtabs"
         },
         "position": {
@@ -92,7 +112,9 @@
           "menuStyle": {
             "padding": "8px"
           },
-          "menuType": "modern",
+          "style": {
+            "classes": "fixContainer"
+          },
           "tabSize": {
             "height": 50,
             "width": 100
@@ -111,8 +133,8 @@
             }
           },
           "tabs": [
-            "Inventory",
-            "QR Codes"
+            "Scanner",
+            "Create Items"
           ]
         },
         "type": "ia.container.tab"
