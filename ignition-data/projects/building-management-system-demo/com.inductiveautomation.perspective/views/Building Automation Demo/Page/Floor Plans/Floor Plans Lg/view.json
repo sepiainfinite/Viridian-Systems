@@ -1,0 +1,1387 @@
+{
+  "custom": {},
+  "params": {
+    "search": "",
+    "sort": {
+      "dir": "ascending",
+      "type": "vav"
+    }
+  },
+  "propConfig": {
+    "params.search": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sort": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1112
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Sets the selected custom property, which determines the main view that is\n\t# being displayed (all floors vs floor 1 vs floor 2).\n\t\n\tself.parent.parent.parent.getChild(\"Header\").custom.selected \u003d 0"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "All"
+                },
+                "propConfig": {
+                  "props.style.backgroundColor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d0,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d0,\u0027--neutral-10\u0027,\u0027--neutral-70\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.cursor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d0,\u0027auto\u0027,\u0027pointer\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontWeight": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d0,\u0027bold\u0027,\u0027normal\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": 22,
+                    "paddingLeft": "20px",
+                    "paddingRight": "20px",
+                    "textAlign": "center",
+                    "transition": "background-color 0.25s linear"
+                  },
+                  "text": "All"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Sets the selected custom property, which determines the main view that is\n\t# being displayed (all floors vs floor 1 vs floor 2).\n\t\n\tself.parent.parent.parent.getChild(\"Header\").custom.selected \u003d 1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Floor 1"
+                },
+                "propConfig": {
+                  "props.style.backgroundColor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d1,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d1,\u0027--neutral-10\u0027,\u0027--neutral-70\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.cursor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d1,\u0027auto\u0027,\u0027pointer\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontWeight": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d1,\u0027bold\u0027,\u0027normal\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": 22,
+                    "paddingLeft": "20px",
+                    "paddingRight": "20px",
+                    "textAlign": "center",
+                    "transition": "background-color 0.25s linear"
+                  },
+                  "text": "Floor 1"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Sets the selected custom property, which determines the main view that is\n\t# being displayed (all floors vs floor 1 vs floor 2).\n\t\n\tself.parent.parent.parent.getChild(\"Header\").custom.selected \u003d 2"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Floor 2"
+                },
+                "propConfig": {
+                  "props.style.backgroundColor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d2,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d2,\u0027--neutral-10\u0027,\u0027--neutral-70\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.cursor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d2,\u0027auto\u0027,\u0027pointer\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontWeight": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({..../Header.custom.selected}\u003d2,\u0027bold\u0027,\u0027normal\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": 22,
+                    "paddingLeft": "20px",
+                    "paddingRight": "20px",
+                    "textAlign": "center",
+                    "transition": "background-color 0.25s linear"
+                  },
+                  "text": "Floor 2"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Tabs"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "marginBottom": "24px",
+                "marginTop": "24px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "props": {
+                      "style": {
+                        "fontSize": "13px",
+                        "transition": "color 0.25s linear",
+                        "white-space": "nowrap"
+                      },
+                      "text": "Display Options"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Expand"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "!{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "style": {
+                        "transition": "fill 0.25s linear"
+                      },
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  },
+                  {
+                    "meta": {
+                      "name": "Collapse"
+                    },
+                    "position": {
+                      "basis": "25px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{.../Options.position.display}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "elements": [
+                        {
+                          "d": "M0 0h24v24H0z",
+                          "fill": {
+                            "paint": "none"
+                          },
+                          "name": "path",
+                          "type": "path"
+                        },
+                        {
+                          "d": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+                          "name": "path",
+                          "type": "path"
+                        }
+                      ],
+                      "style": {
+                        "transition": "fill 0.25s linear"
+                      },
+                      "viewBox": "0 0 24 24"
+                    },
+                    "type": "ia.shapes.svg"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Toggles visibility of the display options (these display options only displayed when the\n\t# main view is pointing at floor 1 or floor 2).\n\t\n\tself.getSibling(\"Options\").position.display \u003d not self.getSibling(\"Options\").position.display"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "path": "session.props.theme"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value in [\u0027hvac-dark\u0027,\u0027hvac-dark-warm\u0027]:\n\t\treturn \u0027building-automation-demo/page/floor-plans/button\u0027\n\telse:\n\t\treturn \u0027building-automation-demo/page/floor-plans/button-light\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "justify": "space-between",
+                  "style": {
+                    "minHeight": "32px",
+                    "paddingLeft": "5px",
+                    "paddingRight": "5px",
+                    "transition": "border-color 0.25s linear"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Label Color Scheme"
+                        },
+                        "props": {
+                          "style": {
+                            "fontSize": "12px",
+                            "white-space": "nowrap"
+                          },
+                          "text": "Color Scheme"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t# Set the current color scheme to traditional/rainbow.\n\t\n\tself.session.custom.ColorScheme \u003d 0"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "Traditional"
+                            },
+                            "position": {
+                              "basis": "50%",
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.style.backgroundColor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d0,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.color": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d0,\u0027--neutral-10\u0027,\u0027--neutral-90\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.cursor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d0,\u0027auto\u0027,\u0027pointer\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "style": {
+                                "borderRightColor": "--neutral-80",
+                                "borderRightStyle": "solid",
+                                "borderRightWidth": 1,
+                                "fontSize": "11px",
+                                "textAlign": "center"
+                              },
+                              "text": "Traditional"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t# Set the current color scheme to [default]BMS/Blue/red.\n\t\n\tself.session.custom.ColorScheme \u003d 1"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "Blue Red"
+                            },
+                            "position": {
+                              "basis": "50%",
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.style.backgroundColor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d1,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.color": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d1,\u0027--neutral-10\u0027,\u0027--neutral-90\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.cursor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.ColorScheme}\u003d1,\u0027auto\u0027,\u0027pointer\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "style": {
+                                "fontSize": "11px",
+                                "textAlign": "center"
+                              },
+                              "text": "[default]BMS/Blue/Red"
+                            },
+                            "type": "ia.display.label"
+                          }
+                        ],
+                        "meta": {
+                          "name": "Color Scheme Options"
+                        },
+                        "position": {
+                          "basis": "35px"
+                        },
+                        "props": {
+                          "justify": "space-evenly",
+                          "style": {
+                            "borderColor": "--neutral-80",
+                            "borderStyle": "solid",
+                            "borderWidth": 1,
+                            "marginTop": "10px",
+                            "overflow": "hidden"
+                          }
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Color Scheme"
+                    },
+                    "position": {
+                      "basis": "45px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "alignContent": "flex-start",
+                      "direction": "column",
+                      "style": {
+                        "overflow": "hidden"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Label Base On"
+                        },
+                        "props": {
+                          "style": {
+                            "fontSize": "12px",
+                            "white-space": "nowrap"
+                          },
+                          "text": "Base On"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t# Set the current base on mode to effectiveSP.\n\t\n\tself.session.custom.FloorColorFromEffSP\u003dTrue"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "Effective SP"
+                            },
+                            "position": {
+                              "basis": "50%",
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.style.backgroundColor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dtrue,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.color": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dtrue,\u0027--neutral-10\u0027,\u0027--neutral-90\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.cursor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dtrue,\u0027auto\u0027,\u0027pointer\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "style": {
+                                "borderRightColor": "--neutral-80",
+                                "borderRightStyle": "solid",
+                                "borderRightWidth": 1,
+                                "fontSize": "11px",
+                                "textAlign": "center"
+                              },
+                              "text": "Effective SP"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t# Set the current base on mode to realTemp.\n\t\n\tself.session.custom.FloorColorFromEffSP\u003dFalse"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "Real Temp"
+                            },
+                            "position": {
+                              "basis": "50%",
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.style.backgroundColor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dfalse,\u0027--neutral-100\u0027,\u0027--neutral-10\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.color": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dfalse,\u0027--neutral-10\u0027,\u0027--neutral-90\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              },
+                              "props.style.cursor": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if({session.custom.FloorColorFromEffSP}\u003dfalse,\u0027auto\u0027,\u0027pointer\u0027)"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "style": {
+                                "fontSize": "11px",
+                                "textAlign": "center"
+                              },
+                              "text": "Real Temp"
+                            },
+                            "type": "ia.display.label"
+                          }
+                        ],
+                        "meta": {
+                          "name": "Base On Options"
+                        },
+                        "position": {
+                          "basis": "35px"
+                        },
+                        "props": {
+                          "justify": "space-evenly",
+                          "style": {
+                            "borderColor": "--neutral-80",
+                            "borderStyle": "solid",
+                            "borderWidth": 1,
+                            "marginTop": "10px",
+                            "overflow": "hidden"
+                          }
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Base On"
+                    },
+                    "position": {
+                      "basis": "45px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "alignContent": "flex-start",
+                      "direction": "column",
+                      "style": {
+                        "marginTop": "18px",
+                        "overflow": "hidden"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Label Component"
+                        },
+                        "props": {
+                          "style": {
+                            "fontSize": "12px",
+                            "white-space": "nowrap"
+                          },
+                          "text": "Components"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "CO2 Indicators"
+                            },
+                            "position": {
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.selected": {
+                                "binding": {
+                                  "config": {
+                                    "bidirectional": true,
+                                    "path": "......./Main.props.params.showCO2"
+                                  },
+                                  "overlayOptOut": true,
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "checkedIcon": {
+                                "color": {
+                                  "enabled": "--neutral-70"
+                                },
+                                "style": {
+                                  "maxWidth": "20px"
+                                }
+                              },
+                              "style": {
+                                "color": "--neutral-70",
+                                "fontSize": "11px",
+                                "white-space": "nowrap"
+                              },
+                              "text": "CO2",
+                              "uncheckedIcon": {
+                                "style": {
+                                  "maxWidth": "20px"
+                                }
+                              }
+                            },
+                            "type": "ia.input.checkbox"
+                          },
+                          {
+                            "meta": {
+                              "name": "Thermostats"
+                            },
+                            "position": {
+                              "grow": 1
+                            },
+                            "propConfig": {
+                              "props.selected": {
+                                "binding": {
+                                  "config": {
+                                    "bidirectional": true,
+                                    "path": "......./Main.props.params.showThermostats"
+                                  },
+                                  "overlayOptOut": true,
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "checkedIcon": {
+                                "color": {
+                                  "enabled": "--neutral-70"
+                                },
+                                "style": {
+                                  "maxWidth": "20px"
+                                }
+                              },
+                              "style": {
+                                "color": "--neutral-70",
+                                "fontSize": "11px",
+                                "white-space": "nowrap"
+                              },
+                              "text": "Thermostats",
+                              "uncheckedIcon": {
+                                "style": {
+                                  "maxWidth": "20px"
+                                }
+                              }
+                            },
+                            "type": "ia.input.checkbox"
+                          }
+                        ],
+                        "meta": {
+                          "name": "Components Cont"
+                        },
+                        "position": {
+                          "basis": "60px"
+                        },
+                        "props": {
+                          "wrap": "wrap"
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Components"
+                    },
+                    "position": {
+                      "basis": "45px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "marginTop": "20px",
+                        "overflow": "hidden"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Options"
+                },
+                "position": {
+                  "basis": "180px",
+                  "display": false,
+                  "grow": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "backgroundColor": "--neutral-10",
+                    "borderColor": "var(--neutral-70)",
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "minHeight": "191px",
+                    "overflow": "visible",
+                    "padding": "10px",
+                    "zIndex": 1
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Display Options"
+            },
+            "position": {
+              "basis": "190px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{parent.custom.selected} \u003e 0"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-between",
+              "style": {
+                "marginBottom": "24px",
+                "marginRight": "15px",
+                "marginTop": "24px",
+                "overflow": "visible",
+                "paddingBottom": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Expand the search container.\n\t\n\tself.parent.custom.expanded \u003d True"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Search",
+                  "tooltip": {
+                    "enabled": true,
+                    "text": "SEARCH ZONES"
+                  }
+                },
+                "position": {
+                  "basis": "35px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.elements[0].fill.paint": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({parent.custom.expanded}\u003dtrue,if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-90)\u0027,\u0027var(--neutral-20)\u0027),\r\nif({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-100)\u0027,\u0027var(--neutral-20)\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.fill": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-10)\u0027,\u0027var(--neutral-80)\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.cursor": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({parent.custom.expanded},\u0027auto\u0027,\u0027pointer\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "cx": 12,
+                      "cy": 12,
+                      "fill": {},
+                      "r": 22,
+                      "type": "circle"
+                    },
+                    {
+                      "d": "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "style": {
+                    "classes": "building-automation-demo/page/general-icon"
+                  },
+                  "viewBox": "-12 -12 48 48"
+                },
+                "type": "ia.shapes.svg"
+              },
+              {
+                "meta": {
+                  "name": "Search Text"
+                },
+                "position": {
+                  "basis": "330px",
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{parent.custom.expanded}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-100\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.search"
+                      },
+                      "type": "property"
+                    },
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tif origin not in [\u0027Binding\u0027]:\n\t\t# Send a message to \u0027searchZones\u0027 message handler containing the search term\n\t\t# entered by the user. The visbility of the zones in the zones list and the\n\t\t# zone labels in the floorplans are determined by the search term.\n\t\n\t\tsystem.perspective.sendMessage(\u0027searchZones\u0027,payload\u003d{\u0027search\u0027:currentValue.value},scope\u003d\u0027page\u0027)"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": "Dept, VAV name, requesting",
+                  "style": {
+                    "backgroundColor": "#FFFFFF00",
+                    "borderStyle": "none",
+                    "marginLeft": "-10px",
+                    "outline": "none"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Clear out the current search and close the search container.\n\t\n\tself.getSibling(\"Search Text\").props.text \u003d \u0027\u0027\n\tself.parent.custom.expanded \u003d False"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Close",
+                  "tooltip": {
+                    "enabled": true,
+                    "text": "CANCEL SEARCH"
+                  }
+                },
+                "position": {
+                  "basis": "35px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{parent.custom.expanded}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.elements[0].fill.paint": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-70)\u0027,\u0027var(--neutral-40)\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "elements": [
+                    {
+                      "cx": 12,
+                      "cy": 12,
+                      "fill": {},
+                      "r": 18,
+                      "type": "circle"
+                    },
+                    {
+                      "d": "M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z",
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "fill": "var(--neutral-10)",
+                  "style": {
+                    "classes": "building-automation-demo/page/general-icon",
+                    "cursor": "pointer"
+                  },
+                  "viewBox": "-12 -12 48 48"
+                },
+                "type": "ia.shapes.svg"
+              }
+            ],
+            "custom": {
+              "expanded": false
+            },
+            "meta": {
+              "name": "Search Cont"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.expanded},\u0027390px\u0027,\u002738px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.expanded}\u003dtrue,if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027var(--neutral-90)\u0027,\u0027var(--neutral-20)\u0027),\u0027#FFFFFF00\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.borderRadius": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.expanded},\u00274px\u0027,\u00270px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center",
+              "justify": "center",
+              "style": {
+                "marginBottom": "22px",
+                "marginTop": "22px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "custom": {
+          "selected": 0
+        },
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "80px"
+        },
+        "props": {
+          "style": {
+            "marginLeft": "20px",
+            "marginRight": "20px",
+            "overflow": "visible",
+            "zIndex": 1
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Main"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Header.custom.selected}\u003d0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.params.displayOptionsOffsets.bottom": {
+            "binding": {
+              "config": {
+                "path": "view.params.Display OptionsOffsets.bottom"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.displayOptionsOffsets.left": {
+            "binding": {
+              "config": {
+                "path": "view.params.Display OptionsOffsets.left"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.displayOptionsOffsets.right": {
+            "binding": {
+              "config": {
+                "path": "view.params.Display OptionsOffsets.right"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.displayOptionsOffsets.top": {
+            "binding": {
+              "config": {
+                "path": "../Header.position.basis"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.search": {
+            "binding": {
+              "config": {
+                "path": "view.params.search"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          },
+          "props.params.sort": {
+            "binding": {
+              "config": {
+                "path": "view.params.sort"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "floor1Labels": [
+              "Label 1-1",
+              "Label 1-2",
+              "Label 1-3",
+              "Label 1-4",
+              "Label 1-5",
+              "Label 1-6",
+              "Label 1-7",
+              "Label 1-8",
+              "Label 1-9",
+              "Label 1-10",
+              "Label 1-11",
+              "Label 1-12",
+              "Label 1-13",
+              "Label 1-14",
+              "Label 1-15",
+              "Label 1-16",
+              "Label 1-17",
+              "Label 1-18",
+              "Label 1-19",
+              "Label 1-20",
+              "Label 1-21",
+              "Label 1-22",
+              "Label 1-23",
+              "Label 1-24",
+              "Label 1-25",
+              "Label 1-26",
+              "Label 1-28",
+              "Label 1-29",
+              "Label 1-30",
+              "Label 1-31",
+              "Label 1-32",
+              "Label 1-33",
+              "Label 1-34",
+              "Label 1-35",
+              "Label 1-36",
+              "Label 1-37",
+              "Label 1-38",
+              "Label 1-39",
+              "Label 1-40",
+              "Label 1-41",
+              "Label 1-42"
+            ],
+            "floor2Labels": [
+              "Label 2-1",
+              "Label 2-2",
+              "Label 2-3",
+              "Label 2-4",
+              "Label 2-5",
+              "Label 2-6",
+              "Label 2-7",
+              "Label 2-8",
+              "Label 2-9",
+              "Label 2-10",
+              "Label 2-11",
+              "Label 2-12",
+              "Label 2-13",
+              "Label 2-14",
+              "Label 2-15",
+              "Label 2-16",
+              "Label 2-17",
+              "Label 2-18",
+              "Label 2-19",
+              "Label 2-20",
+              "Label 2-21",
+              "Label 2-22",
+              "Label 2-23",
+              "Label 2-24",
+              "Label 2-25",
+              "Label 2-26",
+              "Label 2-27",
+              "Label 2-28",
+              "Label 2-29",
+              "Label 2-30",
+              "Label 2-31",
+              "Label 2-32",
+              "Label 2-34",
+              "Label 2-35",
+              "Label 2-36"
+            ],
+            "showCO2": false,
+            "showThermostats": false
+          },
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/Lg/Floors \u0026 Zones",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Floor Display"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Header.custom.selected}!\u003d0"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.params.displayCo2": {
+            "binding": {
+              "config": {
+                "path": "../Header/Display Options/Options/Components/Components Cont/CO2 Indicators.props.selected"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          },
+          "props.params.displayThermostat": {
+            "binding": {
+              "config": {
+                "path": "../Header/Display Options/Options/Components/Components Cont/Thermostats.props.selected"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          },
+          "props.params.floorNumber": {
+            "binding": {
+              "config": {
+                "path": "../Header.custom.selected"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          },
+          "props.params.labelDisplay": {
+            "binding": {
+              "config": {
+                "expression": "if({../Header.custom.selected}\u003d1,{../Main.props.params.floor1Labels},if({../Header.custom.selected}\u003d2,{../Main.props.params.floor2Labels},null))"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Building Automation Demo/Page/Floor Plans/Framework/Floor Display"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\t# Because the zone search is maintained between the small and large versions\n\t# of this project, and because the search container needs to be expanded\n\t# to view the current zone search term, if a search is executed on the\n\t# small version and then the breakpoint container switches to the large\n\t# version, this script ensures that the search container is expanded (so\n\t# that the search term can be viewed).\n\t\n\tif self.view.params.search !\u003d \u0027\u0027:\n\t\tself.getChild(\"Header\").getChild(\"Search Cont\").custom.expanded \u003d True"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

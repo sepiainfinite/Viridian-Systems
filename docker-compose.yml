@@ -1,38 +1,15 @@
 services:
   gateway:
-    container_name: FrontendAIM
     image: bwdesigngroup/ignition-docker:8.1.22
+    hostname: gateway
     ports:
-      - 80:8088
+      - 8088
     volumes:
-      - ./ignition_data:/workdir
+      - ./ignition-data:/workdir
+      - ./backups/gateway.gwbk:/restore.gwbk
     environment:
       - SYMLINK_GITIGNORE=false
       - SYMLINK_LOGBACK=false
 
-    # Start the agent with the latest version
-  hub-agent:
-    image: ghcr.io/traefik/hub-agent-traefik:v1.0.0
-    pull_policy: always
-    container_name: hub-agent
-    restart: "on-failure"
-    command:
-      - run
-      - --hub.token=4958f9af-32ea-4dd2-a684-68eee4d2a4ac
-      - --auth-server.advertise-url=http://hub-agent
-      - --traefik.host=traefik
-      - --traefik.tls.insecure=true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      - traefik
-
-  # Start Traefik with the latest version
-  traefik:
-    image: traefik:v2.8
-    container_name: traefik
-    command:
-      # Enable Hub communication (open the port 9900 and 9901 by default)
-      - --experimental.hub=true
-      - --hub.tls.insecure=true
-      - --metrics.prometheus.addrouterslabels=true
+    # command: >
+    #   -r /restore.gwbk

@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'NeueHaasDisplayPro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('NeueHasDisplayRoman'), local('Neue Haas Display Roman'),
+        url('/data/perspective/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NeueHaasDisplayPro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('NeueHaasDisplayMediu'), local('Neue Haas Display Medium'),
+        url('/data/perspective/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NeueHaasDisplayPro';
+    font-style: italic;
+    font-weight: 400;
+    src: local('NeueHaasDisplayRomanItalic'), local('Neue Haas Display Italic'),
+        url('/data/perspective/fonts/NeueHaasDisplayRomanItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NeueHaasDisplayPro';
+    font-style: bold;
+    font-weight: 900;
+    src: local('NeueHaasDisplayBlack'), local('Neue Haas Display Black'),
+        url('/data/perspective/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
+}

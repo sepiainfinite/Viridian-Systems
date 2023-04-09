@@ -1,0 +1,16 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "data.bin"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "sepiainfinite",
+      "timestamp": "2023-03-05T19:12:59Z"
+    },
+    "lastModificationSignature": "f3e27fc47a017e622050b8d5a6779d480f5f8e76b9f256c92cd14dfcb3ff41ed"
+  }
+}

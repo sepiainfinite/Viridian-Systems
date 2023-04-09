@@ -1,0 +1,168 @@
+{
+  "custom": {},
+  "params": {
+    "expanded-param": "value"
+  },
+  "propConfig": {
+    "params.expanded-param": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 768,
+      "width": 783
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TitleDock"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "page.props.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "2.5rem",
+            "fontWeight": 900,
+            "padding": "8px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Profile"
+            },
+            "position": {
+              "basis": "220px"
+            },
+            "props": {
+              "path": "Account/ProfilePic",
+              "style": {
+                "padding": "10px",
+                "width": "220px"
+              }
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "domId": "accountName",
+              "name": "Username"
+            },
+            "position": {
+              "basis": "32px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.authenticated"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value is True:\n\t\tname \u003d self.session.props.auth.user.firstName + \" \" + self.session.props.auth.user.lastName\n\telse:\n\t\tname \u003d \"Guest User\"\n\t\t\n\treturn name",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "margin-top": "20px"
+              },
+              "textStyle": {
+                "fontSize": "1.6rem"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "domId": "accountRole",
+              "name": "User Level"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.authenticated"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\n\tif value:\n\t\trole \u003d self.session.props.auth.user.roles[0]\n\telse:\n\t\trole \u003d \"Guest\"\n\treturn role",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "margin-top": "10px"
+              },
+              "textStyle": {
+                "color": "--neutral-60",
+                "font": "",
+                "fontSize": "1.2rem"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "User Label Container"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "center",
+          "direction": "column",
+          "justify": "center",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Settings"
+        },
+        "props": {
+          "path": "Account/Theme Logout"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "direction": "column",
+      "justify": "space-between",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

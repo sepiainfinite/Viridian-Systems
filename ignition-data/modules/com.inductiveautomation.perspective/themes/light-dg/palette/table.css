@@ -1,0 +1,8 @@
+.ia_tableComponent__selection {
+    background-color: #F99C1033;
+}
+
+.ia_tableComponent__body__row--hovered {
+    color: var(--neutral-90);
+    background-color: var(--callToAction--hover);
+}

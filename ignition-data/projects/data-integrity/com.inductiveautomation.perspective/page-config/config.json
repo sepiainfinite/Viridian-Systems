@@ -1,0 +1,55 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Navigation/Redirect"
+    },
+    "/dashboard": {
+      "title": "Dashboard",
+      "viewPath": "Dash/Dashboard"
+    },
+    "/inventory": {
+      "title": "Inventory",
+      "viewPath": "Inventory/Inventory"
+    },
+    "/user": {
+      "title": "User Settings",
+      "viewPath": "Account/User Settings"
+    }
+  },
+  "sharedDocks": {
+    "bottom": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 599,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 60,
+        "viewParams": {},
+        "viewPath": "Navigation/Navigation Mobile"
+      }
+    ],
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "FullNav",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 150,
+        "viewParams": {},
+        "viewPath": "Navigation/Navigation Full"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+@import "../light/globals.css";
+
+::selection {
+    background: rgba(139, 195, 138, 0.99);
+    color: var(--label);
+}
+
+body, input, textarea, keygen, select, button {
+    font-family: var(--font-NeueHaasDisplay);
+    font-weight: 400;
+}

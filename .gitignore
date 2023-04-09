@@ -1,6 +1,11 @@
 # Ignore the builtin vscode files
 *.vscode
-*.workspace
+
+# MacOS Files
+.DS_Store
+
+# Python Files
+*.pyc
 
 # Ignore the theming digest files in your repo
 *.digest.json
@@ -9,17 +14,9 @@
 ignition.conf
 logback.xml
 
-#ignore configs files
-**/configs
-
 # Project stuff
 **/conversion-report.txt
 **/.resources
-**/publisher-ignition
-/Authentication
-/Documentation
-/Modules
-*/Publisher
 
 # Ignore any inbuilt theming files as well
 **/modules/com.inductiveautomation.perspective/fonts
@@ -44,3 +41,9 @@ logback.xml
 **/modules/com.inductiveautomation.perspective/themes/light-cool.css
 **/modules/com.inductiveautomation.perspective/themes/light-cool
 **/modules/com.inductiveautomation.perspective/themes/README.md
+.env
+
+# Ignore additional workaround traefik configuration
+tmp_traefik.yml
+# Ignore weird uuid file that keeps appearing
+**/.uuid

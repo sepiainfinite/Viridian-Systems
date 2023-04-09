@@ -1,0 +1,72 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 81,
+      "width": 331
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "message": "\u003chtml\u003e\u003cstyle type\u003d\"text/css\"\u003e     span.detail { color:var(--neutral-70)}     span.name { color:var(--neutral-100);font-weight:bold}     \u003c/style\u003e \u003c/head\u003e \u003cbody\u003e     \u003cspan class\u003d\"detail\"\u003eΔ SP: \u003cspan class\u003d\"name\"\u003eZone Temp - (Zone Desired SP + OSA Shift)\u003c/span\u003e \u003c/span\u003e \u003cbr\u003e \u003cbr\u003e     \u003cspan class\u003d\"detail\"\u003eOSA Shift: \u003cspan class\u003d\"name\"\u003ecurrVal\u003c/span\u003e \u003c/span\u003e"
+        },
+        "meta": {
+          "name": "Descr"
+        },
+        "position": {
+          "basis": "60px",
+          "grow": 1
+        },
+        "propConfig": {
+          "custom.osaShift": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[default]BMS/90BR/VAV/_Global/Temp_SP_OSA_Shift"
+              },
+              "type": "tag"
+            }
+          },
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "this.custom.osaShift"
+              },
+              "transforms": [
+                {
+                  "code": "\tmessage \u003d self.custom.message\n\treturn message.replace(\u0027currVal\u0027,str(round(value,2)))",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "markdown": {
+            "escapeHtml": false
+          },
+          "style": {
+            "fontSize": "12px",
+            "margin": "15px"
+          }
+        },
+        "type": "ia.display.markdown"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--neutral-20"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,5 @@
+.psc-neumorphic{
+    border-radius: 50px;
+    box-shadow: var(--boxShadow1);
+    background-color: var(--neutral-50) !important;
+}

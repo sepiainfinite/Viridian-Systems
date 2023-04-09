@@ -1,0 +1,9 @@
+.ia_container--root {
+    background-color: var(--containerRoot);
+    margin: .75rem;
+    border-radius: 50px;
+}
+
+.ia_container--secondary {
+    background-color: var(--container);
+}

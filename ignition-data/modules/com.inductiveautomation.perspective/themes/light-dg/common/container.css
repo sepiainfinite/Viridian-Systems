@@ -1,0 +1,18 @@
+.ia_container--root {
+    background-color: var(--containerRoot);
+    margin: 1rem;
+}
+
+.ia_container--secondary {
+    background-color: var(--container);
+}
+
+#fixedDM.psc-fixContainer  {
+    width: 100% !important;
+}
+
+@media(min-width: 750px) {
+    #fixedDM.psc-fixContainer  {
+        width: 600px !important;
+    }
+}

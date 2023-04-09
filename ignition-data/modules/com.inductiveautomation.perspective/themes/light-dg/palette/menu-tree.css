@@ -1,0 +1,30 @@
+.ia_menuTreeComponent__item{
+    width: unset !important;
+    margin: 8px;
+
+    /*Overriding light theme style*/
+    border-bottom: unset;
+    background-color: inherit;
+    color: inherit;
+}
+
+.ia_menuTreeComponent__item:not(.ia_menuTreeComponent__header):hover {
+    border-radius: 50px;
+    background-color: var(--neutral-10);
+}
+
+.ia_menuTreeComponent__item__icon,
+.ia_menuTreeComponent__header__icon {
+    fill: var(--icon);
+}
+
+.ia_menuTreeComponent__item__navIcon {
+    fill: var(--icon);
+}
+
+.label-text.ia_menuTreeComponent__item__text div {
+    transition: opacity 0.15s ease-in-out;
+}
+.psc-hideMenuText .label-text.ia_menuTreeComponent__item__text div {
+    opacity: 0;
+}

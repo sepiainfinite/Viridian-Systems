@@ -1,0 +1,150 @@
+{
+  "custom": {
+    "expanded": false
+  },
+  "params": {},
+  "propConfig": {
+    "custom.expanded": {
+      "binding": {
+        "config": {
+          "expression": "false"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 379,
+      "width": 187
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "menuItems": [
+            {
+              "icon": "material/dashboard",
+              "label": "Dashboard",
+              "target": "/dashboard"
+            },
+            {
+              "icon": "material/backup_table",
+              "label": "Inventory",
+              "target": "/inventory"
+            },
+            {
+              "icon": "material/account_circle",
+              "label": "Account",
+              "target": "/user"
+            }
+          ]
+        },
+        "events": {
+          "component": {
+            "onItemClicked": {
+              "config": {
+                "script": "# Update dock size when navigating to override session dock sizing.\n\n\tif self.view.custom.expanded:\n\t\tsystem.perspective.alterDock(\"FullNav\", {\u0027size\u0027: 200})\n\t\t#system.perspective.print(\"200\")\n\telse:\n\t\tsystem.perspective.alterDock(\"FullNav\", {\u0027size\u0027: 70})\n\t\t#system.perspective.print(\"70\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "MenuTree"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "propConfig": {
+          "props.items": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "isExpanded": "{view.custom.expanded}",
+                  "menuItems": "{this.custom.menuItems}",
+                  "pagePath": "{page.props.path}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tmenuItems \u003d []\n\t\t\n\tfor item in value.menuItems:\n\t\tmenuItems.append({\n\t\t  \"target\":  item.get(\u0027target\u0027),\n\t\t  \"items\": [],\n\t\t  \"navIcon\": {\n\t\t    \"path\":\"\",\n\t\t    \"color\": \"\"\n\t\t  },\n\t\t  \"label\": {\n\t\t    \"icon\": {\n\t\t      \"path\":  item.get(\u0027icon\u0027)\n\t\t    },\n\t\t    \"text\": item.get(\u0027label\u0027)\n\t\t  },\n\t\t  \"visible\": True,\n\t\t  \"enabled\": True,\n\t\t  \"showHeader\": True,\n\t\t  \"resetOnClick\": False,\n\t\t  \"style\": {\n\t\t    \"classes\": \"neumorphic\" if item.get(\u0027target\u0027) \u003d\u003d value.pagePath else \"\"\n\t\t  }\n\t\t})\n\t\n\t\n\treturn menuItems",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.custom.expanded"
+              },
+              "transforms": [
+                {
+                  "fallback": "hideMenuText",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": null
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "itemStyle": {
+            "overflow": "hidden"
+          },
+          "style": {}
+        },
+        "type": "ia.navigation.menutree"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onMouseEnter": {
+          "config": {
+            "script": "\twidth \u003d 200\n\tsystem.perspective.alterDock( \"FullNav\", {\"size\": width})\n\t\n\tself.view.custom.expanded \u003d True"
+          },
+          "scope": "G",
+          "type": "script"
+        },
+        "onMouseLeave": {
+          "config": {
+            "script": "\twidth \u003d 70\n\tsystem.perspective.alterDock( \"FullNav\", {\"size\": width})\n\t\t\n\tself.view.custom.expanded \u003d False"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "width": 70
+      }
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-evenly",
+      "style": {
+        "backgroundColor": "--neutral-20",
+        "classes": "hideDockWhenSmall",
+        "overflow": "hidden",
+        "transition": "width .25s ease-in"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

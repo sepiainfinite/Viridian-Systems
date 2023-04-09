@@ -1,0 +1,126 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 847,
+      "width": 768
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TitleDock"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "page.props.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "2.5rem",
+            "fontWeight": 900,
+            "padding": "8px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Table"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Inventory"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "noTablePager",
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "InventoryView"
+            },
+            "props": {
+              "alignContent": "center",
+              "direction": "column",
+              "justify": "space-evenly",
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Invtabs"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "contentStyle": {
+            "border-radius": "--borderRadius"
+          },
+          "menuStyle": {
+            "padding": "8px"
+          },
+          "menuType": "modern",
+          "tabSize": {
+            "height": 50,
+            "width": 100
+          },
+          "tabStyle": {
+            "active": {
+              "backgroundColor": "--callToAction",
+              "border-radius": "--borderRadiusInput",
+              "box-shadow": "--boxShadow1",
+              "marginRight": "5px"
+            },
+            "inactive": {
+              "backgroundColor": "--neutral-20",
+              "border-radius": "--borderRadiusInput",
+              "marginRight": "5px"
+            }
+          },
+          "tabs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,64 @@
+.ia_button--primary,
+.ia_button--secondary div{
+    font-size: 0.875rem;
+    font-weight: 400;
+
+    margin: 5px;
+
+    border-radius: var(--borderRadiusInput);
+    -webkit-border-radius: var(--borderRadiusInput);
+    cursor: pointer;
+    -webkit-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+    transition-property: box-shadow, background-color;
+}
+
+.ia_button--primary:enabled:hover,
+.ia_button--secondary:enabled:hover {
+    box-shadow: var(--boxShadow1);
+    border: unset;
+}
+
+/* Primary button */
+
+.ia_button--primary {     
+    background-color: var(--callToAction);
+    border: unset;
+}
+
+.ia_button--primary svg,
+.ia_button--secondary svg {
+    fill: currentColor;
+}
+
+.ia_button--primary:enabled:active {
+    border-radius: var(--borderRadiusInput);
+    background-color: brightness(0.4, currentColor);
+    box-shadow:  var(--boxShadow1);
+}
+
+.ia_button--primary--disabled {
+    background-color: var(--callToAction--disabled);
+    border: var(--border--disabled);
+    color: var(--callToAction--Hover);
+    cursor: not-allowed;
+}
+
+/* Secondary button */
+.ia_button--secondary {
+    margin: 8px;
+    border-radius: var(--borderRadiusInput);
+    background-color: transparent;
+}
+
+.ia_button--secondary:enabled:active {
+    box-shadow: unset;
+    background-color: var(--neutral-30);
+}
+
+.ia_button--secondary--disabled {
+    background-color: var(--neutral-50);
+    border: unset;
+    color: var(--neutral-30);
+    cursor: not-allowed;
+}

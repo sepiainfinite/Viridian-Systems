@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "aim_database",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e3ed3f5ae0d3385f286000fb21aebec40a4eff0c02d9f4d4ce81a8615527e6cd",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "sepiainfinite",
+      "timestamp": "2023-03-05T19:03:55Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "identifier",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "quantity",
+        "sqlType": 7
+      }
+    ]
+  }
+}

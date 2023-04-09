@@ -1,0 +1,513 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 154,
+      "width": 637
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "HOA"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Multi State Button"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "propConfig": {
+                  "props.controlValue": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/HMI_HOA"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.indicatorValue": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.controlValue"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "orientation": "row",
+                  "states": [
+                    {
+                      "selectedStyle": {
+                        "backgroundColor": "#FF0000",
+                        "classes": "",
+                        "color": "#000000"
+                      },
+                      "text": "Off",
+                      "unselectedStyle": {
+                        "classes": ""
+                      },
+                      "value": 0
+                    },
+                    {
+                      "selectedStyle": {
+                        "backgroundColor": "#00FF00",
+                        "classes": "",
+                        "color": "#000000"
+                      },
+                      "text": "Auto",
+                      "unselectedStyle": {
+                        "classes": ""
+                      },
+                      "value": 1
+                    },
+                    {
+                      "selectedStyle": {
+                        "backgroundColor": "#FFFF00",
+                        "classes": "",
+                        "color": "#000000"
+                      },
+                      "text": "Low",
+                      "unselectedStyle": {
+                        "classes": ""
+                      },
+                      "value": 2
+                    },
+                    {
+                      "selectedStyle": {
+                        "backgroundColor": "#FF8C00",
+                        "classes": "",
+                        "color": "#000000"
+                      },
+                      "text": "High",
+                      "unselectedStyle": {
+                        "classes": ""
+                      },
+                      "value": 3
+                    }
+                  ]
+                },
+                "type": "ia.input.multi-state-button"
+              }
+            ],
+            "meta": {
+              "name": "Fan HOA Cont"
+            },
+            "position": {
+              "basis": "230px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Temp SP"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Temp SP"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "propConfig": {
+                  "props.inputBounds.maximum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/HMI_Temp_SP.engHigh"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.inputBounds.minimum": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/HMI_Temp_SP.engLow"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/HMI_Temp_SP"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "inputBounds": {}
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Temp SP Cont"
+            },
+            "position": {
+              "basis": "67px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Delta SP"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "30px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--neutral-100",
+                        "textAlign": "center"
+                      },
+                      "text": "+/-"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Delta SP"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.inputBounds.maximum": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Cond_Fan/HMI_Delta_SP.engHigh"
+                          },
+                          "type": "tag"
+                        }
+                      },
+                      "props.inputBounds.minimum": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC1/Cond_Fan/HMI_Delta_SP.engLow"
+                          },
+                          "type": "tag"
+                        }
+                      },
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/HMI_Delta_SP"
+                          },
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "inputBounds": {}
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "Delta SP Cont"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Delta SP"
+            },
+            "position": {
+              "basis": "77px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Status"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "propConfig": {
+                  "props.style.backgroundColor": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.text"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d \u0027Off\u0027:\n\t\treturn \u0027#D5D5D5\u0027\n\telif value \u003d\u003d \u0027Low Speed\u0027:\n\t\treturn \u0027#00FF00\u0027\n\telif value \u003d\u003d \u0027Hi Speed\u0027:\n\t\treturn \u0027#00FF00\u0027\n\telif value in [\u0027Lo Run Flt\u0027,\u0027Hi Run Flt\u0027]:\n\t\treturn \u0027\u0027\n\telif value \u003d\u003d \u0027Coast Down\u0027:\n\t\treturn\u0027#00FF00\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.text"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value in [\u0027Lo Run Flt\u0027,\u0027Hi Run Flt\u0027]:\n\t\treturn \u0027building-automation-demo/page/controls/framework/fault\u0027\n\telse:\n\t\treturn \u0027\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({session.props.theme}\u003d\u0027hvac-dark\u0027 || {session.props.theme}\u003d\u0027hvac-dark-warm\u0027,\u0027--neutral-10\u0027,\u0027--neutral-100\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]BMS/Blue/HVAC/AC2/Cond_Fan/Status"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d 0:\n\t\treturn \u0027Off\u0027\n\telif value \u003d\u003d 1:\n\t\treturn \u0027Low Speed\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Hi Speed\u0027\n\telif value \u003d\u003d 3:\n\t\treturn \u0027Lo Run Flt\u0027\n\telif value \u003d\u003d 4:\n\t\treturn \u0027Hi Run Flt\u0027\n\telif value \u003d\u003d 5:\n\t\treturn \u0027Coast Down\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "borderColor": "--neutral-50",
+                    "borderStyle": "solid",
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Status"
+            },
+            "position": {
+              "basis": "105px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Top Controls"
+        },
+        "position": {
+          "basis": "90px"
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "marginLeft": "15px",
+            "marginRight": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "props": {
+                  "style": {
+                    "color": "--neutral-100",
+                    "textAlign": "center"
+                  },
+                  "text": "Cond Water Temp"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "80px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat({[default]BMS/Blue/HVAC/AC2/Cntl/Cond_Water_Temp}, {[default]BMS/Blue/HVAC/AC2/Cntl/Cond_Water_Temp.FormatString}) + \u0027°F\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "--neutral-80",
+                    "borderColor": "--neutral-50",
+                    "borderStyle": "solid",
+                    "color": "--neutral-10",
+                    "fontWeight": "bold",
+                    "marginLeft": "20px",
+                    "textAlign": "right"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Cond Sump Temp Cont"
+            },
+            "position": {
+              "basis": "240px"
+            },
+            "props": {
+              "style": {
+                "marginLeft": "15px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Water Temp"
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "justify": "flex-end",
+          "style": {
+            "marginBottom": "22px",
+            "marginLeft": "15px",
+            "marginRight": "15px",
+            "marginTop": "15px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}
