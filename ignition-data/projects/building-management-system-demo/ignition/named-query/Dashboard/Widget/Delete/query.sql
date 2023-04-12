@@ -1,1 +1,0 @@
-DELETE FROM dashboard_widgets WHERE id = :id

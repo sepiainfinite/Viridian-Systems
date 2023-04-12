@@ -1,1 +1,0 @@
-SELECT * FROM sp_requests ORDER BY id DESC LIMIT :limit

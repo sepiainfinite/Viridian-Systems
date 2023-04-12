@@ -1,1 +1,0 @@
-SELECT * FROM notes WHERE date >= :startDate AND date <= :endDate
